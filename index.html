@@ -401,21 +401,29 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
 
 /* footer */
 .site-footer{position:relative;isolation:isolate;overflow:hidden;padding-block:clamp(64px,8vw,104px) calc(28px + env(safe-area-inset-bottom,0px))}
-.foot__mark{font-family:var(--f-display);font-weight:400;font-size:clamp(3rem,11vw,8.5rem);line-height:.95;letter-spacing:-.02em}
-.foot__mark em{color:var(--stage-accent)}
-html[lang="ar"] .foot__mark{letter-spacing:0;line-height:1.3;font-weight:700}
-.foot__grid{display:grid;gap:36px;margin-top:48px}
-.foot__grid p{color:var(--stage-muted);max-width:34ch}
-.foot__col h2{font-family:var(--f-body);font-size:var(--t-label);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stage-accent);margin-bottom:14px}
+.site-footer{background:#EDDBC8;color:#2A2118;padding-block:clamp(56px,7vw,96px) clamp(28px,4vw,40px)}
+.foot{display:grid;gap:clamp(40px,5vw,64px)}
+.foot__top{display:grid;gap:26px;align-items:center;padding-bottom:clamp(36px,5vw,56px);border-bottom:1px solid rgba(42,33,24,.2)}
+@media (min-width:900px){.foot__top{grid-template-columns:auto 1fr auto;gap:56px}}
+.site-footer .brand{align-items:flex-start}
+.site-footer .brand__name{color:#1A1410;text-shadow:none;font-size:1.9rem;margin-inline-end:0}
+.site-footer .brand__sub{color:#7A5F36;margin-inline-end:0}
+.site-footer .brand__sub::before,.site-footer .brand__sub::after{background:#7A5F36}
+.foot__tag{max-width:38ch;font-size:1.02rem;line-height:1.6;color:#4A3C2D}
+.foot__cta{justify-self:start;display:inline-flex;align-items:center;gap:.8em;min-height:52px;padding:0 1.8em;background:#1A1410;color:#EDDBC8;border:1px solid #1A1410;text-decoration:none;font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .25s,color .25s}
+.foot__cta:hover{background:transparent;color:#1A1410}
+html[lang="ar"] .foot__cta{letter-spacing:0;font-size:.95rem}
+.foot__cols{display:grid;gap:36px 40px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:900px){.foot__cols{grid-template-columns:repeat(4,1fr)}}
+.foot__col{display:grid;gap:10px;align-content:start;justify-items:start;line-height:1.5}
+.foot__col h2{font-family:var(--f-body);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#7A5F36;margin-bottom:6px}
 html[lang="ar"] .foot__col h2{letter-spacing:0;font-size:.9rem}
-.foot__col ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.foot__col a{text-decoration:none;color:var(--stage-muted);transition:color .2s}
-.foot__col a:hover{color:var(--stage-fg)}
-.foot__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;margin-top:56px;padding-top:22px;border-top:1px solid var(--stage-line);
-  font-size:var(--t-small);color:var(--stage-muted)}
-.foot__bottom a{text-decoration:none}
-.foot__bottom a:hover{color:var(--stage-fg)}
-@media (min-width:760px){.foot__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.foot__col a{text-decoration:none;color:#2A2118;transition:color .2s}
+.foot__col a:hover{color:#8B6630}
+.foot__sm{font-size:.9rem;color:#4A3C2D}
+.foot__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:24px;border-top:1px solid rgba(42,33,24,.2);font-size:.85rem;color:#4A3C2D}
+.foot__bottom a{text-decoration:none;color:inherit}
+.foot__bottom a:hover{color:#8B6630}
 
 /* mobile booking dock */
 .dock{position:fixed;inset-inline:0;bottom:0;z-index:40;display:flex;gap:10px;padding:12px var(--gutter) calc(12px + env(safe-area-inset-bottom,0px));
@@ -735,24 +743,39 @@ html[lang="ar"] .foot__col h2{letter-spacing:0;font-size:.9rem}
 </main>
 
 
-<footer class="site-footer stage grain">
-  <div class="wrap">
-    <p class="foot__mark" data-i18n-html="footMark">Bilal <em>Ali</em></p>
-    <div class="foot__grid">
-      <p data-i18n="footTag">Men's hairstylist in Lebanon. Precision cuts, styling and hair care, by appointment.</p>
-      <div class="foot__col"><h2 data-i18n="footExplore">Explore</h2><ul>
-        <li><a href="#services" data-i18n="navServices">Services</a></li>
-        <li><a href="#about" data-i18n="navAbout">About</a></li>
-        <li><a href="#talk" data-i18n="navTalk">Hair talk</a></li>
-      </ul></div>
-      <div class="foot__col"><h2 data-i18n="footFollow">Follow</h2><ul>
-        <li><a href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.tiktok.com/@bilalali_officiall" target="_blank" rel="noopener">TikTok</a></li>
-      </ul></div>
-      <div class="foot__col"><h2 data-i18n="footBook">Book</h2><ul>
-        <li><a href="#book" data-i18n="ctaBook">Book appointment</a></li>
-        <li><a href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i18n="footDm">Message on Instagram</a></li>
-      </ul></div>
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div class="foot__top">
+      <a class="brand foot__brand" href="#top" aria-label="Bilal Ali, back to top">
+        <span class="brand__name" data-i18n="brand">Bilal Ali</span>
+        <span class="brand__sub" data-i18n="brandSub">Salon</span>
+      </a>
+      <p class="foot__tag" data-i18n="footTag">Men's hairstylist in Lebanon. Precision cuts, styling and hair care, by appointment.</p>
+      <a class="foot__cta" href="book.html"><span data-i18n="ctaBook">Book appointment</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="foot__cols">
+      <div class="foot__col">
+        <h2 data-i18n="dLocation">Location</h2>
+        <p data-i18n="lebanon">Lebanon</p>
+        <p class="foot__sm" data-i18n="byAppointment">By appointment only</p>
+      </div>
+      <div class="foot__col">
+        <h2 data-i18n="footBook">Book</h2>
+        <a href="book.html" data-i18n="ctaBook">Book appointment</a>
+        <a id="foot-phone" href="#" hidden dir="ltr"></a>
+        <a href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i18n="footDm">Message on Instagram</a>
+      </div>
+      <div class="foot__col">
+        <h2 data-i18n="footExplore">Explore</h2>
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#talk" data-i18n="navTalk">Hair talk</a>
+      </div>
+      <div class="foot__col">
+        <h2 data-i18n="footFollow">Follow</h2>
+        <a href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bilalali_officiall" target="_blank" rel="noopener">TikTok</a>
+      </div>
     </div>
     <div class="foot__bottom">
       <span data-i18n="footCopy">© 2026 Bilal Ali. All rights reserved.</span>
@@ -979,6 +1002,7 @@ const AR = {
   /* ---------- settings ---------- */
   if (hasWa) {
     $("#nav-phone").href = "tel:+" + CONFIG.whatsapp;
+    const fp = $("#foot-phone"); fp.href = "tel:+" + CONFIG.whatsapp; fp.textContent = "+" + CONFIG.whatsapp; fp.hidden = false;
     $("#nav-wa").href = "https://wa.me/" + CONFIG.whatsapp;
     $("#nav-wa").target = "_blank"; $("#nav-wa").rel = "noopener";
     $("#book-intro").dataset.i18n = "bookIntroWa";
