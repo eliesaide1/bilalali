@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shop · Bilal Ali Hair</title>
+<meta name="description" content="Hair and beard care picked by Bilal Ali. Order by message.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Marcellus&display=swap">
+<style>
+:root{
+  --bg:#EDDBC8;--surface:#F6EBDD;--card:#E4CFB8;--fg:#1E1710;--muted:#6B5A48;--line:rgba(30,23,16,.18);
+  --accent:#1E1710;--accent-ink:#F6EBDD;--gold:#8B6630;--focus:#8B6630;
+  --f-display:"Bodoni Moda","Bodoni 72","Didot","Times New Roman",serif;
+  --f-body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4.5vw,56px);--ease:cubic-bezier(.2,.7,.2,1);color-scheme:light;
+}
+html[lang="ar"]{--f-display:"Amiri","Noto Naskh Arabic","Times New Roman",serif;--f-body:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.08;letter-spacing:-.012em;margin:0;text-wrap:balance}
+html[lang="ar"] :is(h1,h2,h3){line-height:1.4;letter-spacing:0;font-weight:700}
+html[lang="ar"] em{font-style:normal}
+p{margin:0}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+
+/* header */
+.bar{position:sticky;top:0;z-index:30;background:rgba(237,219,200,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding-top:env(safe-area-inset-top,0px)}
+.bar__in{height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
+.back{display:inline-flex;align-items:center;gap:.6em;font-size:.95rem;font-weight:500;text-decoration:none;color:var(--fg)}
+.back .ico{transform:scaleX(-1)}
+html[dir="rtl"] .back .ico{transform:none}
+.back:hover{color:var(--gold)}
+.brand{display:grid;justify-items:center;gap:5px;text-decoration:none;line-height:1;position:absolute;inset-inline:0;margin-inline:auto;width:max-content}
+.brand b{font-family:"Marcellus",var(--f-display);font-weight:400;font-size:1.65rem;letter-spacing:.2em;margin-inline-end:-.2em;text-transform:uppercase}
+.brand span{font-size:.62rem;font-weight:500;letter-spacing:.5em;margin-inline-end:-.5em;text-transform:uppercase;color:var(--gold)}
+html[lang="ar"] .brand b{font-family:var(--f-display);letter-spacing:0;margin:0;font-weight:700}
+html[lang="ar"] .brand span{letter-spacing:0;margin:0;font-size:.8rem}
+.bar__r{display:flex;align-items:center;gap:8px}
+.round{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--fg);cursor:pointer;font:600 .9rem/1 var(--f-body);text-decoration:none;transition:background .25s,color .25s,border-color .25s}
+.round:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.round .ico{width:20px;height:20px;stroke-width:1.7}
+.count{position:absolute;top:-5px;inset-inline-end:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center}
+
+/* title */
+.intro{padding:clamp(40px,7vw,88px) 0 clamp(32px,5vw,56px)}
+.intro .wrap{display:grid;gap:18px}
+.label{font-size:.75rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
+.intro h1{font-size:clamp(2.6rem,1.2rem + 5.4vw,5.6rem);font-weight:400;max-width:14ch}
+.intro h1 em{font-style:italic;color:var(--gold)}
+.intro p{max-width:48ch;color:var(--muted);font-size:1.1rem}
+
+/* products */
+.shop{padding-bottom:140px}
+.grid{list-style:none;margin:0;padding:0;display:grid;gap:clamp(28px,3vw,44px) clamp(16px,2vw,28px);grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.prod{display:grid;gap:16px;align-content:start}
+.prod__art{position:relative;aspect-ratio:4/5;display:grid;place-items:center;background:var(--card);color:var(--fg);overflow:hidden;transition:background .4s}
+.prod__art::before{content:"";position:absolute;inset:14px;border:1px solid rgba(30,23,16,.12);pointer-events:none}
+.prod__art svg{width:96px;height:96px;stroke-width:.9;transition:transform .7s var(--ease)}
+.prod:hover .prod__art{background:#DFC8AE}
+.prod:hover .prod__art svg{transform:scale(1.1)}
+.prod__quick{position:absolute;inset-inline:14px;bottom:14px;transform:translateY(calc(100% + 14px));transition:transform .45s var(--ease)}
+.prod:hover .prod__quick,.prod:focus-within .prod__quick{transform:none}
+@media (hover:none){.prod__quick{transform:none}}
+.prod__info{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.prod__info h3{font-size:1.3rem;font-weight:500}
+.price{font-size:.95rem;white-space:nowrap}
+.price.is-ask{color:var(--muted);font-size:.85rem}
+.prod__desc{color:var(--muted);font-size:.95rem;margin-top:-8px;max-width:34ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7em;min-height:48px;padding:0 1.4em;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:600 .75rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn:hover{background:transparent;color:var(--accent)}
+.btn--ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--fg)}
+html[lang="ar"] .btn{letter-spacing:0;font-size:.9rem}
+.prod__quick .btn{width:100%}
+.btn.is-added{background:transparent;color:var(--accent)}
+
+/* cart drawer */
+.veil{position:fixed;inset:0;z-index:70;background:rgba(30,23,16,.45);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;z-index:71;width:min(430px,100%);background:var(--bg);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .45s var(--ease);visibility:hidden;box-shadow:-20px 0 50px rgba(30,23,16,.18)}
+html[dir="rtl"] .drawer{transform:translateX(-105%);box-shadow:20px 0 50px rgba(30,23,16,.18)}
+body.cart-open .veil{opacity:1;visibility:visible}
+body.cart-open .drawer{transform:none;visibility:visible}
+body.cart-open{overflow:hidden}
+.drawer__head{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid var(--line)}
+.drawer__head h2{font-size:1.7rem}
+.drawer__body{flex:1;overflow-y:auto;padding:6px 22px 22px}
+.empty{padding-block:40px;color:var(--muted)}
+.line{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding-block:16px;border-bottom:1px solid var(--line);align-items:center}
+.line b{font-family:var(--f-display);font-weight:500;font-size:1.1rem}
+html[lang="ar"] .line b{font-weight:700}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
+.qty button{width:34px;height:34px;border:0;background:transparent;color:inherit;font-size:1.1rem;cursor:pointer}
+.qty button:hover{background:var(--card)}
+.qty span{min-width:28px;text-align:center;font-size:.95rem}
+.line__rm{grid-column:1/-1;justify-self:start;border:0;background:none;color:var(--muted);font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer;padding:0}
+.drawer__foot{padding:20px 22px calc(20px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:grid;gap:14px;background:var(--surface)}
+.total{display:flex;justify-content:space-between;font-family:var(--f-display);font-size:1.25rem}
+.field{display:grid;gap:6px}
+.field label{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
+.field input{width:100%;padding:13px 14px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;border-radius:0}
+.field input:focus{outline:none;border-color:var(--gold)}
+.field input[aria-invalid="true"]{border-color:#B5472D}
+.err{color:#B5472D;font-size:.88rem}
+.note{color:var(--muted);font-size:.85rem}
+.drawer__foot .btn{width:100%;min-height:50px}
+.result{display:grid;gap:12px;padding:16px;border:1px solid var(--gold);background:var(--bg)}
+.result pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.9rem;color:var(--muted);max-height:150px;overflow:auto}
+.result__a{display:flex;flex-wrap:wrap;gap:8px}
+.result__a .btn{width:auto;min-height:42px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="back" href="index.html"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><span data-i="back">Back</span></a>
+    <a class="brand" href="index.html" aria-label="Bilal Ali Salon"><b>Bilal Ali</b><span>Salon</span></a>
+    <div class="bar__r">
+      <button class="round" id="lang" type="button" lang="ar" aria-label="التبديل إلى العربية">ع</button>
+      <button class="round" id="cart-open" type="button" aria-label="Open cart"><svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg><span class="count" id="count" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 40 40"><circle cx="10" cy="29" r="5"/><circle cx="10" cy="11" r="5"/><path d="M14.3 13.6 34 30M14.3 26.4 34 10"/></symbol>
+  <symbol id="i-waves" viewBox="0 0 40 40"><path d="M9 5c5 5 5 10 0 15s-5 10 0 15M17 5c5 5 5 10 0 15s-5 10 0 15M25 5c5 5 5 10 0 15s-5 10 0 15M33 5c5 5 5 10 0 15"/></symbol>
+  <symbol id="i-clipper" viewBox="0 0 40 40"><rect x="12" y="12" width="16" height="23" rx="5"/><path d="M12 12V7h16v5M15 7V4M19 7V4M23 7V4M27 7V4M17 20h6"/></symbol>
+  <symbol id="i-beard" viewBox="0 0 40 40"><path d="M8 8v8a12 12 0 0 0 24 0V8"/><path d="M14 22c2-1.6 4-1.6 6 0 2-1.6 4-1.6 6 0"/><path d="M17 29h6"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 40 40"><path d="M20 4s10 11 10 19a10 10 0 0 1-20 0c0-8 10-19 10-19z"/><path d="M15.5 24a4.5 4.5 0 0 0 4.5 4.5"/></symbol>
+  <symbol id="i-comb" viewBox="0 0 40 40"><rect x="5" y="13" width="30" height="6" rx="1.5"/><path d="M8 19v9M12 19v9M16 19v9M20 19v9M24 19v9M28 19v9M32 19v6"/></symbol>
+</svg>
+
+<section class="intro">
+  <div class="wrap">
+    <p class="label" data-i="eyebrow">The shop</p>
+    <h1 data-i-html="title">Care for what <em>you wear.</em></h1>
+    <p data-i="lead">Hair and beard products Bilal uses and recommends. Add what you want, then send your order to Bilal as a message.</p>
+  </div>
+</section>
+
+<main class="wrap shop">
+  <ul class="grid" id="grid"></ul>
+</main>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 data-i="cart">Your order</h2>
+    <button class="round" id="cart-close" type="button" aria-label="Close"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="drawer__body" id="lines"></div>
+  <div class="drawer__foot" id="foot" hidden>
+    <div class="total" id="total-row" hidden><span data-i="total">Total</span><span id="total"></span></div>
+    <div class="field">
+      <label for="f-name" data-i="fName">Name</label>
+      <input id="f-name" type="text" autocomplete="name" data-i-ph="fNamePh" placeholder="Your name">
+      <span class="err" id="err-name" hidden data-i="errName">Enter your name so Bilal knows who is ordering.</span>
+    </div>
+    <button class="btn" id="order" type="button" data-i="order">Prepare my order</button>
+    <p class="note" data-i="note">Nothing is sent until you send the message yourself. Bilal confirms prices and delivery.</p>
+    <div class="result" id="result" hidden tabindex="-1" aria-live="polite">
+      <pre id="r-text"></pre>
+      <div class="result__a">
+        <button class="btn" type="button" id="r-copy" data-i="rCopy">Copy text</button>
+        <a class="btn btn--ghost" id="r-wa" href="#" target="_blank" rel="noopener" hidden data-i="rWa">Send on WhatsApp</a>
+        <a class="btn btn--ghost" id="r-ig" href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i="rIg">Open Instagram</a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  "use strict";
+  var CONFIG = {
+    whatsapp: "",          // digits only with country code, e.g. "96170123456". Empty = Instagram-only ordering
+    currency: "$",
+    // price: a number, or null to show "Ask for price". Edit names, descriptions and prices here.
+    products: [
+      { id: "serum",  icon: "i-drop",     price: null, en: ["Hair serum", "Smooths frizz and adds shine without weighing hair down."], ar: ["سيروم الشعر", "ينعّم الشعر ويمنحه لمعة من دون أن يثقله."] },
+      { id: "beard",  icon: "i-beard",    price: null, en: ["Beard oil", "Softens the beard and the skin under it. A few drops a day."], ar: ["زيت اللحية", "يلطّف اللحية والبشرة تحتها. بضع قطرات يومياً."] },
+      { id: "clay",   icon: "i-comb",     price: null, en: ["Styling clay", "Matte hold with texture. Shape it, re-shape it, all day."], ar: ["معجون التصفيف", "تثبيت مطفي مع كثافة. شكّله وأعد تشكيله طوال اليوم."] },
+      { id: "spray",  icon: "i-waves",    price: null, en: ["Sea salt spray", "Beach texture and volume for medium and long hair."], ar: ["بخاخ ملح البحر", "ملمس وحجم للشعر المتوسط والطويل."] },
+      { id: "shampoo",icon: "i-drop",     price: null, en: ["Daily shampoo", "Gentle cleanse for scalp and hair, made for everyday use."], ar: ["شامبو يومي", "تنظيف لطيف لفروة الرأس والشعر للاستعمال اليومي."] },
+      { id: "scalp",  icon: "i-scissors", price: null, en: ["Scalp care", "Calms dryness and supports a healthy scalp."], ar: ["عناية بفروة الرأس", "يهدّئ الجفاف ويدعم فروة رأس صحية."] }
+    ]
+  };
+  var $ = function (s) { return document.querySelector(s); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  var hasWa = /^\d{8,15}$/.test(CONFIG.whatsapp);
+  var T = {
+    en: {
+      back: "Back", eyebrow: "The shop", title: "Care for what <em>you wear.</em>",
+      lead: "Hair and beard products Bilal uses and recommends. Add what you want, then send your order to Bilal as a message.",
+      tag: "Bilal's pick", add: "Add to order", added: "Added", ask: "Ask for price",
+      cart: "Your order", total: "Total", empty: "Your order is empty. Add a product to start.", remove: "Remove",
+      fName: "Name", fNamePh: "Your name", errName: "Enter your name so Bilal knows who is ordering.",
+      order: "Prepare my order", note: "Nothing is sent until you send the message yourself. Bilal confirms prices and delivery.",
+      rCopy: "Copy text", rCopied: "Copied", rWa: "Send on WhatsApp", rIg: "Open Instagram",
+      open: "Open cart", close: "Close", lang: "Switch to Arabic",
+      mHello: "Hi Bilal, I'd like to order:", mName: "Name"
+    },
+    ar: {
+      back: "رجوع", eyebrow: "المتجر", title: "عناية بما <em>ترتديه.</em>",
+      lead: "منتجات للشعر واللحية يستعملها بلال وينصح بها. أضف ما تريد، ثم أرسل طلبك إلى بلال في رسالة.",
+      tag: "اختيار بلال", add: "أضف إلى الطلب", added: "تمت الإضافة", ask: "اسأل عن السعر",
+      cart: "طلبك", total: "المجموع", empty: "طلبك فارغ. أضف منتجاً للبدء.", remove: "إزالة",
+      fName: "الاسم", fNamePh: "اسمك", errName: "اكتب اسمك ليعرف بلال من يطلب.",
+      order: "جهّز طلبي", note: "لن يُرسل شيء حتى ترسل الرسالة بنفسك. بلال يؤكد الأسعار والتوصيل.",
+      rCopy: "انسخ النص", rCopied: "تم النسخ", rWa: "أرسل عبر واتساب", rIg: "افتح إنستغرام",
+      open: "افتح السلة", close: "إغلاق", lang: "English",
+      mHello: "مرحباً بلال، أودّ طلب:", mName: "الاسم"
+    }
+  };
+  var lang = "en", cart = {};
+  try { cart = JSON.parse(store.get("cart") || "{}") || {}; } catch (e) { cart = {}; }
+  function t(k) { return T[lang][k] || T.en[k] || k; }
+  function byId(id) { return CONFIG.products.filter(function (p) { return p.id === id; })[0]; }
+  function nameOf(p) { return p[lang][0]; }
+  function money(n) { return CONFIG.currency + n.toLocaleString(lang === "ar" ? "ar-LB" : "en-US"); }
+  function save() { store.set("cart", JSON.stringify(cart)); }
+  function qtyTotal() { return Object.keys(cart).reduce(function (a, k) { return a + cart[k]; }, 0); }
+
+  var grid = $("#grid");
+  function renderGrid() {
+    grid.textContent = "";
+    CONFIG.products.forEach(function (p) {
+      var li = document.createElement("li");
+      var priced = typeof p.price === "number";
+      li.className = "prod";
+      li.innerHTML = '<div class="prod__art"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#' + p.icon + '"/></svg><div class="prod__quick"><button class="btn" type="button"></button></div></div>' +
+        '<div class="prod__info"><h3></h3><span class="price' + (priced ? "" : " is-ask") + '"></span></div><p class="prod__desc"></p>';
+      li.querySelector("h3").textContent = p[lang][0];
+      li.querySelector(".prod__desc").textContent = p[lang][1];
+      li.querySelector(".price").textContent = priced ? money(p.price) : t("ask");
+      var b = li.querySelector(".btn"); b.textContent = t("add");
+      b.addEventListener("click", function () {
+        cart[p.id] = (cart[p.id] || 0) + 1; save(); renderCart();
+        b.textContent = t("added"); b.classList.add("is-added");
+        setTimeout(function () { b.textContent = t("add"); b.classList.remove("is-added"); }, 1200);
+      });
+      grid.appendChild(li);
+    });
+  }
+
+  var result = $("#result");
+  function renderCart() {
+    var n = qtyTotal(), c = $("#count");
+    c.hidden = n === 0; c.textContent = n;
+    var box = $("#lines"); box.textContent = "";
+    var ids = Object.keys(cart).filter(function (k) { return byId(k) && cart[k] > 0; });
+    $("#foot").hidden = ids.length === 0;
+    if (!ids.length) { var e = document.createElement("p"); e.className = "empty"; e.textContent = t("empty"); box.appendChild(e); result.hidden = true; return; }
+    var total = 0, allPriced = true;
+    ids.forEach(function (id) {
+      var p = byId(id), q = cart[id], priced = typeof p.price === "number";
+      if (priced) total += p.price * q; else allPriced = false;
+      var d = document.createElement("div"); d.className = "line";
+      d.innerHTML = '<div><b></b><div class="note"></div></div><div class="qty"><button type="button" data-d="-1" aria-label="-">−</button><span></span><button type="button" data-d="1" aria-label="+">+</button></div><button class="line__rm" type="button"></button>';
+      d.querySelector("b").textContent = nameOf(p);
+      d.querySelector(".note").textContent = priced ? money(p.price) : t("ask");
+      d.querySelector(".qty span").textContent = q;
+      d.querySelector(".line__rm").textContent = t("remove");
+      d.querySelectorAll(".qty button").forEach(function (bt) {
+        bt.addEventListener("click", function () { cart[id] = Math.max(0, cart[id] + Number(bt.dataset.d)); if (!cart[id]) delete cart[id]; save(); renderCart(); });
+      });
+      d.querySelector(".line__rm").addEventListener("click", function () { delete cart[id]; save(); renderCart(); });
+      box.appendChild(d);
+    });
+    $("#total-row").hidden = !allPriced;
+    $("#total").textContent = money(total);
+    if (!result.hidden) fillResult();
+  }
+
+  function open(on) {
+    document.body.classList.toggle("cart-open", on);
+    $("#drawer").setAttribute("aria-hidden", on ? "false" : "true");
+    if (on) $("#cart-close").focus(); else $("#cart-open").focus();
+  }
+  $("#cart-open").addEventListener("click", function () { open(true); });
+  $("#cart-close").addEventListener("click", function () { open(false); });
+  $("#veil").addEventListener("click", function () { open(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") open(false); });
+
+  var nameIn = $("#f-name"), err = $("#err-name");
+  nameIn.addEventListener("input", function () { if (nameIn.value.trim()) { err.hidden = true; nameIn.removeAttribute("aria-invalid"); } });
+  function message() {
+    var lines = [t("mHello"), ""];
+    var total = 0, allPriced = true;
+    Object.keys(cart).forEach(function (id) {
+      var p = byId(id); if (!p || !cart[id]) return;
+      var priced = typeof p.price === "number";
+      lines.push("• " + nameOf(p) + " × " + cart[id] + (priced ? " (" + money(p.price * cart[id]) + ")" : ""));
+      if (priced) total += p.price * cart[id]; else allPriced = false;
+    });
+    if (allPriced && total) lines.push("", t("total") + ": " + money(total));
+    lines.push("", t("mName") + ": " + nameIn.value.trim());
+    return lines.join("\n");
+  }
+  function fillResult() {
+    var msg = message();
+    $("#r-text").textContent = msg;
+    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg); }
+  }
+  $("#order").addEventListener("click", function () {
+    if (!nameIn.value.trim()) { err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); nameIn.focus(); return; }
+    fillResult(); result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ block: "nearest" });
+  });
+  $("#r-copy").addEventListener("click", function () {
+    var btn = this, text = $("#r-text").textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = t("rCopied"); setTimeout(function () { btn.textContent = t("rCopy"); }, 2000);
+      }).catch(function () {});
+    }
+  });
+
+  function applyLang(l) {
+    lang = l; store.set("lang", l);
+    document.documentElement.lang = l; document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i]").forEach(function (e) { e.textContent = t(e.dataset.i); });
+    document.querySelectorAll("[data-i-html]").forEach(function (e) { e.innerHTML = t(e.dataset.iHtml); });
+    document.querySelectorAll("[data-i-ph]").forEach(function (e) { e.placeholder = t(e.dataset.iPh); });
+    $("#cart-open").setAttribute("aria-label", t("open")); $("#cart-close").setAttribute("aria-label", t("close"));
+    var b = $("#lang"); b.textContent = l === "ar" ? "EN" : "ع"; b.lang = l === "ar" ? "en" : "ar"; b.setAttribute("aria-label", t("lang"));
+    document.title = (l === "ar" ? "المتجر" : "Shop") + " · Bilal Ali Hair";
+    renderGrid(); renderCart();
+  }
+  $("#lang").addEventListener("click", function () { applyLang(lang === "ar" ? "en" : "ar"); });
+  applyLang(store.get("lang") === "ar" ? "ar" : "en");
+})();
+</script>
+</body>
+</html>

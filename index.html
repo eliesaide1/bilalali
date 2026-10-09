@@ -307,6 +307,16 @@ html[lang="ar"] .band figcaption{letter-spacing:0;font-size:.9rem}
 @media (min-width:640px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1040px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
 
+.shop-teaser{list-style:none;margin:0;padding:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.shopcard{display:grid;gap:8px;align-content:start;text-decoration:none;border:1px solid var(--line);background:var(--surface);padding-bottom:20px;transition:transform .45s var(--ease),border-color .3s,box-shadow .45s}
+.shopcard:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 18px 36px rgba(0,0,0,.2)}
+.shopcard__art{display:grid;place-items:center;aspect-ratio:4/3;margin-bottom:10px;background:radial-gradient(70% 80% at 50% 30%,rgba(201,164,106,.2),transparent 70%),var(--stage);color:var(--stage-accent)}
+.shopcard__art svg{width:72px;height:72px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s var(--ease)}
+.shopcard:hover .shopcard__art svg{transform:scale(1.12) rotate(-5deg)}
+.shopcard b{padding-inline:20px;font-family:var(--f-display);font-weight:500;font-size:1.4rem;line-height:1.2}
+html[lang="ar"] .shopcard b{font-weight:700}
+.shopcard>span:last-child{padding-inline:20px;color:var(--muted);font-size:.95rem}
+#shop .talk__links{margin-top:36px}
 /* hair talk */
 .talk-grid{list-style:none;margin:0;padding:0 var(--gutter) 14px;display:grid;grid-auto-flow:column;grid-auto-columns:min(78%,320px);gap:16px;
   overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin-inline:calc(var(--gutter) * -1);scrollbar-width:thin}
@@ -499,8 +509,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
       <ul class="nav__links">
         <li><a href="#services" data-i18n="navServices">Services</a></li>
         <li><a href="#about" data-i18n="navAbout">About</a></li>
-        <li><a href="#talk" data-i18n="navTalk">Hair talk</a></li>
-        <li><a href="#book" data-i18n="navContact">Contact</a></li>
+        <li><a href="shop.html" data-i18n="navShop">Shop</a></li>
       </ul>
     </nav>
     <div class="nav__actions">
@@ -518,8 +527,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
     <ul>
       <li><a class="menu__link" href="#services"><span data-i18n="navServices">Services</span></a></li>
       <li><a class="menu__link" href="#about"><span data-i18n="navAbout">About</span></a></li>
-      <li><a class="menu__link" href="#talk"><span data-i18n="navTalk">Hair talk</span></a></li>
-      <li><a class="menu__link" href="#book"><span data-i18n="navContact">Contact</span></a></li>
+      <li><a class="menu__link" href="shop.html"><span data-i18n="navShop">Shop</span></a></li>
     </ul>
   </nav>
   <div class="menu__foot">
@@ -623,6 +631,22 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <p data-i18n="svcFoot">Not sure what you need? Book a consultation and decide together in the chair.</p>
         <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="shop" aria-labelledby="shop-title">
+    <div class="wrap">
+      <div class="sec-head sec-head--split">
+        <p class="label" data-i18n="shopLabel">The shop</p>
+        <h2 id="shop-title" data-i18n="shopTitle">Care for what you wear.</h2>
+        <p data-i18n="shopIntro">Hair and beard products Bilal uses and recommends. Order them by message.</p>
+      </div>
+      <ul class="shop-teaser">
+        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><svg aria-hidden="true"><use href="#i-drop"/></svg></span><b data-i18n="shopP1">Hair serum</b><span data-i18n="shopP1d">Smooths frizz and adds shine.</span></a></li>
+        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><svg aria-hidden="true"><use href="#i-beard"/></svg></span><b data-i18n="shopP2">Beard oil</b><span data-i18n="shopP2d">Softens the beard and the skin under it.</span></a></li>
+        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><svg aria-hidden="true"><use href="#i-comb"/></svg></span><b data-i18n="shopP3">Styling clay</b><span data-i18n="shopP3d">Matte hold with texture, all day.</span></a></li>
+      </ul>
+      <div class="talk__links"><a class="btn" href="shop.html"><span data-i18n="shopAll">Shop all products</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     </div>
   </section>
 
@@ -797,7 +821,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <h2 data-i18n="footExplore">Explore</h2>
         <a href="#services" data-i18n="navServices">Services</a>
         <a href="#about" data-i18n="navAbout">About</a>
-        <a href="#talk" data-i18n="navTalk">Hair talk</a>
+        <a href="shop.html" data-i18n="navShop">Shop</a>
       </div>
       <div class="foot__col">
         <h2 data-i18n="footFollow">Follow</h2>
@@ -859,7 +883,9 @@ const EN_EXTRA = {
 
 const AR = {
   skip: "انتقل إلى المحتوى", brand: "بلال علي", brandSub: "صالون",
-  navServices: "الخدمات", navAbout: "عن بلال", navTalk: "نصائح الشعر", navContact: "التواصل",
+  navServices: "الخدمات", navAbout: "عن بلال", navShop: "المتجر",
+  shopLabel: "المتجر", shopTitle: "عناية بما ترتديه.", shopIntro: "منتجات للشعر واللحية يستعملها بلال وينصح بها. اطلبها برسالة.",
+  shopP1: "سيروم الشعر", shopP1d: "ينعّم الشعر ويمنحه لمعة.", shopP2: "زيت اللحية", shopP2d: "يلطّف اللحية والبشرة تحتها.", shopP3: "معجون التصفيف", shopP3d: "تثبيت مطفي مع كثافة طوال اليوم.", shopAll: "تسوّق كل المنتجات", navTalk: "نصائح الشعر", navContact: "التواصل",
   ctaBook: "احجز موعداً",
   heroEyebrow: "مصفف شعر رجالي · لبنان",
   heroTitle: "قصّة <em>تليق بك.</em>",
