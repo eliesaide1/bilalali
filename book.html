@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Book an appointment · Bilal Ali Hair</title>
+<meta name="description" content="Choose your service, day and time with Bilal Ali, men's hairstylist in Lebanon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#100F0D;--surface:#181613;--fg:#ECE5D8;--muted:#A69D8E;--line:rgba(236,229,216,.14);
+  --accent:#C6A167;--accent-ink:#16120C;--focus:#E2C38C;
+  --stage:#0B0A08;--stage-fg:#EFE8DB;--stage-muted:#A39A8A;--stage-line:rgba(239,232,219,.16);--stage-accent:#C9A46A;
+  --f-display:"Bodoni Moda","Bodoni 72","Didot","Times New Roman",serif;
+  --f-body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4.5vw,56px);color-scheme:dark;
+}
+html[lang="ar"]{--f-display:"Amiri","Noto Naskh Arabic","Times New Roman",serif;--f-body:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.08;letter-spacing:-.012em;margin:0;text-wrap:balance}
+html[lang="ar"] :is(h1,h2,h3){line-height:1.4;letter-spacing:0;font-weight:700}
+html[lang="ar"] em{font-style:normal}
+p{margin:0}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+html[dir="rtl"] .flip{transform:scaleX(-1)}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{display:inline-flex;align-items:center;gap:.8em;font-size:.75rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.label::before{content:"";width:28px;height:1px;background:currentColor;opacity:.75}
+html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:30;background:rgba(11,10,8,.96);color:var(--stage-fg);border-bottom:1px solid var(--stage-line);padding-top:env(safe-area-inset-top,0px)}
+.bar__in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.back{display:inline-flex;align-items:center;gap:.6em;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--stage-muted);transition:color .2s}
+.back:hover{color:var(--stage-fg)}
+.back .ico{transform:scaleX(-1)}
+html[dir="rtl"] .back .ico{transform:none}
+html[lang="ar"] .back{letter-spacing:0;font-size:.95rem}
+.brand{font-family:"Marcellus",var(--f-display);font-size:1.5rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+html[lang="ar"] .brand{letter-spacing:0}
+.lang{display:inline-grid;place-items:center;width:42px;height:42px;border:1px solid var(--stage-line);border-radius:50%;background:transparent;color:inherit;cursor:pointer;font:600 .9rem/1 var(--f-body)}
+.lang:hover{border-color:var(--stage-fg)}
+
+/* intro band */
+.intro{background:var(--stage);color:var(--stage-fg);padding:clamp(48px,9vw,104px) 0 clamp(40px,7vw,80px);position:relative;overflow:hidden;isolation:isolate}
+.intro::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 90% at 85% 10%,rgba(201,164,106,.16),transparent 70%)}
+.intro .label{color:var(--stage-accent)}
+.intro h1{font-size:clamp(2.8rem,1.4rem + 6vw,6rem);font-weight:400;margin-top:22px}
+.intro h1 em{font-style:italic;color:var(--stage-accent)}
+.intro p{margin-top:20px;max-width:46ch;color:var(--stage-muted);font-size:1.1rem}
+.ticks{display:flex;flex-wrap:wrap;gap:10px 28px;margin:30px 0 0;padding:0;list-style:none;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stage-fg)}
+html[lang="ar"] .ticks{letter-spacing:0;font-size:.95rem}
+.ticks li{display:inline-flex;align-items:center;gap:10px}
+.ticks li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--stage-accent)}
+
+/* layout */
+.layout{display:grid;gap:40px;padding-block:clamp(40px,6vw,72px) 120px}
+@media (min-width:980px){.layout{grid-template-columns:minmax(0,1fr) 340px;gap:64px;align-items:start}}
+.step{padding-block:clamp(28px,4vw,44px);border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step__h{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
+.step__n{font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--accent);min-width:2ch}
+html[lang="ar"] .step__n{font-style:normal}
+.step__h h2{font-size:clamp(1.7rem,1.2rem + 1.8vw,2.5rem)}
+
+/* services */
+.svcs{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.svc{position:relative}
+.svc input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.svc label{display:grid;gap:10px;align-content:start;height:100%;padding:20px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:border-color .25s,background .25s}
+.svc svg{width:30px;height:30px;stroke-width:1.3;color:var(--accent)}
+.svc b{font-family:var(--f-display);font-weight:500;font-size:1.2rem;line-height:1.2}
+html[lang="ar"] .svc b{font-weight:700}
+.svc label:hover{border-color:var(--muted)}
+.svc input:checked+label{border-color:var(--accent);background:linear-gradient(180deg,rgba(201,164,106,.14),transparent)}
+.svc input:focus-visible+label{outline:2px solid var(--focus);outline-offset:3px}
+.svc input:checked+label::after{content:"";position:absolute;top:14px;inset-inline-end:14px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+
+/* calendar */
+.cal{border:1px solid var(--line);background:var(--surface);padding:clamp(16px,3vw,28px);max-width:520px}
+.cal__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.cal__title{font-family:var(--f-display);font-size:1.5rem}
+html[lang="ar"] .cal__title{font-weight:700}
+.cal__nav{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:transparent;color:inherit;cursor:pointer;transition:border-color .2s,opacity .2s}
+.cal__nav:hover:not(:disabled){border-color:var(--fg)}
+.cal__nav:disabled{opacity:.3;cursor:default}
+.cal__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal__dow{text-align:center;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-bottom:8px}
+html[lang="ar"] .cal__dow{letter-spacing:0;font-size:.8rem}
+.day{aspect-ratio:1;display:grid;place-items:center;border:1px solid transparent;border-radius:50%;background:transparent;color:inherit;font:500 .98rem/1 var(--f-body);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.day:hover:not(:disabled){border-color:var(--accent)}
+.day:disabled{opacity:.25;cursor:default}
+.day.is-today{border-color:var(--line)}
+.day[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.cal__blank{aspect-ratio:1}
+
+/* times */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;max-width:620px}
+.slot{min-height:48px;border:1px solid var(--line);background:transparent;color:inherit;font:500 .95rem/1 var(--f-body);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.slot:hover:not(:disabled){border-color:var(--accent)}
+.slot:disabled{opacity:.3;cursor:default}
+.slot[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.hint{color:var(--muted);font-size:.95rem}
+
+/* details */
+.fields{display:grid;gap:18px;max-width:520px}
+.field{display:grid;gap:8px}
+.field label{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
+.field input,.field textarea{width:100%;padding:14px 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;border-radius:0}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.field input[aria-invalid="true"]{border-color:#D9826B}
+.err{color:#E39A85;font-size:.9rem}
+
+/* summary */
+.sum{border:1px solid var(--line);background:var(--surface);padding:26px}
+@media (min-width:980px){.sum{position:sticky;top:96px}}
+.sum h2{font-size:1.5rem;margin-bottom:18px}
+.sum dl{margin:0;display:grid}
+.sum .row{display:grid;gap:2px;padding-block:13px;border-top:1px solid var(--line)}
+.sum dt{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+html[lang="ar"] .sum dt{letter-spacing:0;font-size:.85rem}
+.sum dd{margin:0;font-family:var(--f-display);font-size:1.15rem;line-height:1.3}
+html[lang="ar"] .sum dd{font-weight:700}
+.sum dd.is-empty{color:var(--muted);font-family:var(--f-body);font-size:.95rem;font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7em;min-height:50px;padding:0 1.6em;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:600 .8125rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn:hover{background:transparent;color:var(--accent)}
+.btn--ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--fg);color:var(--fg)}
+html[lang="ar"] .btn{letter-spacing:0;font-size:.95rem}
+.sum #confirm{width:100%;margin-top:18px}
+.sum small{display:block;margin-top:12px;color:var(--muted);font-size:.85rem}
+
+/* result */
+.result{margin-top:22px;padding:22px;border:1px solid var(--accent);background:var(--bg);display:grid;gap:14px}
+.result h3{font-size:1.4rem}
+.result pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.95rem;color:var(--muted);padding:14px;border:1px solid var(--line);background:var(--surface)}
+.result__a{display:flex;flex-wrap:wrap;gap:10px}
+.result__a .btn{min-height:44px;font-size:.75rem}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="back" href="index.html"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><span data-i="back">Back</span></a>
+    <a class="brand" href="index.html">Bilal Ali</a>
+    <button class="lang" id="lang" type="button" lang="ar" aria-label="التبديل إلى العربية">ع</button>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 40 40"><circle cx="10" cy="29" r="5"/><circle cx="10" cy="11" r="5"/><path d="M14.3 13.6 34 30M14.3 26.4 34 10"/></symbol>
+  <symbol id="i-waves" viewBox="0 0 40 40"><path d="M9 5c5 5 5 10 0 15s-5 10 0 15M17 5c5 5 5 10 0 15s-5 10 0 15M25 5c5 5 5 10 0 15s-5 10 0 15M33 5c5 5 5 10 0 15"/></symbol>
+  <symbol id="i-clipper" viewBox="0 0 40 40"><rect x="12" y="12" width="16" height="23" rx="5"/><path d="M12 12V7h16v5M15 7V4M19 7V4M23 7V4M27 7V4M17 20h6"/></symbol>
+  <symbol id="i-beard" viewBox="0 0 40 40"><path d="M8 8v8a12 12 0 0 0 24 0V8"/><path d="M14 22c2-1.6 4-1.6 6 0 2-1.6 4-1.6 6 0"/><path d="M17 29h6"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 40 40"><path d="M20 4s10 11 10 19a10 10 0 0 1-20 0c0-8 10-19 10-19z"/><path d="M15.5 24a4.5 4.5 0 0 0 4.5 4.5"/></symbol>
+  <symbol id="i-comb" viewBox="0 0 40 40"><rect x="5" y="13" width="30" height="6" rx="1.5"/><path d="M8 19v9M12 19v9M16 19v9M20 19v9M24 19v9M28 19v9M32 19v6"/></symbol>
+</svg>
+
+<section class="intro">
+  <div class="wrap">
+    <p class="label" data-i="eyebrow">Appointments</p>
+    <h1 data-i-html="title">Book your <em>chair.</em></h1>
+    <p data-i="lead">Pick a service, a day and a time. Bilal confirms every appointment personally.</p>
+    <ul class="ticks">
+      <li data-i="t1">By appointment only</li>
+      <li data-i="t2">Confirmed by Bilal</li>
+      <li data-i="t3">No payment online</li>
+    </ul>
+  </div>
+</section>
+
+<main class="wrap layout">
+  <form id="form" novalidate onsubmit="return false">
+    <section class="step" id="s-service" aria-labelledby="h-service">
+      <div class="step__h"><span class="step__n">01</span><h2 id="h-service" data-i="hService">Choose a service</h2></div>
+      <ul class="svcs" id="svcs"></ul>
+    </section>
+
+    <section class="step" id="s-day" aria-labelledby="h-day">
+      <div class="step__h"><span class="step__n">02</span><h2 id="h-day" data-i="hDay">Pick a day</h2></div>
+      <div class="cal">
+        <div class="cal__head">
+          <button class="cal__nav" id="prev" type="button" aria-label="Previous month"><svg class="ico flip" aria-hidden="true"><use href="#i-prev"/></svg></button>
+          <div class="cal__title" id="cal-title" aria-live="polite"></div>
+          <button class="cal__nav" id="next" type="button" aria-label="Next month"><svg class="ico flip" aria-hidden="true"><use href="#i-next"/></svg></button>
+        </div>
+        <div class="cal__grid" id="cal-dow"></div>
+        <div class="cal__grid" id="cal-days"></div>
+      </div>
+    </section>
+
+    <section class="step" id="s-time" aria-labelledby="h-time">
+      <div class="step__h"><span class="step__n">03</span><h2 id="h-time" data-i="hTime">Choose a time</h2></div>
+      <p class="hint" id="time-hint" data-i="timeHint">Pick a day first to see the available times.</p>
+      <div class="slots" id="slots" hidden></div>
+    </section>
+
+    <section class="step" id="s-you" aria-labelledby="h-you">
+      <div class="step__h"><span class="step__n">04</span><h2 id="h-you" data-i="hYou">Your details</h2></div>
+      <div class="fields">
+        <div class="field">
+          <label for="f-name" data-i="fName">Name</label>
+          <input id="f-name" type="text" autocomplete="name" data-i-ph="fNamePh" placeholder="Your name" required>
+          <span class="err" id="err-name" hidden data-i="errName">Enter your name so Bilal knows who is booking.</span>
+        </div>
+        <div class="field">
+          <label for="f-note" data-i="fNote">Note (optional)</label>
+          <textarea id="f-note" data-i-ph="fNotePh" placeholder="Anything Bilal should know, like a reference photo you will send."></textarea>
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <aside class="sum" aria-labelledby="h-sum">
+    <h2 id="h-sum" data-i="hSum">Your appointment</h2>
+    <dl>
+      <div class="row"><dt data-i="dService">Service</dt><dd id="o-service" class="is-empty">Not chosen yet</dd></div>
+      <div class="row"><dt data-i="dDay">Day</dt><dd id="o-day" class="is-empty">Not chosen yet</dd></div>
+      <div class="row"><dt data-i="dTime">Time</dt><dd id="o-time" class="is-empty">Not chosen yet</dd></div>
+    </dl>
+    <button class="btn" id="confirm" type="button" data-i="confirm">Prepare my request</button>
+    <small data-i="sendNote">Nothing is sent until you send the message yourself.</small>
+    <div class="result" id="result" hidden tabindex="-1" aria-live="polite">
+      <h3 data-i="rTitle">Your request is ready</h3>
+      <p id="r-help" class="hint"></p>
+      <pre id="r-text"></pre>
+      <div class="result__a">
+        <button class="btn" type="button" id="r-copy" data-i="rCopy">Copy text</button>
+        <a class="btn btn--ghost" id="r-wa" href="#" target="_blank" rel="noopener" hidden data-i="rWa">Send on WhatsApp</a>
+        <a class="btn btn--ghost" id="r-ig" href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i="rIg">Open Instagram</a>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var CONFIG = {
+    whatsapp: "",                        // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
+    times: ["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"],
+    closedWeekdays: [],                  // 0 = Sunday ... 6 = Saturday, e.g. [0] to close Sundays
+    monthsAhead: 3
+  };
+  var $ = function (s) { return document.querySelector(s); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  var hasWa = /^\d{8,15}$/.test(CONFIG.whatsapp);
+
+  var SERVICES = [
+    { id: "s1", icon: "i-scissors" }, { id: "s2", icon: "i-waves" }, { id: "s3", icon: "i-clipper" },
+    { id: "s4", icon: "i-beard" }, { id: "s5", icon: "i-drop" }, { id: "s6", icon: "i-comb" }, { id: "s0", icon: "i-comb" }
+  ];
+  var T = {
+    en: {
+      back: "Back", eyebrow: "Appointments", title: "Book your <em>chair.</em>",
+      lead: "Pick a service, a day and a time. Bilal confirms every appointment personally.",
+      t1: "By appointment only", t2: "Confirmed by Bilal", t3: "No payment online",
+      hService: "Choose a service", hDay: "Pick a day", hTime: "Choose a time", hYou: "Your details",
+      timeHint: "Pick a day first to see the available times.",
+      fName: "Name", fNamePh: "Your name", fNote: "Note (optional)", fNotePh: "Anything Bilal should know, like a reference photo you will send.",
+      errName: "Enter your name so Bilal knows who is booking.",
+      hSum: "Your appointment", dService: "Service", dDay: "Day", dTime: "Time", notYet: "Not chosen yet",
+      confirm: "Prepare my request", sendNote: "Nothing is sent until you send the message yourself.",
+      rTitle: "Your request is ready", rCopy: "Copy text", rCopied: "Copied", rWa: "Send on WhatsApp", rIg: "Open Instagram",
+      rHelpWa: "Send it on WhatsApp in one tap, or copy it into an Instagram message.",
+      rHelpIg: "Copy the text, open Instagram and paste it into a message to Bilal.",
+      needService: "Choose a service", needDay: "Pick a day", needTime: "Choose a time",
+      prevM: "Previous month", nextM: "Next month",
+      s1: "Signature cut", s2: "Long hair & layers", s3: "Fades & tapers", s4: "Beard shaping", s5: "Hair & scalp care", s6: "Styling lesson", s0: "Not sure yet (consultation)",
+      mHello: "Hi Bilal, I'd like to book an appointment.", mName: "Name", mService: "Service", mDay: "Day", mTime: "Time", mNote: "Note"
+    },
+    ar: {
+      back: "رجوع", eyebrow: "المواعيد", title: "احجز <em>كرسيّك.</em>",
+      lead: "اختر الخدمة واليوم والوقت. بلال يؤكد كل موعد بنفسه.",
+      t1: "بموعد مسبق فقط", t2: "يؤكده بلال", t3: "بدون دفع عبر الإنترنت",
+      hService: "اختر الخدمة", hDay: "اختر اليوم", hTime: "اختر الوقت", hYou: "بياناتك",
+      timeHint: "اختر اليوم أولاً لتظهر الأوقات المتاحة.",
+      fName: "الاسم", fNamePh: "اسمك", fNote: "ملاحظة (اختياري)", fNotePh: "أي شيء يجب أن يعرفه بلال، مثل صورة مرجعية سترسلها.",
+      errName: "اكتب اسمك ليعرف بلال من يحجز.",
+      hSum: "موعدك", dService: "الخدمة", dDay: "اليوم", dTime: "الوقت", notYet: "لم يُختر بعد",
+      confirm: "جهّز طلبي", sendNote: "لن يُرسل شيء حتى ترسل الرسالة بنفسك.",
+      rTitle: "طلبك جاهز", rCopy: "انسخ النص", rCopied: "تم النسخ", rWa: "أرسل عبر واتساب", rIg: "افتح إنستغرام",
+      rHelpWa: "أرسله عبر واتساب بنقرة واحدة، أو انسخه في رسالة إنستغرام.",
+      rHelpIg: "انسخ النص، افتح إنستغرام والصقه في رسالة إلى بلال.",
+      needService: "اختر الخدمة", needDay: "اختر اليوم", needTime: "اختر الوقت",
+      prevM: "الشهر السابق", nextM: "الشهر التالي",
+      s1: "القصّة الخاصة", s2: "الشعر الطويل والتدريج", s3: "الفيد والتدريج القصير", s4: "تشكيل اللحية", s5: "العناية بالشعر وفروة الرأس", s6: "درس تصفيف", s0: "لست متأكداً بعد (استشارة)",
+      mHello: "مرحباً بلال، أودّ حجز موعد.", mName: "الاسم", mService: "الخدمة", mDay: "اليوم", mTime: "الوقت", mNote: "ملاحظة"
+    }
+  };
+  var lang = "en", service = "", day = null, time = "";
+  function t(k) { return T[lang][k] || T.en[k] || k; }
+  function loc() { return lang === "ar" ? "ar-LB" : "en-GB"; }
+  function fmt(o, d) { return new Intl.DateTimeFormat(loc(), o).format(d); }
+  function go(sel) { $(sel).scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+  // services
+  var svcs = $("#svcs");
+  SERVICES.forEach(function (s) {
+    var li = document.createElement("li"); li.className = "svc";
+    li.innerHTML = '<input type="radio" name="service" id="sv-' + s.id + '" value="' + s.id + '"><label for="sv-' + s.id + '"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#' + s.icon + '"/></svg><b data-svc="' + s.id + '"></b></label>';
+    li.querySelector("input").addEventListener("change", function () { service = s.id; summary(); if (!day) go("#s-day"); });
+    svcs.appendChild(li);
+  });
+
+  // calendar
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var view = new Date(today.getFullYear(), today.getMonth(), 1);
+  var minView = new Date(view), maxView = new Date(today.getFullYear(), today.getMonth() + CONFIG.monthsAhead, 1);
+  function renderCal() {
+    $("#cal-title").textContent = fmt({ month: "long", year: "numeric" }, view);
+    $("#prev").disabled = view <= minView;
+    $("#next").disabled = view >= maxView;
+    var dow = $("#cal-dow"); dow.textContent = "";
+    for (var i = 0; i < 7; i++) {
+      var d0 = new Date(2024, 0, 7 + i), e = document.createElement("div");
+      e.className = "cal__dow"; e.textContent = fmt({ weekday: "short" }, d0); dow.appendChild(e);
+    }
+    var grid = $("#cal-days"); grid.textContent = "";
+    var lead = view.getDay(), n = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+    for (var j = 0; j < lead; j++) { var bl = document.createElement("div"); bl.className = "cal__blank"; grid.appendChild(bl); }
+    for (var d = 1; d <= n; d++) {
+      (function (d) {
+        var date = new Date(view.getFullYear(), view.getMonth(), d);
+        var b = document.createElement("button"); b.type = "button"; b.className = "day"; b.textContent = d.toLocaleString(loc());
+        b.disabled = date < today || CONFIG.closedWeekdays.indexOf(date.getDay()) > -1;
+        if (+date === +today) b.classList.add("is-today");
+        b.setAttribute("aria-label", fmt({ weekday: "long", day: "numeric", month: "long" }, date));
+        b.setAttribute("aria-pressed", day && +day === +date ? "true" : "false");
+        b.addEventListener("click", function () { day = date; time = ""; renderCal(); renderSlots(); summary(); go("#s-time"); });
+        grid.appendChild(b);
+      })(d);
+    }
+  }
+  $("#prev").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); renderCal(); });
+  $("#next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); renderCal(); });
+
+  // times
+  function at(v) { var p = v.split(":"), d = new Date(day); d.setHours(+p[0], +p[1], 0, 0); return d; }
+  function renderSlots() {
+    var box = $("#slots"); box.textContent = "";
+    $("#time-hint").hidden = !!day; box.hidden = !day;
+    if (!day) return;
+    var now = new Date();
+    CONFIG.times.forEach(function (v) {
+      var when = at(v), b = document.createElement("button");
+      b.type = "button"; b.className = "slot";
+      b.textContent = fmt({ hour: "numeric", minute: "2-digit", hour12: true }, when);
+      b.disabled = when <= now; b.setAttribute("aria-pressed", time === v ? "true" : "false");
+      b.addEventListener("click", function () { time = v; renderSlots(); summary(); go("#s-you"); });
+      box.appendChild(b);
+    });
+  }
+  function timeLabel() { return time && day ? fmt({ hour: "numeric", minute: "2-digit", hour12: true }, at(time)) : ""; }
+  function dayLabel() { return day ? fmt({ weekday: "long", day: "numeric", month: "long" }, day) : ""; }
+
+  function summary() {
+    [["#o-service", service && t(service)], ["#o-day", dayLabel()], ["#o-time", timeLabel()]].forEach(function (p) {
+      var e = $(p[0]); e.classList.toggle("is-empty", !p[1]); e.textContent = p[1] || t("notYet");
+    });
+  }
+
+  // submit
+  var nameIn = $("#f-name"), err = $("#err-name"), result = $("#result");
+  nameIn.addEventListener("input", function () { if (nameIn.value.trim()) { err.hidden = true; nameIn.removeAttribute("aria-invalid"); } });
+  function message() {
+    var lines = [t("mHello"), "", t("mName") + ": " + nameIn.value.trim(), t("mService") + ": " + t(service), t("mDay") + ": " + dayLabel(), t("mTime") + ": " + timeLabel()];
+    var note = $("#f-note").value.trim(); if (note) lines.push(t("mNote") + ": " + note);
+    return lines.join("\n");
+  }
+  function fillResult() {
+    $("#r-text").textContent = message();
+    $("#r-help").textContent = t(hasWa ? "rHelpWa" : "rHelpIg");
+    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(message()); }
+  }
+  $("#confirm").addEventListener("click", function () {
+    var miss = !service ? ["#s-service", "needService"] : !day ? ["#s-day", "needDay"] : !time ? ["#s-time", "needTime"] : null;
+    var b = this;
+    if (miss) { go(miss[0]); b.textContent = t(miss[1]); setTimeout(function () { b.textContent = t("confirm"); }, 1800); return; }
+    if (!nameIn.value.trim()) { err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); go("#s-you"); nameIn.focus({ preventScroll: true }); return; }
+    fillResult();
+    result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  $("#r-copy").addEventListener("click", function () {
+    var btn = this, text = $("#r-text").textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = t("rCopied"); setTimeout(function () { btn.textContent = t("rCopy"); }, 2000);
+      }).catch(function () {});
+    } else { var r = document.createRange(); r.selectNodeContents($("#r-text")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+
+  // language
+  function applyLang(l) {
+    lang = l; store.set("lang", l);
+    document.documentElement.lang = l; document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i]").forEach(function (e) { e.textContent = t(e.dataset.i); });
+    document.querySelectorAll("[data-i-html]").forEach(function (e) { e.innerHTML = t(e.dataset.iHtml); });
+    document.querySelectorAll("[data-i-ph]").forEach(function (e) { e.placeholder = t(e.dataset.iPh); });
+    document.querySelectorAll("[data-svc]").forEach(function (e) { e.textContent = t(e.dataset.svc); });
+    $("#prev").setAttribute("aria-label", t("prevM")); $("#next").setAttribute("aria-label", t("nextM"));
+    var b = $("#lang"); b.textContent = l === "ar" ? "EN" : "ع"; b.lang = l === "ar" ? "en" : "ar";
+    b.setAttribute("aria-label", l === "ar" ? "Switch to English" : "التبديل إلى العربية");
+    document.title = (l === "ar" ? "احجز موعداً" : "Book an appointment") + " · Bilal Ali Hair";
+    if (!result.hidden) fillResult();
+    renderCal(); renderSlots(); summary();
+  }
+  $("#lang").addEventListener("click", function () { applyLang(lang === "ar" ? "en" : "ar"); });
+  applyLang(store.get("lang") === "ar" ? "ar" : "en");
+})();
+</script>
+</body>
+</html>
