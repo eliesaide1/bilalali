@@ -1349,6 +1349,218 @@ const AR = {
     new IntersectionObserver(([e]) => { bookIn = e.isIntersecting; sync(); }, { threshold: 0.05 }).observe($("#book"));
   }
 
+  /* ---------- booking request ---------- */
+  const form = $("#book-form"), nameIn = $("#f-name"), err = $("#f-name-err"), result = $("#result");
+  function formatDay(v) {
+    if (!v) return "";
+    const p = v.split("-").map(Number);
+    const d = new Date(p[0], p[1] - 1, p[2]);
+    if (isNaN(d)) return v;
+    try { return new Intl.DateTimeFormat(lang === "ar" ? "ar-LB" : "en-GB", { weekday: "long", day: "numeric", month: "long" }).format(d); }
+    catch (e) { return v; }
+  }
+  function buildMessage() {
+    const lines = [t("mHello"), "", t("mName") + ": " + nameIn.value.trim(), t("mService") + ": " + t($("#f-service").value)];
+    const day = formatDay($("#f-date").value);
+    if (day) lines.push(t("mDay") + ": " + day);
+    if ($("#f-time").value !== "tAny") lines.push(t("mTime") + ": " + t($("#f-time").value));
+    const note = $("#f-note").value.trim();
+    if (note) lines.push(t("mNote") + ": " + note);
+    return lines.join("\n");
+  }
+  const waUrl = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+  function renderResult() {
+    const msg = buildMessage();
+    $("#r-text").textContent = msg;
+    if (hasWa) $("#r-wa").href = waUrl(msg);
+    $("#r-copy").textContent = t("rCopy");
+    return msg;
+  }
+  nameIn.addEventListener("input", () => { if (nameIn.value.trim()) { err.hidden = true; nameIn.removeAttribute("aria-invalid"); } });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!nameIn.value.trim()) {
+      err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); nameIn.setAttribute("aria-describedby", "f-name-err"); nameIn.focus();
+      return;
+    }
+    const msg = renderResult();
+    /* With a number configured, the request goes straight to WhatsApp. The result box still opens
+       underneath as a fallback for blocked popups or browsers without WhatsApp. */
+    if (hasWa) window.open(waUrl(msg), "_blank", "noopener");
+    result.hidden = false;
+    result.focus({ preventScroll: true });
+    result.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+  });
+  $("#r-copy").addEventListener("click", function () {
+    const btn = this, text = $("#r-text").textContent;
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents($("#r-text"));
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      btn.textContent = t("rSelected");
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = t("rCopied");
+        setTimeout(() => { btn.textContent = t("rCopy"); }, 2200);
+      }).catch(fallback);
+    } else fallback();
+  });
+
+  /* ---------- hero reel ---------- */
+  (function reelPlayer() {
+    const el = $("#reel");
+    if (!el) return;
+    const video = $("#reel-video"), canvas = $("#reel-canvas"), bars = $("#reel-bars");
+    const playBtn = $("#reel-play"), muteBtn = $("#reel-mute"), link = $("#reel-link");
+    const arEl = $("#reel-ar"), enEl = $("#reel-en");
+    const clips = (CONFIG.reels || []).filter(r => r && r.src);
+    const useVideo = clips.length > 0;
+    const items = useVideo ? clips : REEL_TOPICS;
+    const SLIDE = 6000;
+    let i = 0, elapsed = 0, playing = !reduceMotion, inView = true, last = 0, raf = 0, fails = 0, fx = null;
+    bars.innerHTML = items.map(() => '<span class="reel__bar"><i></i></span>').join("");
+    const fills = $$(".reel__bar i", bars);
+    if (useVideo) {
+      canvas.hidden = true; video.hidden = false; muteBtn.hidden = false;
+    } else {
+      fx = strands(canvas, { seed: 41, base: items[0].base, scale: 2.2, density: 900, max: 150, len: 70, step: 4, alpha: 0.85, speed: 5, animate: true });
+    }
+    function caption() {
+      const it = items[i], c = useVideo ? (it.caption || {}) : it;
+      arEl.textContent = c.ar || ""; arEl.hidden = !c.ar;
+      enEl.textContent = c.en || ""; enEl.hidden = !c.en;
+      enEl.classList.toggle("is-only", !c.ar);
+      const src = useVideo ? String(it.source || "Instagram").toLowerCase() : "tiktok";
+      $("#reel-source").textContent = t(src === "tiktok" ? "tiktok" : "instagram");
+      link.href = it.link || (src === "tiktok" ? "https://www.tiktok.com/@bilalali_officiall" : "https://www.instagram.com/" + CONFIG.instagram + "/");
+    }
+    function paintBars(p) {
+      fills.forEach((f, j) => { f.style.transform = "scaleX(" + (j < i ? 1 : j > i ? 0 : Math.max(0, Math.min(1, p))) + ")"; });
+    }
+    function show(n) {
+      i = (n + items.length) % items.length;
+      elapsed = 0;
+      caption(); paintBars(0);
+      if (useVideo) {
+        const it = items[i];
+        video.loop = items.length === 1;
+        if (it.poster) video.poster = it.poster; else video.removeAttribute("poster");
+        video.src = it.src;
+        if (playing && inView) video.play().catch(() => {});
+      } else if (fx) {
+        fx.set({ seed: 41 + i * 7, base: items[i].base });
+        if (!reduceMotion) { canvas.classList.remove("is-cut"); void canvas.offsetWidth; canvas.classList.add("is-cut"); }
+      }
+    }
+    function tick(ts) {
+      raf = 0;
+      if (!playing || !inView || document.hidden) { last = 0; return; }
+      const dt = last ? Math.min(ts - last, 100) : 0;
+      last = ts;
+      if (useVideo) {
+        const d = video.duration;
+        if (d && isFinite(d)) paintBars(video.currentTime / d);
+      } else {
+        elapsed += dt;
+        paintBars(elapsed / SLIDE);
+        if (elapsed >= SLIDE) show(i + 1);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    function run() { if (!raf && playing && inView && !document.hidden) { last = 0; raf = requestAnimationFrame(tick); } }
+    function setPlaying(p) {
+      playing = p;
+      playBtn.setAttribute("aria-label", t(p ? "reelPause" : "reelPlay"));
+      playBtn.innerHTML = p ? '<svg aria-hidden="true"><use href="#i-pause"/></svg>' : '<svg class="fill" aria-hidden="true"><use href="#i-play"/></svg>';
+      if (useVideo) { if (p && inView) video.play().catch(() => {}); else video.pause(); }
+      else if (fx) { if (p) fx.play(); else fx.pause(); }
+      run();
+    }
+    function soundLabel() {
+      muteBtn.setAttribute("aria-pressed", String(!video.muted));
+      muteBtn.setAttribute("aria-label", t(video.muted ? "reelSoundOn" : "reelSoundOff"));
+      muteBtn.innerHTML = '<svg aria-hidden="true"><use href="#' + (video.muted ? "i-sound-off" : "i-sound") + '"/></svg>';
+    }
+    playBtn.addEventListener("click", () => setPlaying(!playing));
+    muteBtn.addEventListener("click", () => { video.muted = !video.muted; soundLabel(); if (!video.muted && !playing) setPlaying(true); });
+    $("#reel-prev").addEventListener("click", () => { show(i - 1); run(); });
+    $("#reel-next").addEventListener("click", () => { show(i + 1); run(); });
+    video.addEventListener("ended", () => { if (items.length > 1) show(i + 1); });
+    video.addEventListener("playing", () => { fails = 0; });
+    video.addEventListener("error", () => { if (++fails < items.length) show(i + 1); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        inView = e.isIntersecting;
+        if (useVideo) { if (inView && playing) video.play().catch(() => {}); else video.pause(); }
+        run();
+      }, { threshold: 0.25 }).observe(el);
+    }
+    document.addEventListener("visibilitychange", run);
+    langHooks.push(() => { caption(); setPlaying(playing); if (useVideo) soundLabel(); });
+    show(0);
+    setPlaying(playing);
+  })();
+
+  /* ---------- hero background reel ---------- */
+  (function heroVideo() {
+    const cfg = CONFIG.heroVideo;
+    if (!cfg || !cfg.src) return;
+    const hero = $(".hero"), v = $("#hero-video");
+    const srcs = Array.isArray(cfg.src) ? cfg.src : [cfg.src];
+    srcs.forEach(s => {
+      const el = document.createElement("source");
+      el.src = s; el.type = /\.webm(\?|#|$)/i.test(s) ? 'video/webm; codecs="vp9"' : "video/mp4";
+      v.appendChild(el);
+    });
+    if (cfg.poster) v.poster = cfg.poster;
+    if (cfg.position) v.style.objectPosition = cfg.position;
+    if (cfg.link) $("#hero-handle").href = cfg.link;
+    hero.classList.add("has-video");
+    v.hidden = false; v.preload = "auto";
+    let wantPlay = true, inView = true;
+    const sync = () => { if (wantPlay && inView && !document.hidden) v.play().catch(() => {}); else v.pause(); };
+    v.lastElementChild.addEventListener("error", () => {
+      hero.classList.remove("has-video"); v.hidden = true;
+    });
+    if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }).observe(hero);
+    document.addEventListener("visibilitychange", sync);
+    v.load(); sync();
+  })();
+
+  /* ---------- motion: reveal on scroll + progress bar ---------- */
+  (function motion() {
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    const groups = [
+      ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk-grid", ".talk__links",
+      ".meet__grid > *", ".meet__text > *", ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
+      ".foot__top > *", ".foot__cols > *", ".foot__bottom"
+    ];
+    const seen = new Set();
+    groups.forEach(sel => {
+      $$(sel).forEach(el => {
+        if (seen.has(el) || el.closest(".hero")) return;
+        seen.add(el);
+        const sibs = el.parentElement ? Array.from(el.parentElement.children) : [el];
+        el.style.setProperty("--d", Math.min(sibs.indexOf(el), 6) * 0.09 + "s");
+        el.classList.add("reveal");
+      });
+    });
+    root.classList.add("js-motion");
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    seen.forEach(el => io.observe(el));
+    const bar = document.createElement("div"); bar.className = "progress"; bar.setAttribute("aria-hidden", "true"); document.body.appendChild(bar);
+    let ticking = false;
+    const upd = () => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, scrollY / h) : 0) + ")";
+      ticking = false;
+    };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  })();
+
   /* ---------- start ---------- */
   const saved = store.get("lang");
   const initial = saved || ((navigator.language || "").toLowerCase().startsWith("ar") ? "ar" : "en");
