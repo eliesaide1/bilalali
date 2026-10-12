@@ -458,6 +458,17 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
 @media (min-width:1000px){.book__grid{grid-template-columns:7fr 4fr;gap:clamp(56px,7vw,112px)}}
 
 /* footer */
+/* Full-bleed panel leading into Services, after kochidubai.com: cream card, 40px radius,
+   pinned to the bottom-inline-start of the image. The flex start flips it automatically in RTL. */
+.showcase{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(460px,76vh,820px);padding:clamp(18px,3vw,40px)}
+.showcase__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;z-index:-1}
+.showcase__card{width:min(498px,100%);padding:clamp(26px,3vw,40px);background:#EDDBC8;color:var(--fg);border-radius:40px;text-decoration:none;display:block;transition:transform .45s var(--ease),box-shadow .45s}
+.showcase__card:hover,.showcase__card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.26)}
+.showcase__card h2{font-family:var(--f-display);font-weight:500;font-size:1.5rem;line-height:1.2;margin:0}
+.showcase__card p{margin:14px 0 0;color:var(--muted);font-size:1rem;line-height:1.6}
+.showcase__cta{display:inline-flex;align-items:center;gap:.7em;margin-top:20px;color:var(--accent);font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.showcase__card:hover .showcase__cta{gap:1.1em}
+html[lang="ar"] .showcase__cta{letter-spacing:0;font-size:.95rem;text-transform:none}
 .site-footer{position:relative;isolation:isolate;overflow:hidden;padding-block:clamp(64px,8vw,104px) calc(28px + env(safe-area-inset-bottom,0px))}
 .site-footer{background:#EDDBC8;color:var(--fg);padding-block:clamp(56px,7vw,96px) clamp(28px,4vw,40px)}
 .foot{display:grid;gap:clamp(40px,5vw,64px)}
@@ -638,6 +649,15 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <img src="media/bilal.jpg" alt="Bilal Ali, men's hairstylist" width="461" height="578" loading="lazy" decoding="async">
       </figure>
     </div>
+  </section>
+
+  <section class="showcase" aria-labelledby="showcase-title">
+    <img class="showcase__img" src="media/bilal.jpg" alt="" width="461" height="578" loading="lazy" decoding="async">
+    <a class="showcase__card" href="#services">
+      <h2 id="showcase-title" data-i18n="showTitle">Our Services</h2>
+      <p data-i18n="showText">Precision cuts, clean fades, expert beard work and styling built to last. A grooming experience designed for men who value detail.</p>
+      <span class="showcase__cta"><span data-i18n="showCta">View services</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
   </section>
 
   <section class="section" id="services" aria-labelledby="services-title">
@@ -883,6 +903,8 @@ const AR = {
   aboutP1: "بلال علي مصفف شعر رجالي من لبنان. يعرفه متابعوه بفيديوهات قصيرة وعملية تجيب عن الأسئلة التي يطرحها الرجال فعلاً عن شعرهم: هل تسبّب القبعة تساقط الشعر، هل يستحق السيروم، وما القصّة التي تناسب وجهك.",
   aboutP2: "وعلى الكرسي يعمل بالطريقة نفسها: ينظر بتمعّن، ويقول لك بصراحة ما الذي سينجح وما الذي لن ينجح، ثم يقصّ بدقة. تخرج بقصّة تناسبك وبفكرة واضحة عن طريقة المحافظة عليها.",
   sigRole: "المؤسس والمصفف",
+  showTitle: "خدماتنا", showCta: "اطّلع على الخدمات",
+  showText: "قصّات دقيقة، وتدريج نظيف، وعناية خبيرة باللحية، وتصفيف يدوم. تجربة عناية مصمّمة للرجل الذي يهتم بالتفاصيل.",
   svcTitle: "قصّات وعناية مصمّمة لك.",
   svcIntro: "تبدأ كل خدمة باستشارة قصيرة. راسلنا لمعرفة الأسعار والمواعيد المتاحة.",
   s1t: "القصّة الخاصة", s1d: "قصّة مدروسة على شكل وجهك ونوع شعرك وروتينك اليومي.",
@@ -1359,7 +1381,7 @@ const AR = {
     const groups = [
       ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
       ".meet__grid > *", ".meet__text > *", ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
-      ".foot__top > *", ".foot__cols > *", ".foot__bottom"
+      ".showcase__card", ".foot__top > *", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
     groups.forEach(sel => {
