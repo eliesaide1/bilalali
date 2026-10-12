@@ -426,7 +426,15 @@ html[lang="ar"] .shopcard b{font-weight:700}
 .team__gallery{list-style:none;margin:clamp(28px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
 .team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
 .team__gallery img{width:100%;height:100%;object-fit:cover;display:block}
-.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+/* Mobile: a swipeable horizontal flatlist, cards snapping as you drag, with the next one
+   peeking so the swipe is discoverable. Desktop keeps the static four-up row. */
+.team{list-style:none;display:grid;grid-auto-flow:column;grid-auto-columns:62%;gap:16px;
+  /* bleed past the wrap gutter so cards run to the screen edge and the next one clearly peeks */
+  margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 10px;scroll-padding-inline:var(--gutter);
+  overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;scrollbar-width:none}
+.team::-webkit-scrollbar{display:none}
+.team>li{scroll-snap-align:start}
 .team__card{display:grid;gap:12px;align-content:start;min-width:0}
 .team__card .portrait{width:100%;aspect-ratio:3/4}
 .team__card .portrait::after{display:none}
@@ -435,7 +443,8 @@ html[lang="ar"] .shopcard b{font-weight:700}
 html[lang="ar"] .team__role{letter-spacing:0;font-size:.9rem}
 .team__ig{font-size:.85rem;color:var(--muted);text-decoration:none}
 .team__ig:hover{color:var(--accent,#9A7A45)}
-@media (min-width:900px){.team{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
+@media (min-width:900px){.team{grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-columns:auto;
+  gap:20px;margin:0;padding:0;overflow-x:visible;scroll-snap-type:none}}
 
 /* booking */
 .book__grid{display:grid;gap:56px}
