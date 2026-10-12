@@ -26,6 +26,34 @@
 </script>
 <script>new MutationObserver(function(){if(document.documentElement.lang==="ar"&&!window.__arf){window.__arf=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap";document.head.appendChild(l)}}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})</script>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="media/fonts/blauer-nue-200.woff2">
+<script>
+/* ---------- Site settings: fill these in, everything else updates itself ---------- */
+const CONFIG = {
+  instagram: "bilalali_officiall",
+  whatsapp: "9613850966",       // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
+  address: { en: "Lebanon, Verdun Street, 732 Building", ar: "لبنان، شارع فردان، مبنى 732" },
+  // The team, shown under "Meet Bilal." (the section stays hidden while this list is empty). One entry per person:
+  // { name: "Name", role: { en: "Barber", ar: "حلّاق" }, photo: "media/team/name.jpg", instagram: "handle" }   (photo and instagram are optional)
+  // Optional photos: teamPhoto = one group picture shown above the team; teamGallery = up to 3 pictures of the team at work.
+  teamPhoto: "",        // e.g. "media/team/group.jpg"
+  teamGallery: [],      // e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
+  team: [
+    // Placeholders: replace each name (and add photo / instagram) with the real details
+    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
+    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
+    { name: "Team Member", role: { en: "Stylist", ar: "مصفف" } },
+    { name: "Nail Artist", role: { en: "Nail artist", ar: "أخصائية أظافر" } }
+  ],
+  // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
+  // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
+  //            caption: { en: "Long hair, reshaped", ar: "قصّة للشعر الطويل" } }
+  reels: [],
+  // Hero background reel: one of Bilal's Instagram reels, played full screen behind the headline (muted, looping).
+  // Example: { src: ["media/hero-reel.mp4", "media/hero-reel.webm"], poster: "media/hero-reel.jpg",
+  //            position: "50% 40%", link: "https://www.instagram.com/reel/…" }
+  heroVideo: { src: ["media/hero-reel-1080.mp4"], srcSmall: "media/hero-reel-720.mp4", poster: "media/hero-reel-1080.jpg", position: "50% 30%" }
+};
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -584,7 +612,25 @@ html[dir="rtl"] .progress{transform-origin:right center}
 <main id="main">
   <section class="hero stage grain has-video" aria-labelledby="hero-title">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <video class="hero__video" id="hero-video" muted loop playsinline preload="none" hidden aria-hidden="true"></video>
+    <video class="hero__video" id="hero-video" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+    <script>
+    /* Attach the source and start fetching while the document is still parsing. Waiting for the
+       main script at the end of <body> meant the browser had no URL to fetch until then, which is
+       what delayed playback by a few seconds. */
+    (function () {
+      var c = CONFIG.heroVideo, v = document.getElementById("hero-video");
+      if (!c || !c.src) return;
+      if (c.poster) v.poster = c.poster;
+      if (c.position) v.style.objectPosition = c.position;
+      var src = (matchMedia("(max-width:899px)").matches && c.srcSmall)
+        ? c.srcSmall : (Array.isArray(c.src) ? c.src[0] : c.src);
+      var el = document.createElement("source");
+      el.src = src; el.type = /\.webm(\?|#|$)/i.test(src) ? 'video/webm; codecs="vp9"' : "video/mp4";
+      v.appendChild(el);
+      v.load();
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    })();
+    </script>
     <div class="hero__shade"></div>
     <div class="wrap hero__inner">
       <div class="hero__grid">
@@ -683,7 +729,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
   <section class="section" id="team" aria-labelledby="team-title" hidden>
     <div class="wrap">
       <div class="sec-head sec-head--split">
-        <h2 id="team-title" data-i18n="teamTitle">Meet the team.</h2>
+        <h2 id="team-title" data-i18n="teamTitle">Team</h2>
         <p data-i18n="teamIntro">Our team shares Bilal's standard: skilled craftsmanship, attention to detail and an honest approach to grooming. Together, we bring skill, service and style to every client who steps inside.</p>
       </div>
       <figure class="team__group" id="team-group"><span class="team__group-ph" data-i18n="teamPhotoPh">Team photo</span></figure>
@@ -792,32 +838,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
 </footer>
 
 <script>
-/* ---------- Site settings: fill these in, everything else updates itself ---------- */
-const CONFIG = {
-  instagram: "bilalali_officiall",
-  whatsapp: "9613850966",       // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
-  address: { en: "Lebanon, Verdun Street, 732 Building", ar: "لبنان، شارع فردان، مبنى 732" },
-  // The team, shown under "Meet Bilal." (the section stays hidden while this list is empty). One entry per person:
-  // { name: "Name", role: { en: "Barber", ar: "حلّاق" }, photo: "media/team/name.jpg", instagram: "handle" }   (photo and instagram are optional)
-  // Optional photos: teamPhoto = one group picture shown above the team; teamGallery = up to 3 pictures of the team at work.
-  teamPhoto: "",        // e.g. "media/team/group.jpg"
-  teamGallery: [],      // e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
-  team: [
-    // Placeholders: replace each name (and add photo / instagram) with the real details
-    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
-    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
-    { name: "Team Member", role: { en: "Stylist", ar: "مصفف" } },
-    { name: "Nail Artist", role: { en: "Nail artist", ar: "أخصائية أظافر" } }
-  ],
-  // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
-  // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
-  //            caption: { en: "Long hair, reshaped", ar: "قصّة للشعر الطويل" } }
-  reels: [],
-  // Hero background reel: one of Bilal's Instagram reels, played full screen behind the headline (muted, looping).
-  // Example: { src: ["media/hero-reel.mp4", "media/hero-reel.webm"], poster: "media/hero-reel.jpg",
-  //            position: "50% 40%", link: "https://www.instagram.com/reel/…" }
-  heroVideo: { src: ["media/hero-reel-1080.mp4"], srcSmall: "media/hero-reel-720.mp4", poster: "media/hero-reel-1080.jpg", position: "50% 30%" }
-};
 
 /* The animated placeholder reel: real questions Bilal has answered on TikTok */
 const REEL_TOPICS = [
@@ -868,7 +888,7 @@ const AR = {
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
   aboutIntro: "صالون بلال علي وجهة عناية فاخرة تلتقي فيها الأناقة العصرية بإتقان الحرفة. أسّسه الحلّاق المعروف بلال علي، ويجمع صالوننا بين الدقة والخبرة، والخدمة الشخصية، وحصرية أجواء الصالة الفاخرة. صُمّم للرجل الذي يقدّر الأسلوب الراقي والاهتمام الدقيق بأدقّ التفاصيل، فكل زيارة تجربة من التميّز.",
-  teamPhotoPh: "صورة الفريق", teamTitle: "تعرّف إلى الفريق.",
+  teamPhotoPh: "صورة الفريق", teamTitle: "الفريق",
   teamIntro: "يشارك فريقنا بلال معاييره: إتقان في الحرفة، واهتمام بالتفاصيل، ونهج صادق في العناية بالمظهر. معاً نقدّم المهارة والخدمة والأناقة لكل من يدخل إلينا.",
   bookTitle: "احجز كرسيّك.",
   bookIntroIg: "بموعد مسبق فقط. املأ طلبك ثم أرسله إلى بلال في رسالة على إنستغرام، وسيردّ عليك لتأكيد الموعد.",
@@ -1261,26 +1281,16 @@ const AR = {
   (function heroVideo() {
     const cfg = CONFIG.heroVideo;
     if (!cfg || !cfg.src) return;
+    /* Source, poster and autoplay are set by the inline script next to the markup so playback
+       starts as early as possible. This only pauses the video off-screen or in a hidden tab. */
     const hero = $(".hero"), v = $("#hero-video");
-    const srcs = matchMedia("(max-width:899px)").matches && cfg.srcSmall ? [cfg.srcSmall] : (Array.isArray(cfg.src) ? cfg.src : [cfg.src]);
-    srcs.forEach(s => {
-      const el = document.createElement("source");
-      el.src = s; el.type = /\.webm(\?|#|$)/i.test(s) ? 'video/webm; codecs="vp9"' : "video/mp4";
-      v.appendChild(el);
-    });
-    if (cfg.poster) v.poster = cfg.poster;
-    if (cfg.position) v.style.objectPosition = cfg.position;
-    
-    hero.classList.add("has-video");
-    v.hidden = false; v.preload = "auto";
     let wantPlay = true, inView = true;
-    const sync = () => { if (wantPlay && inView && !document.hidden) v.play().catch(() => {}); else v.pause(); };
-    v.lastElementChild.addEventListener("error", () => {
+    const sync = () => { if (wantPlay && inView && !document.hidden) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
+    if (v.lastElementChild) v.lastElementChild.addEventListener("error", () => {
       hero.classList.remove("has-video"); v.hidden = true;
     });
     if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }).observe(hero);
     document.addEventListener("visibilitychange", sync);
-    v.load(); sync();
   })();
 
   /* ---------- motion: reveal on scroll + progress bar ---------- */
