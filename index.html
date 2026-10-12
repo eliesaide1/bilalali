@@ -38,15 +38,15 @@
 /* Layout: "stage and floor" rhythm. Dark stage bands (hero, quote, footer, video cards) carry the brand
    in both themes; content sits on the themed floor in a centred column that drops to one column on phones. */
 :root{
-  /* floor (dark-first) */
-  --bg:#100F0D;
-  --surface:#181613;
-  --fg:#ECE5D8;
-  --muted:#A69D8E;
-  --line:rgba(236,229,216,.14);
-  --accent:#C6A167;
-  --accent-ink:#16120C;
-  --focus:#E2C38C;
+  /* floor: always the warm light theme (#EDDBC8), whatever the device theme */
+  --bg:#EDDBC8;
+  --surface:#FAF8F4;
+  --fg:#1A1714;
+  --muted:#5E564B;
+  --line:rgba(26,23,20,.15);
+  --accent:#7A5624;
+  --accent-ink:#FBF8F2;
+  --focus:#7A5624;
   /* stage: same in both themes */
   --stage:#0B0A08;
   --stage-glass:rgba(11,10,8,.86);
@@ -74,14 +74,7 @@
   --header-h:72px;
   --radius:2px;
   --ease:cubic-bezier(.2,.7,.2,1);
-  color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#EDDBC8; --surface:#FAF8F4; --fg:#1A1714; --muted:#5E564B;
-    --line:rgba(26,23,20,.15); --accent:#7A5624; --accent-ink:#FBF8F2; --focus:#7A5624;
-    color-scheme:light;
-  }
+  color-scheme:light;
 }
 :root[data-theme="light"]{
   --bg:#EDDBC8; --surface:#FAF8F4; --fg:#1A1714; --muted:#5E564B;
