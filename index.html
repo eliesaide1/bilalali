@@ -25,14 +25,15 @@
 {"@context":"https://schema.org","@type":"HairSalon","name":"Bilal Ali Salon","description":"Premium men's grooming salon in Lebanon by renowned barber Bilal Ali: precision cuts, beard care, styling and hair care.","url":"https://eliesaide1.github.io/bilalali/","image":"https://eliesaide1.github.io/bilalali/media/bilal.jpg","telephone":"+9613850966","address":{"@type":"PostalAddress","streetAddress":"Verdun Street, 732 Building","addressCountry":"LB"},"sameAs":["https://www.instagram.com/bilalali_officiall","https://www.tiktok.com/@bilalali_officiall"],"founder":{"@type":"Person","name":"Bilal Ali"}}
 </script>
 <script>new MutationObserver(function(){if(document.documentElement.lang==="ar"&&!window.__arf){window.__arf=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap";document.head.appendChild(l)}}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})</script>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="media/fonts/blauer-nue-400.woff2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/hankengrotesk/v12/ieVn2YZDLWuGJpnzaiwFXS9tYtpd59CxCis4.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bodonimoda/v28/aFTQ7PxzY382XsXX63LUYJSKSKjWXFBP.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bodonimoda/v28/aFTS7PxzY382XsXX63LUYJSPeKrcW3JNsao.woff2">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=Instrument+Sans:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=Instrument+Sans:wght@400&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap"></noscript>
 <style>
 /* Layout: "stage and floor" rhythm. Dark stage bands (hero, quote, footer, video cards) carry the brand
    in both themes; content sits on the themed floor in a centred column that drops to one column on phones. */
@@ -248,8 +249,11 @@ html[lang="ar"] .hero h1{max-width:12ch;font-size:clamp(2.5rem,1.2rem + 4.4vw,5r
 .hero .rise:nth-child(3){animation-delay:.12s}
 .hero .rise:nth-child(4){animation-delay:.18s}
 .hero canvas{animation:fadein 1.6s ease both}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-300.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
 /* hero type: big light grotesk in cream, no gold (Koch Dubai look) */
-html:not([lang="ar"]) .hero h1{font-family:"Instrument Sans","Hanken Grotesk",system-ui,sans-serif;font-weight:400;font-size:clamp(2.8rem,.8rem + 9.2vw,8.75rem);line-height:.98;letter-spacing:-.035em;max-width:none;color:#FFFFFF;margin-top:20px}
+html:not([lang="ar"]) .hero h1{font-family:"Blauer Nue","Hanken Grotesk",system-ui,sans-serif;font-weight:300;font-size:clamp(2.8rem,.8rem + 9.2vw,8.75rem);line-height:.98;letter-spacing:-.02em;max-width:none;color:#FFFFFF;margin-top:20px}
 .hero h1 em{font-style:normal;color:inherit}
 .hero h1 .nb{white-space:nowrap}
 .hero h1{color:#FFFFFF}
@@ -521,6 +525,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
   .nav__links a::after{transition:transform .35s var(--ease)}
 }
 /* hero, matched to kochidubai.com */
+.hero__lead,.hero .btn{font-family:"Blauer Nue","Hanken Grotesk",system-ui,sans-serif}
 .hero .btn{text-transform:none;letter-spacing:0;font-size:1rem;font-weight:500;min-height:52px;padding:0 2em}
 @media (max-width:899px){
   .hero{align-items:center}
