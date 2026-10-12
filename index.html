@@ -918,7 +918,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
     <div class="foot__cols">
       <div class="foot__col">
         <h2 data-i18n="dLocation">Location</h2>
-        <p data-i18n="lebanon">Lebanon</p>
+        <p id="f-address" data-i18n="lebanon">Lebanon</p>
         <p class="foot__sm" data-i18n="byAppointment">By appointment only</p>
       </div>
       <div class="foot__col">
@@ -956,7 +956,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
 const CONFIG = {
   instagram: "bilalali_officiall",
   whatsapp: "9613850966",       // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
-  address: { en: "", ar: "" },  // e.g. { en: "Hamra Street, Beirut", ar: "شارع الحمرا، بيروت" }
+  address: { en: "Verdun Street, 732 Building", ar: "شارع فردان، مبنى 732" },
   portrait: "",                 // image URL for Bilal's photo (works once the site is on its own hosting)
   // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
   // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
@@ -1228,6 +1228,8 @@ const AR = {
     addr.removeAttribute("data-i18n");
     const note = $("[data-i18n='dLocationNote']");
     if (note) note.remove();
+    $("#f-address").removeAttribute("data-i18n");
+    addr.textContent = $("#f-address").textContent = CONFIG.address.en || CONFIG.address.ar;
   }
   if (CONFIG.portrait) {
     const img = new Image();
@@ -1258,7 +1260,11 @@ const AR = {
     const tg = $("#lang-toggle");
     if (lang === "ar") { tg.textContent = "EN"; tg.lang = "en"; tg.setAttribute("aria-label", "Switch to English"); }
     else { tg.textContent = "ع"; tg.lang = "ar"; tg.setAttribute("aria-label", "التبديل إلى العربية"); }
-    if (hasAddress) $("#d-address").textContent = CONFIG.address[lang] || CONFIG.address.en || CONFIG.address.ar;
+    if (hasAddress) {
+      const a = CONFIG.address[lang] || CONFIG.address.en || CONFIG.address.ar;
+      $("#d-address").textContent = a;
+      $("#f-address").textContent = a;
+    }
     $$("#step-dots .dot").forEach((d, i) => d.setAttribute("aria-label", t("step") + " " + (i + 1)));
     setMenu(document.body.classList.contains("menu-open"));
     if (!$("#result").hidden) renderResult();
