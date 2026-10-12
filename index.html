@@ -392,6 +392,7 @@ html[lang="ar"] .portrait__cap{letter-spacing:0;font-size:.85rem}
 @media (min-width:900px){.meet__grid{grid-template-columns:5fr 6fr;gap:clamp(48px,7vw,112px)}}
 /* team */
 .team__group{margin:0 0 clamp(16px,2.4vw,28px);aspect-ratio:3/2;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
+.team__group-ph{display:grid;place-items:center;height:100%;font-family:"Bodoni Moda","Bodoni 72","Didot",serif;font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);color:var(--stage-accent-soft,#8c7347);letter-spacing:.04em}
 .team__group img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
 .team__gallery{list-style:none;margin:clamp(28px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
 .team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
@@ -837,7 +838,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <h2 id="team-title" data-i18n="teamTitle">Meet the team.</h2>
         <p data-i18n="teamIntro">Our team shares Bilal's standard: skilled craftsmanship, attention to detail and an honest approach to grooming. Together, we bring skill, service and style to every client who steps inside.</p>
       </div>
-      <figure class="team__group" id="team-group" hidden></figure>
+      <figure class="team__group" id="team-group"><span class="team__group-ph" data-i18n="teamPhotoPh">Team photo</span></figure>
       <ul class="team" id="team-list"></ul>
       <ul class="team__gallery" id="team-gallery" hidden></ul>
     </div>
@@ -1061,7 +1062,7 @@ const AR = {
   talkIntro: "يشارك بلال نصائح قصيرة عن الشعر على تيك توك وإنستغرام. إليك بعض الأسئلة التي أجاب عنها:",
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
-  meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", teamLabel: "الفريق", teamTitle: "تعرّف إلى الفريق.",
+  meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", teamPhotoPh: "صورة الفريق", teamLabel: "الفريق", teamTitle: "تعرّف إلى الفريق.",
   teamIntro: "يشارك فريقنا بلال معاييره: إتقان في الحرفة، واهتمام بالتفاصيل، ونهج صادق في العناية بالمظهر. معاً نقدّم المهارة والخدمة والأناقة لكل من يدخل إلينا.",
   meetP1: "بنى بلال جمهوره بشرح الشعر بكلمات بسيطة لكل من يسأل. ويحجز عنده زبائنه للسبب نفسه: مصفف يقول لك بصراحة ما الذي يليق بك، ولماذا.",
   meetP2: "يشمل عمله كل شيء، من القصّات القصيرة الحادّة إلى الشعر الطويل، ومن تشكيل اللحية إلى العناية بفروة الرأس.",
@@ -1325,7 +1326,7 @@ const AR = {
     if (CONFIG.teamPhoto) {
       const g = $("#team-group"), img = new Image();
       img.alt = "Bilal Ali and the team"; img.loading = "lazy"; img.decoding = "async"; img.src = CONFIG.teamPhoto;
-      g.appendChild(img); g.hidden = false;
+      g.replaceChildren(img);
     }
     if ((CONFIG.teamGallery || []).length) {
       const ul = $("#team-gallery");
