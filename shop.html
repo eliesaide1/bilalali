@@ -64,6 +64,7 @@ html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
 .prod__art::before{content:"";position:absolute;inset:14px;border:1px solid rgba(30,23,16,.12);pointer-events:none}
 .prod__art svg{width:96px;height:96px;stroke-width:.9;transition:transform .7s var(--ease)}
 .prod__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform .7s var(--ease)}
+.prod__photo--contain{object-fit:contain;object-position:50% 50%;padding:6%;mix-blend-mode:multiply}
 .prod:hover .prod__photo{transform:scale(1.05)}
 .prod:hover .prod__art{background:#DFC8AE}
 .prod:hover .prod__art svg{transform:scale(1.1)}
@@ -192,7 +193,7 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
     currency: "$",
     // price: a number, or null to show "Ask for price". Edit names, descriptions and prices here.
     products: [
-      { id: "serum",  icon: "i-drop",     price: null, en: ["Hair serum", "Smooths frizz and adds shine without weighing hair down."], ar: ["سيروم الشعر", "ينعّم الشعر ويمنحه لمعة من دون أن يثقله."] },
+      { id: "serum",  icon: "i-drop",     price: null, img: "media/shop/serum.jpg", fit: "contain", en: ["Hair serum", "Smooths frizz and adds shine without weighing hair down."], ar: ["سيروم الشعر", "ينعّم الشعر ويمنحه لمعة من دون أن يثقله."] },
       { id: "beard",  icon: "i-beard",    price: null, en: ["Beard oil", "Softens the beard and the skin under it. A few drops a day."], ar: ["زيت اللحية", "يلطّف اللحية والبشرة تحتها. بضع قطرات يومياً."] },
       { id: "clay",   icon: "i-comb",     price: null, img: "media/shop/styling-clay.jpg", en: ["Styling clay", "Matte hold with texture. Shape it, re-shape it, all day."], ar: ["معجون التصفيف", "تثبيت مطفي مع كثافة. شكّله وأعد تشكيله طوال اليوم."] },
       { id: "spray",  icon: "i-waves",    price: null, en: ["Sea salt spray", "Beach texture and volume for medium and long hair."], ar: ["بخاخ ملح البحر", "ملمس وحجم للشعر المتوسط والطويل."] },
@@ -247,7 +248,7 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
       var priced = typeof p.price === "number";
       li.className = "prod";
       var art = p.img
-        ? '<img class="prod__photo" src="' + p.img + '" alt="" loading="lazy" decoding="async">'
+        ? '<img class="prod__photo' + (p.fit ? ' prod__photo--' + p.fit : '') + '" src="' + p.img + '" alt="" loading="lazy" decoding="async">'
         : '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#' + p.icon + '"/></svg>';
       li.innerHTML = '<div class="prod__art">' + art + '<div class="prod__quick"><button class="btn" type="button"></button></div></div>' +
         '<div class="prod__info"><h3></h3><span class="price' + (priced ? "" : " is-ask") + '"></span></div><p class="prod__desc"></p>';
