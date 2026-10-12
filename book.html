@@ -250,7 +250,7 @@ html[lang="ar"] .btn{letter-spacing:0;font-size:.95rem}
 (function () {
   "use strict";
   var CONFIG = {
-    whatsapp: "",                        // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
+    whatsapp: "9613850966",              // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
     times: ["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"],
     closedWeekdays: [],                  // 0 = Sunday ... 6 = Saturday, e.g. [0] to close Sundays
     monthsAhead: 3
@@ -384,17 +384,23 @@ html[lang="ar"] .btn{letter-spacing:0;font-size:.95rem}
     var note = $("#f-note").value.trim(); if (note) lines.push(t("mNote") + ": " + note);
     return lines.join("\n");
   }
+  function waUrl(msg) { return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg); }
   function fillResult() {
-    $("#r-text").textContent = message();
+    var msg = message();
+    $("#r-text").textContent = msg;
     $("#r-help").textContent = t(hasWa ? "rHelpWa" : "rHelpIg");
-    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(message()); }
+    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = waUrl(msg); }
+    return msg;
   }
   $("#confirm").addEventListener("click", function () {
     var miss = !service ? ["#s-service", "needService"] : !day ? ["#s-day", "needDay"] : !time ? ["#s-time", "needTime"] : null;
     var b = this;
     if (miss) { go(miss[0]); b.textContent = t(miss[1]); setTimeout(function () { b.textContent = t("confirm"); }, 1800); return; }
     if (!nameIn.value.trim()) { err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); go("#s-you"); nameIn.focus({ preventScroll: true }); return; }
-    fillResult();
+    var msg = fillResult();
+    /* With a number configured, the request goes straight to WhatsApp. The result box still opens
+       underneath as a fallback for blocked popups or browsers without WhatsApp. */
+    if (hasWa) window.open(waUrl(msg), "_blank", "noopener");
     result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
   $("#r-copy").addEventListener("click", function () {

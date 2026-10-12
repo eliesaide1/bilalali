@@ -63,6 +63,8 @@ html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
 .prod__art{position:relative;aspect-ratio:4/5;display:grid;place-items:center;background:var(--card);color:var(--fg);overflow:hidden;transition:background .4s}
 .prod__art::before{content:"";position:absolute;inset:14px;border:1px solid rgba(30,23,16,.12);pointer-events:none}
 .prod__art svg{width:96px;height:96px;stroke-width:.9;transition:transform .7s var(--ease)}
+.prod__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform .7s var(--ease)}
+.prod:hover .prod__photo{transform:scale(1.05)}
 .prod:hover .prod__art{background:#DFC8AE}
 .prod:hover .prod__art svg{transform:scale(1.1)}
 .prod__quick{position:absolute;inset-inline:14px;bottom:14px;transform:translateY(calc(100% + 14px));transition:transform .45s var(--ease)}
@@ -186,13 +188,13 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
 (function () {
   "use strict";
   var CONFIG = {
-    whatsapp: "",          // digits only with country code, e.g. "96170123456". Empty = Instagram-only ordering
+    whatsapp: "9613850966",// digits only with country code, e.g. "96170123456". Empty = Instagram-only ordering
     currency: "$",
     // price: a number, or null to show "Ask for price". Edit names, descriptions and prices here.
     products: [
       { id: "serum",  icon: "i-drop",     price: null, en: ["Hair serum", "Smooths frizz and adds shine without weighing hair down."], ar: ["سيروم الشعر", "ينعّم الشعر ويمنحه لمعة من دون أن يثقله."] },
       { id: "beard",  icon: "i-beard",    price: null, en: ["Beard oil", "Softens the beard and the skin under it. A few drops a day."], ar: ["زيت اللحية", "يلطّف اللحية والبشرة تحتها. بضع قطرات يومياً."] },
-      { id: "clay",   icon: "i-comb",     price: null, en: ["Styling clay", "Matte hold with texture. Shape it, re-shape it, all day."], ar: ["معجون التصفيف", "تثبيت مطفي مع كثافة. شكّله وأعد تشكيله طوال اليوم."] },
+      { id: "clay",   icon: "i-comb",     price: null, img: "media/shop/styling-clay.jpg", en: ["Styling clay", "Matte hold with texture. Shape it, re-shape it, all day."], ar: ["معجون التصفيف", "تثبيت مطفي مع كثافة. شكّله وأعد تشكيله طوال اليوم."] },
       { id: "spray",  icon: "i-waves",    price: null, en: ["Sea salt spray", "Beach texture and volume for medium and long hair."], ar: ["بخاخ ملح البحر", "ملمس وحجم للشعر المتوسط والطويل."] },
       { id: "shampoo",icon: "i-drop",     price: null, en: ["Daily shampoo", "Gentle cleanse for scalp and hair, made for everyday use."], ar: ["شامبو يومي", "تنظيف لطيف لفروة الرأس والشعر للاستعمال اليومي."] },
       { id: "scalp",  icon: "i-scissors", price: null, en: ["Scalp care", "Calms dryness and supports a healthy scalp."], ar: ["عناية بفروة الرأس", "يهدّئ الجفاف ويدعم فروة رأس صحية."] }
@@ -244,7 +246,10 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
       var li = document.createElement("li");
       var priced = typeof p.price === "number";
       li.className = "prod";
-      li.innerHTML = '<div class="prod__art"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#' + p.icon + '"/></svg><div class="prod__quick"><button class="btn" type="button"></button></div></div>' +
+      var art = p.img
+        ? '<img class="prod__photo" src="' + p.img + '" alt="" loading="lazy" decoding="async">'
+        : '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#' + p.icon + '"/></svg>';
+      li.innerHTML = '<div class="prod__art">' + art + '<div class="prod__quick"><button class="btn" type="button"></button></div></div>' +
         '<div class="prod__info"><h3></h3><span class="price' + (priced ? "" : " is-ask") + '"></span></div><p class="prod__desc"></p>';
       li.querySelector("h3").textContent = p[lang][0];
       li.querySelector(".prod__desc").textContent = p[lang][1];
@@ -313,14 +318,20 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
     lines.push("", t("mName") + ": " + nameIn.value.trim());
     return lines.join("\n");
   }
+  function waUrl(msg) { return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg); }
   function fillResult() {
     var msg = message();
     $("#r-text").textContent = msg;
-    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg); }
+    if (hasWa) { var a = $("#r-wa"); a.hidden = false; a.href = waUrl(msg); }
+    return msg;
   }
   $("#order").addEventListener("click", function () {
     if (!nameIn.value.trim()) { err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); nameIn.focus(); return; }
-    fillResult(); result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ block: "nearest" });
+    var msg = fillResult();
+    /* With a number configured, the order goes straight to WhatsApp. The result box still opens
+       underneath as a fallback for blocked popups or browsers without WhatsApp. */
+    if (hasWa) window.open(waUrl(msg), "_blank", "noopener");
+    result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ block: "nearest" });
   });
   $("#r-copy").addEventListener("click", function () {
     var btn = this, text = $("#r-text").textContent;
