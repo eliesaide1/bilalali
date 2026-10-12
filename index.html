@@ -483,15 +483,6 @@ html[lang="ar"] .foot__col h2{letter-spacing:0;font-size:.9rem}
 .foot__bottom a{text-decoration:none;color:inherit}
 .foot__bottom a:hover{color:#E2C38C}
 
-/* mobile booking dock */
-.dock{position:fixed;inset-inline:0;bottom:0;z-index:40;display:flex;gap:10px;padding:12px var(--gutter) calc(12px + env(safe-area-inset-bottom,0px));
-  background:var(--stage-glass);border-top:1px solid var(--stage-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  transform:translateY(110%);transition:transform .4s var(--ease)}
-.dock.is-on{transform:none}
-.dock .btn{flex:1}
-.dock .btn--ghost{flex:0 0 auto}
-@media (max-width:999px){.site-footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
-@media (min-width:1000px){.dock{display:none}}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -831,11 +822,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
     </div>
   </div>
 </footer>
-
-<div class="dock stage" id="dock">
-  <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
-  <a class="btn btn--ghost" href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener">Instagram</a>
-</div>
 
 <script>
 /* ---------- Site settings: fill these in, everything else updates itself ---------- */
@@ -1194,14 +1180,6 @@ const AR = {
     if (e.key === "Escape" && document.body.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
   });
   window.matchMedia("(min-width: 1000px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
-
-  const dock = $("#dock");
-  if ("IntersectionObserver" in window) {
-    let heroIn = true, bookIn = false;
-    const sync = () => dock.classList.toggle("is-on", !heroIn && !bookIn);
-    new IntersectionObserver(([e]) => { heroIn = e.isIntersecting; sync(); }, { rootMargin: "0px 0px -35% 0px" }).observe($(".hero"));
-    new IntersectionObserver(([e]) => { bookIn = e.isIntersecting; sync(); }, { threshold: 0.05 }).observe($("#book"));
-  }
 
   /* ---------- booking request ---------- */
   const form = $("#book-form"), nameIn = $("#f-name"), err = $("#f-name-err"), result = $("#result");
