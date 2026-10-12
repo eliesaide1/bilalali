@@ -7,6 +7,7 @@
 <meta name="description" content="Bilal Ali Salon: premium men's grooming in Lebanon (Verdun Street). Precision cuts, beard care, styling and hair products by barber Bilal Ali. Book your chair.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#100F0D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23100F0D%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-size=%2738%27 font-family=%27Georgia,serif%27 text-anchor=%27middle%27 fill=%27%23C6A167%27%3EB%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://eliesaide1.github.io/bilalali/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bilal Ali Salon">
@@ -25,7 +26,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap"></noscript>
 <style>
 /* Layout: "stage and floor" rhythm. Dark stage bands (hero, quote, footer, video cards) carry the brand
    in both themes; content sits on the themed floor in a centred column that drops to one column on phones. */
@@ -71,13 +73,13 @@
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
     --bg:#EDDBC8; --surface:#FAF8F4; --fg:#1A1714; --muted:#5E564B;
-    --line:rgba(26,23,20,.15); --accent:#8B6630; --accent-ink:#FBF8F2; --focus:#8B6630;
+    --line:rgba(26,23,20,.15); --accent:#7A5624; --accent-ink:#FBF8F2; --focus:#7A5624;
     color-scheme:light;
   }
 }
 :root[data-theme="light"]{
   --bg:#EDDBC8; --surface:#FAF8F4; --fg:#1A1714; --muted:#5E564B;
-  --line:rgba(26,23,20,.15); --accent:#8B6630; --accent-ink:#FBF8F2; --focus:#8B6630;
+  --line:rgba(26,23,20,.15); --accent:#7A5624; --accent-ink:#FBF8F2; --focus:#7A5624;
   color-scheme:light;
 }
 html[lang="ar"]{ --f-display:var(--f-ar-display); --f-body:var(--f-ar-body); }
@@ -412,7 +414,7 @@ html[lang="ar"] .portrait__cap{letter-spacing:0;font-size:.85rem}
 #team .sec-head h2{font-size:clamp(2rem,1.4rem + 2.2vw,3.1rem)}
 #team .sec-head p:not(.label){font-size:.95rem;line-height:1.6;max-width:52ch}
 .team__group{margin:0 0 clamp(14px,2vw,24px);aspect-ratio:16/9;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
-.team__group-ph{display:grid;place-items:center;height:100%;font-family:"Bodoni Moda","Bodoni 72","Didot",serif;font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);color:var(--stage-accent-soft,#8c7347);letter-spacing:.04em}
+.team__group-ph{display:grid;place-items:center;height:100%;font-family:"Bodoni Moda","Bodoni 72","Didot",serif;font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);color:#A98F5E;letter-spacing:.04em}
 .team__group img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
 .team__gallery{list-style:none;margin:clamp(28px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
 .team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
@@ -557,7 +559,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
 
 <header class="site-header stage" id="top">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Bilal Ali, home">
+    <a class="brand" href="#top" aria-label="Bilal Ali Salon, home">
       <span class="brand__name" data-i18n="brand">Bilal Ali</span>
       <span class="brand__sub" data-i18n="brandSub">Salon</span>
     </a>
