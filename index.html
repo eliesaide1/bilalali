@@ -192,7 +192,7 @@ body.menu-open{overflow:hidden}
 
 /* hero */
 .hero{position:relative;min-height:max(600px,100vh);min-height:max(600px,100svh);display:grid;align-items:end;overflow:hidden;isolation:isolate}
-.hero canvas,.band canvas,.talk canvas,.portrait canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hero canvas,.talk canvas,.portrait canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
 .talk__cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;z-index:-2;display:block}
 .hero__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(to top,var(--stage) 2%,transparent 42%),
@@ -317,16 +317,6 @@ html[lang="ar"] .sig strong{font-style:normal}
 html[lang="ar"] .sig span{letter-spacing:0;font-size:.9rem}
 @media (min-width:900px){.about__grid{grid-template-columns:5fr 6fr;gap:clamp(48px,7vw,112px);align-items:start}.about__body{padding-top:44px}.about__photo{justify-self:end;margin-top:20px}}
 
-/* quote band */
-.band{position:relative;overflow:hidden;isolation:isolate;min-height:clamp(380px,48vw,580px);display:grid;place-items:center;text-align:center}
-.band__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 75% at 50% 50%,var(--stage-glass) 0%,rgba(11,10,8,.35) 60%,transparent 100%)}
-.band figure{margin:0;padding-block:72px;display:grid;justify-items:center;gap:22px}
-.band blockquote{margin:0;max-width:22ch;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:clamp(1.9rem,1.1rem + 3.2vw,3.5rem);line-height:1.14;text-wrap:balance}
-html[lang="ar"] .band blockquote{font-style:normal;max-width:24ch;line-height:1.6;font-size:clamp(1.7rem,1.1rem + 2.4vw,3rem)}
-.band__ar{max-width:34ch;font-family:var(--f-ar-display);font-size:clamp(1.1rem,1rem + .6vw,1.45rem);line-height:1.7;color:var(--stage-muted)}
-html[lang="ar"] .band__ar{display:none}
-.band figcaption{font-size:var(--t-label);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--stage-muted)}
-html[lang="ar"] .band figcaption{letter-spacing:0;font-size:.9rem}
 
 /* services */
 .svc-grid{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -643,16 +633,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <img src="media/bilal.jpg" alt="Bilal Ali, men's hairstylist" width="461" height="578" loading="lazy" decoding="async">
       </figure>
     </div>
-  </section>
-
-  <section class="band stage grain" aria-label="Quote">
-    <canvas id="band-canvas" aria-hidden="true"></canvas>
-    <div class="band__shade"></div>
-    <figure class="wrap">
-      <blockquote data-i18n="quote">“Good hair is no reason to keep the same look forever.”</blockquote>
-      <p class="band__ar" lang="ar" dir="rtl">«إذا عندك شعر حلو، هذا ليس سبباً ليبقى على ذات الشكل طول العمر.»</p>
-      <figcaption data-i18n="quoteBy">Bilal Ali, on TikTok</figcaption>
-    </figure>
   </section>
 
   <section class="section" id="services" aria-labelledby="services-title">
@@ -1024,8 +1004,6 @@ const AR = {
   aboutP1: "بلال علي مصفف شعر رجالي من لبنان. يعرفه متابعوه بفيديوهات قصيرة وعملية تجيب عن الأسئلة التي يطرحها الرجال فعلاً عن شعرهم: هل تسبّب القبعة تساقط الشعر، هل يستحق السيروم، وما القصّة التي تناسب وجهك.",
   aboutP2: "وعلى الكرسي يعمل بالطريقة نفسها: ينظر بتمعّن، ويقول لك بصراحة ما الذي سينجح وما الذي لن ينجح، ثم يقصّ بدقة. تخرج بقصّة تناسبك وبفكرة واضحة عن طريقة المحافظة عليها.",
   sigRole: "المؤسس والمصفف",
-  quote: "«إذا عندك شعر حلو، هذا ليس سبباً ليبقى على ذات الشكل طول العمر.»",
-  quoteBy: "بلال علي على تيك توك",
   svcLabel: "الخدمات", svcTitle: "قصّات وعناية مصمّمة لك.",
   svcIntro: "تبدأ كل خدمة باستشارة قصيرة. راسلنا لمعرفة الأسعار والمواعيد المتاحة.",
   s1t: "القصّة الخاصة", s1d: "قصّة مدروسة على شكل وجهك ونوع شعرك وروتينك اليومي.",
@@ -1173,8 +1151,6 @@ const AR = {
   }
   const hero = $("#hero-canvas");
   if (hero) strands(hero, { seed: 3, base: -0.55, scale: 1, density: 3600, max: 200, len: 95, step: 5, alpha: 0.68, animate: true });
-  const band = $("#band-canvas");
-  if (band) strands(band, { seed: 9, base: 0.2, scale: 1.15, density: 5000, max: 150, len: 85, step: 5, alpha: 0.42 });
   /* ---------- hair talk carousel: keeps sliding, loops forever, pauses on hover / touch / focus ---------- */
   (function talkCarousel() {
     const track = $(".talk-grid");
