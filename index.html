@@ -31,8 +31,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bodonimoda/v28/aFTQ7PxzY382XsXX63LUYJSKSKjWXFBP.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bodonimoda/v28/aFTS7PxzY382XsXX63LUYJSPeKrcW3JNsao.woff2">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=Sora:wght@300;400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&family=Sora:wght@300;400&display=swap"></noscript>
 <style>
 /* Layout: "stage and floor" rhythm. Dark stage bands (hero, quote, footer, video cards) carry the brand
    in both themes; content sits on the themed floor in a centred column that drops to one column on phones. */
@@ -249,6 +249,13 @@ html[lang="ar"] .hero h1{max-width:12ch;font-size:clamp(2.5rem,1.2rem + 4.4vw,5r
 .hero .rise:nth-child(3){animation-delay:.12s}
 .hero .rise:nth-child(4){animation-delay:.18s}
 .hero canvas{animation:fadein 1.6s ease both}
+/* hero type: big light grotesk in cream, no gold (Koch Dubai look) */
+html:not([lang="ar"]) .hero h1{font-family:"Sora","Hanken Grotesk",system-ui,sans-serif;font-weight:300;font-size:clamp(2.9rem,.9rem + 7.6vw,7rem);line-height:1;letter-spacing:-.04em;max-width:11ch;color:#F4EFE7;margin-top:20px}
+.hero h1 em{font-style:normal;color:inherit}
+.hero .label{color:#F4EFE7}
+.hero__lead{color:rgba(244,239,231,.88);font-size:clamp(.95rem,.9rem + .3vw,1.1rem);max-width:36ch}
+.hero .btn{--b-bg:#F4EFE7;--b-fg:#1A1713;border-radius:999px;padding-inline:28px}
+.hero .link{color:#F4EFE7}
 
 /* hero reel: a 9:16 story-style player. Plays Bilal's clips from CONFIG.reels; until then, an animated reel of his tips */
 .hero__grid{display:grid;gap:44px;align-items:end}
@@ -524,7 +531,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
   .js-motion .reveal{opacity:0}
   .js-motion .reveal.in{animation:revealUp 1s var(--ease) both;animation-delay:var(--d,0s)}
   .site-header{animation:dropIn .9s var(--ease) both}
-  .hero h1 em{background:linear-gradient(100deg,var(--stage-accent) 20%,#F1DDB0 45%,var(--stage-accent) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:sheen 6s linear infinite}
   .btn,.foot__cta{transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease),box-shadow .3s}
   .btn:hover,.foot__cta:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
   .svc,.talk,.step{transition:background .3s,transform .45s var(--ease),border-color .3s,box-shadow .45s}
