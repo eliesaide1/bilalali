@@ -219,8 +219,7 @@ body.menu-open{overflow:hidden}
 
 /* hero */
 .hero{position:relative;min-height:max(600px,100vh);min-height:max(600px,100svh);display:grid;align-items:end;overflow:hidden;isolation:isolate}
-.hero canvas,.talk canvas,.portrait canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
-.talk__cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;z-index:-2;display:block}
+.hero canvas,.portrait canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
 .hero__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(to top,var(--stage) 2%,transparent 42%),
              linear-gradient(to right,var(--stage-glass) 0%,rgba(11,10,8,.42) 50%,transparent 82%)}
@@ -380,32 +379,7 @@ html[lang="ar"] .sig span{letter-spacing:0;font-size:.9rem}
 html[lang="ar"] .shopcard b{font-weight:700}
 .shopcard>span:last-child{padding-inline:20px;color:var(--muted);font-size:.95rem}
 #shop .talk__links{margin-top:36px}
-/* hair talk */
-.talk-grid{list-style:none;margin:0;padding:0 var(--gutter) 14px;display:grid;grid-auto-flow:column;grid-auto-columns:min(78%,320px);gap:16px;
-  overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin-inline:calc(var(--gutter) * -1);scrollbar-width:thin}
-.talk-grid>li{scroll-snap-align:start;min-width:0}
-.talk{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:4/5;max-width:100%;height:100%;display:flex;flex-direction:column;
-  justify-content:space-between;gap:20px;padding:22px;background:var(--stage);color:var(--stage-fg);text-decoration:none;border-radius:var(--radius)}
-.talk::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,var(--stage) 16%,rgba(11,10,8,.58) 58%,rgba(11,10,8,.44))}
-.talk__top{display:flex;align-items:center;justify-content:space-between;font-size:var(--t-label);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stage-muted)}
-html[lang="ar"] .talk__top{letter-spacing:0;font-size:.85rem}
-.talk__play{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--stage-line);border-radius:50%;transition:background .3s,border-color .3s,color .3s}
-.talk__play svg{width:14px;height:14px;fill:currentColor}
-html[dir="rtl"] .talk__play svg{transform:scaleX(-1)}
-.talk:hover .talk__play{background:var(--stage-accent);border-color:var(--stage-accent);color:var(--stage-ink)}
-.talk__ar{display:block;font-family:var(--f-ar-display);font-size:1.5rem;line-height:1.55;direction:rtl;text-align:right}
-.talk__en{display:block;margin-top:10px;font-size:.95rem;line-height:1.45;color:var(--stage-muted)}
-html[lang="ar"] .talk__en{display:none}
-.talk--more{justify-content:flex-end;background:transparent;color:var(--fg);border:1px solid var(--line)}
-.talk--more::after{display:none}
-.talk--more strong{font-family:var(--f-display);font-weight:500;font-size:1.75rem;line-height:1.15}
-.talk--more strong~span{color:var(--muted);margin-top:8px;display:block}
-.talk--more .talk__play{border-color:var(--line);margin-bottom:auto}
-.talk--more:hover .talk__play{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .talk__links{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:36px}
-@media (min-width:1040px){.talk-grid{grid-auto-columns:calc((100% - 48px) / 4);margin-inline:0;padding:0 0 14px}}
-.talk-grid.is-carousel{scroll-snap-type:none;scrollbar-width:none;overscroll-behavior-x:contain}
-.talk-grid.is-carousel::-webkit-scrollbar{display:none}
 
 /* meet */
 .meet__grid{display:grid;gap:44px;align-items:center}
@@ -535,11 +509,10 @@ html[dir="rtl"] .progress{transform-origin:right center}
   .site-header{animation:dropIn .9s var(--ease) both}
   .btn,.foot__cta{transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease),box-shadow .3s}
   .btn:hover,.foot__cta:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
-  .svc,.talk,.step{transition:background .3s,transform .45s var(--ease),border-color .3s,box-shadow .45s}
+  .svc,.step{transition:background .3s,transform .45s var(--ease),border-color .3s,box-shadow .45s}
   .svc:hover{transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,.16)}
   .svc svg{transition:transform .5s var(--ease)}
   .svc:hover svg{transform:scale(1.15) rotate(-6deg)}
-  .talk:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(0,0,0,.28)}
   .step:hover{transform:translateY(-4px)}
   .nav__icon,.lang{transition:transform .25s var(--ease),border-color .25s,background .25s,color .25s}
   .nav__icon:hover,.lang:hover{transform:translateY(-2px) scale(1.08)}
@@ -699,122 +672,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><img src="media/shop/wax-clay.jpg" alt="" loading="lazy" decoding="async" width="554" height="554"></span><b data-i18n="shopP3">Wax Styling Clay</b><span data-i18n="shopP3d">Matte hold with texture, all day.</span></a></li>
       </ul>
       <div class="talk__links"><a class="btn" href="shop.html"><span data-i18n="shopAll">Shop all products</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="talk" aria-labelledby="talk-title">
-    <div class="wrap">
-      <div class="sec-head sec-head--split">
-        <p class="label" data-i18n="talkLabel">Hair talk</p>
-        <h2 id="talk-title" data-i18n="talkTitle">Straight answers, one question at a time.</h2>
-        <p data-i18n="talkIntro">Bilal shares short hair advice in Arabic on TikTok and Instagram. A few of the questions he has answered:</p>
-      </div>
-      <ul class="talk-grid">
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7311428807955729665" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/cap.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">هل تؤدي القبعة إلى تساقط الشعر؟</span><span class="talk__en">Does wearing a cap cause hair loss?</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7270595640068033793" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/serum.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">لماذا يجب استعمال السيروم للشعر؟</span><span class="talk__en">Why you should use a hair serum</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7269487111953206529" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/nose.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">صاحب الأنف الكبير: ما هي القصّات التي تناسبك؟</span><span class="talk__en">Bigger nose? The cuts that suit you</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7308446707501583617" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/face-shape.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">كيف تختار القصّة الأنسب لشكل وجهك؟</span><span class="talk__en">Choosing the cut that suits your face</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7276918293359856898" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/loss-causes.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">ثلاثة أسباب لتساقط الشعر</span><span class="talk__en">Three causes of hair loss</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7312553635785788673" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/dht.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">الديهيدروتستوستيرون: العدو الأول للشعر</span><span class="talk__en">DHT, the main enemy of your hair</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7279886877467987202" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/dandruff.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">أنواع القشرة الثلاثة</span><span class="talk__en">The three types of dandruff</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7277661929273838849" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/oily.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">هل تعاني من الشعر الدهني؟</span><span class="talk__en">Struggling with oily hair?</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7272049512317816065" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/oils.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">زيوت اللوز والزيتون والخروع: ليست للشعر</span><span class="talk__en">Almond, olive and castor oil are not for hair</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7262448014986464514" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/summer.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">كيف تحافظ على صحة شعرك في الصيف؟</span><span class="talk__en">Keeping your hair healthy in summer</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7254285845300022530" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/curly.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">العناية بالشعر الكيرلي في ستّ خطوات</span><span class="talk__en">Curly hair care in six steps</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7251311274380889346" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/grey.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">لماذا يشيب شعرك؟</span><span class="talk__en">Why your hair is going grey</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7240905853220441345" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/facts.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">خمس معلومات لا تعرفها عن الشعر</span><span class="talk__en">Five things you didn't know about hair</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7238317881962794241" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/beard-growth.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">لماذا لا تنمو لحيتك؟</span><span class="talk__en">Why your beard won't grow</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7415321348496428306" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/transplant.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">هل عملية زراعة الشعر ناجحة؟</span><span class="talk__en">Does a hair transplant actually work?</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7340028118670789906" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/myths.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">معتقدات خاطئة حول العناية بالشعر</span><span class="talk__en">Myths about hair care</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7324801738433744146" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/dry.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">الشعر الناشف حالة، وليس نوعاً</span><span class="talk__en">Dry hair is a condition, not a type</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7694016990259727637" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/lice.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">ما هو القمل بالضبط؟</span><span class="talk__en">What lice actually are</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7607208971623091476" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/beard-style.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">ما هي اللحية التي تجذب؟</span><span class="talk__en">Which beard actually works?</span></span>
-        </a></li>
-        <li><a class="talk" href="https://www.tiktok.com/@bilalali_officiall/video/7601946250631548168" target="_blank" rel="noopener">
-          <img class="talk__cover" src="media/talk/long-hair.jpg" alt="" loading="lazy" decoding="async" width="540" height="960">
-          <span class="talk__top"><span data-i18n="tiktok">TikTok</span><span class="talk__play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></span>
-          <span><span class="talk__ar" lang="ar" dir="rtl">شعرك طويل وذاهب إلى حلاق رجالي؟</span><span class="talk__en">Long hair, going to a men's barber?</span></span>
-        </a></li>
-      </ul>
-      <div class="talk__links">
-        <a class="link" href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener"><span data-i18n="followIg">Follow on Instagram</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="link" href="https://www.tiktok.com/@bilalali_officiall" target="_blank" rel="noopener"><span data-i18n="watchTt">Watch on TikTok</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
     </div>
   </section>
 
@@ -1042,8 +899,6 @@ const AR = {
   s5t: "العناية بالشعر وفروة الرأس", s5d: "نصائح وعلاجات للتساقط والجفاف والتلف، مع منتجات تُحدث فرقاً فعلاً.",
   s6t: "درس تصفيف", s6d: "تعلّم تصفيف قصّتك في المنزل: المنتج المناسب، بالكمية المناسبة، في أقل من خمس دقائق.",
   svcFoot: "لست متأكداً مما تحتاجه؟ احجز استشارة وقرّرا معاً على الكرسي.",
-  talkLabel: "نصائح الشعر", talkTitle: "إجابات واضحة، سؤالاً بعد سؤال.",
-  talkIntro: "يشارك بلال نصائح قصيرة عن الشعر على تيك توك وإنستغرام. إليك بعض الأسئلة التي أجاب عنها:",
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
   meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", aboutIntro: "صالون بلال علي وجهة عناية فاخرة تلتقي فيها الأناقة العصرية بإتقان الحرفة. أسّسه الحلّاق المعروف بلال علي، ويجمع صالوننا بين الدقة والخبرة، والخدمة الشخصية، وحصرية أجواء الصالة الفاخرة. صُمّم للرجل الذي يقدّر الأسلوب الراقي والاهتمام الدقيق بأدقّ التفاصيل، فكل زيارة تجربة من التميّز.",
@@ -1180,49 +1035,6 @@ const AR = {
   }
   const hero = $("#hero-canvas");
   if (hero) strands(hero, { seed: 3, base: -0.55, scale: 1, density: 3600, max: 200, len: 95, step: 5, alpha: 0.68, animate: true });
-  /* ---------- hair talk carousel: keeps sliding, loops forever, pauses on hover / touch / focus ---------- */
-  (function talkCarousel() {
-    const track = $(".talk-grid");
-    if (!track || reduceMotion) return;
-    const items = Array.from(track.children);
-    const addCopy = () => items.forEach(li => {
-      const c = li.cloneNode(true);
-      c.setAttribute("aria-hidden", "true");
-      c.querySelectorAll("a").forEach(a => a.tabIndex = -1);
-      track.appendChild(c);
-    });
-    addCopy();
-    track.classList.add("is-carousel");
-    const sign = () => (getComputedStyle(track).direction === "rtl" ? -1 : 1);
-    const loopW = () => Math.abs(track.children[items.length].getBoundingClientRect().left - items[0].getBoundingClientRect().left);
-    /* The loop wraps once scrollLeft reaches one full set. With few enough cards that point can sit
-       past the maximum scroll, leaving the track parked at the end, so add copies until it is reachable. */
-    for (let i = 0; i < 4 && track.scrollWidth - track.clientWidth < loopW() + 1; i++) addCopy();
-    const step = () => Math.abs(items[1].getBoundingClientRect().left - items[0].getBoundingClientRect().left);
-    function normalize() {
-      const w = loopW(), sg = sign();
-      if (w && track.scrollLeft * sg >= w - 1) {
-        track.style.scrollBehavior = "auto";
-        track.scrollLeft = (track.scrollLeft * sg - w) * sg;
-        track.style.scrollBehavior = "";
-      }
-    }
-    let hold = false, inView = true, timer = 0, idle = 0;
-    function tick() {
-      if (hold || !inView || document.hidden) return;
-      normalize();
-      track.scrollBy({ left: step() * sign(), behavior: "smooth" });
-    }
-    const hold_on = () => { hold = true; }, hold_off = () => { hold = false; };
-    ["mouseenter", "touchstart", "focusin", "pointerdown"].forEach(e => track.addEventListener(e, hold_on, { passive: true }));
-    ["mouseleave", "focusout"].forEach(e => track.addEventListener(e, hold_off));
-    ["touchend", "touchcancel"].forEach(e => track.addEventListener(e, () => setTimeout(hold_off, 2500), { passive: true }));
-    track.addEventListener("scroll", () => { clearTimeout(idle); idle = setTimeout(normalize, 160); }, { passive: true });
-    if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; }).observe(track);
-    timer = setInterval(tick, 2000);
-  })();
-
-  $$(".talk canvas").forEach(c => strands(c, { seed: +c.dataset.seed, base: +c.dataset.base, scale: 1.7, density: 1400, max: 90, len: 55, step: 4, alpha: 0.6 }));
   const pc = $("#portrait canvas");
   if (pc) strands(pc, { seed: 5, base: -0.9, scale: 1.4, density: 1700, max: 120, len: 62, step: 4, alpha: 0.5 });
 
@@ -1560,7 +1372,7 @@ const AR = {
   (function motion() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const groups = [
-      ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk-grid", ".talk__links",
+      ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
       ".meet__grid > *", ".meet__text > *", ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
       ".foot__top > *", ".foot__cols > *", ".foot__bottom"
     ];
