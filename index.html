@@ -429,13 +429,6 @@ html[lang="ar"] .field label{letter-spacing:0;font-size:.9rem}
 .field__err{font-size:var(--t-small);color:var(--accent)}
 .form__actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
 .form__note{font-size:var(--t-small);color:var(--muted)}
-.result:focus-visible{outline:none}
-.result{display:grid;gap:16px;padding:24px;border:1px solid var(--accent);background:var(--surface)}
-.result h3{font-size:1.5rem}
-.result p{color:var(--muted);font-size:var(--t-small)}
-.result pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--f-body);font-size:.95rem;line-height:1.6;color:var(--fg);
-  padding:16px;border:1px dashed var(--line);background:var(--bg);user-select:text}
-.result__actions{display:flex;flex-wrap:wrap;gap:12px}
 .details{margin:0;display:grid;align-content:start;border-top:1px solid var(--line)}
 .detail{display:grid;gap:4px;padding-block:20px;border-bottom:1px solid var(--line)}
 .detail dt{font-size:var(--t-label);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
@@ -444,7 +437,7 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
 .detail dd a{text-decoration:none;transition:color .2s}
 .detail dd a:hover{color:var(--accent)}
 .detail dd small{display:block;font-family:var(--f-body);font-size:var(--t-small);color:var(--muted);margin-top:4px}
-@media (min-width:640px){.form{grid-template-columns:1fr 1fr}.field--full,.form__actions,.result{grid-column:1/-1}}
+@media (min-width:640px){.form{grid-template-columns:1fr 1fr}.field--full,.form__actions{grid-column:1/-1}}
 @media (min-width:1000px){.book__grid{grid-template-columns:7fr 4fr;gap:clamp(56px,7vw,112px)}}
 
 /* footer */
@@ -745,16 +738,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
             <button class="btn" type="submit" data-i18n="fSubmit">Prepare my request</button>
             <span class="form__note" data-i18n="fNoteSend">Nothing is sent until you send the message yourself.</span>
           </div>
-          <div class="result" id="result" hidden tabindex="-1" aria-live="polite">
-            <h3 data-i18n="rTitle">Your request is ready</h3>
-            <p id="r-help" data-i18n="rHelpIg">Copy the text, open Instagram and paste it into a message to Bilal.</p>
-            <pre id="r-text"></pre>
-            <div class="result__actions">
-              <button class="btn btn--sm" type="button" id="r-copy" data-i18n="rCopy">Copy text</button>
-              <a class="btn btn--sm" id="r-wa" href="#" target="_blank" rel="noopener" hidden data-i18n="rWa">Send on WhatsApp</a>
-              <a class="btn btn--sm btn--ghost" id="r-ig" href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i18n="rIg">Open Instagram</a>
-            </div>
-          </div>
         </form>
       </div>
       <dl class="details">
@@ -850,8 +833,6 @@ const REEL_TOPICS = [
 
 const EN_EXTRA = {
   bookIntroWa: "Appointments only. Fill in your request, then send it to Bilal on WhatsApp or Instagram. He will reply to confirm a time.",
-  rHelpWa: "Send it on WhatsApp in one tap, or copy it into an Instagram message.",
-  rCopied: "Copied", rSelected: "Text selected. Copy it from the box.",
   menuOpen: "Open menu", menuClose: "Close menu", step: "Step",
   mHello: "Hi Bilal, I'd like to book an appointment.", mName: "Name", mService: "Service",
   mDay: "Preferred day", mTime: "Time", mNote: "Note",
@@ -898,11 +879,6 @@ const AR = {
   tAny: "أي وقت", tMorning: "صباحاً", tAfternoon: "بعد الظهر", tEvening: "مساءً",
   fNote: "ملاحظة (اختياري)", fNotePh: "أي شيء يجب أن يعرفه بلال، مثل صورة مرجعية سترسلها.",
   fSubmit: "جهّز طلبي", fNoteSend: "لا يُرسَل أي شيء حتى ترسل الرسالة بنفسك.",
-  rTitle: "طلبك جاهز",
-  rHelpIg: "انسخ النص، ثم افتح إنستغرام والصقه في رسالة إلى بلال.",
-  rHelpWa: "أرسله عبر واتساب بنقرة واحدة، أو انسخه في رسالة على إنستغرام.",
-  rCopy: "انسخ النص", rCopied: "تم النسخ", rSelected: "تم تحديد النص. انسخه من المربع.",
-  rWa: "أرسل عبر واتساب", rIg: "افتح إنستغرام",
   dLocation: "الموقع", dLocationNote: "يُرسَل العنوان الكامل عند تأكيد موعدك.", dHours: "الدوام",
   footMark: "بلال <em>علي</em>",
   footTag: "مصفف شعر رجالي في لبنان. قصّات دقيقة وتصفيف وعناية بالشعر، بموعد مسبق.",
@@ -1031,9 +1007,6 @@ const AR = {
        applyLang() never runs, so the markup default would otherwise still read "Instagram message". */
     $("#book-intro").dataset.i18n = "bookIntroWa";
     $("#book-intro").textContent = EN_EXTRA.bookIntroWa;
-    $("#r-help").dataset.i18n = "rHelpWa";
-    $("#r-help").textContent = EN_EXTRA.rHelpWa;
-    $("#r-wa").hidden = false;
     $("#d-wa").hidden = false;
     const link = $("#d-wa-link");
     link.href = "https://wa.me/" + CONFIG.whatsapp;
@@ -1131,7 +1104,6 @@ const AR = {
       $("#f-address").textContent = a;
     }
     setMenu(document.body.classList.contains("menu-open"));
-    if (!$("#result").hidden) renderResult();
     store.set("lang", lang);
   }
   $("#lang-toggle").addEventListener("click", () => applyLang(lang === "ar" ? "en" : "ar"));
@@ -1160,7 +1132,7 @@ const AR = {
   window.matchMedia("(min-width: 1000px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
 
   /* ---------- booking request ---------- */
-  const form = $("#book-form"), nameIn = $("#f-name"), err = $("#f-name-err"), result = $("#result");
+  const form = $("#book-form"), nameIn = $("#f-name"), err = $("#f-name-err");
   function formatDay(v) {
     if (!v) return "";
     const p = v.split("-").map(Number);
@@ -1179,13 +1151,6 @@ const AR = {
     return lines.join("\n");
   }
   const waUrl = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
-  function renderResult() {
-    const msg = buildMessage();
-    $("#r-text").textContent = msg;
-    if (hasWa) $("#r-wa").href = waUrl(msg);
-    $("#r-copy").textContent = t("rCopy");
-    return msg;
-  }
   nameIn.addEventListener("input", () => { if (nameIn.value.trim()) { err.hidden = true; nameIn.removeAttribute("aria-invalid"); } });
   form.addEventListener("submit", e => {
     e.preventDefault();
@@ -1193,27 +1158,8 @@ const AR = {
       err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); nameIn.setAttribute("aria-describedby", "f-name-err"); nameIn.focus();
       return;
     }
-    const msg = renderResult();
-    /* With a number configured, the request goes straight to WhatsApp. The result box still opens
-       underneath as a fallback for blocked popups or browsers without WhatsApp. */
-    if (hasWa) window.open(waUrl(msg), "_blank", "noopener");
-    result.hidden = false;
-    result.focus({ preventScroll: true });
-    result.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
-  });
-  $("#r-copy").addEventListener("click", function () {
-    const btn = this, text = $("#r-text").textContent;
-    const fallback = () => {
-      const r = document.createRange(); r.selectNodeContents($("#r-text"));
-      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-      btn.textContent = t("rSelected");
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = t("rCopied");
-        setTimeout(() => { btn.textContent = t("rCopy"); }, 2200);
-      }).catch(fallback);
-    } else fallback();
+    /* No result panel any more: the request goes straight to WhatsApp. */
+    window.open(waUrl(buildMessage()), "_blank", "noopener");
   });
 
   /* ---------- hero reel ---------- */
