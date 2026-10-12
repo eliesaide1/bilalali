@@ -301,6 +301,7 @@ html[lang="ar"] .reel__en.is-only{display:block}
 /* about */
 .about__grid{display:grid;gap:36px}
 .about h2{font-size:var(--t-h2);max-width:13ch;margin-top:22px}
+.about__lead{max-width:52ch;margin:28px 0 0;font-size:var(--t-lead);color:var(--muted)}
 .about__photo{margin:0;width:100%;max-width:440px}
 .about__photo::after{display:none}
 .about__body{display:grid;gap:22px;max-width:60ch;font-size:var(--t-lead);color:var(--muted);min-width:0}
@@ -641,6 +642,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
       <div>
         <p class="label" data-i18n="aboutLabel">About</p>
         <h2 id="about-title" data-i18n="aboutTitle">A stylist who explains every cut.</h2>
+        <p class="about__lead" data-i18n="aboutIntro">Bilal Ali Salon is a premium grooming destination where modern sophistication meets exceptional craftsmanship. Founded by renowned barber Bilal Ali, our salon combines expert precision, personalized service, and the exclusivity of a luxurious lounge experience. Designed for men who appreciate refined style and impeccable attention to detail, every visit is an experience of excellence.</p>
       </div>
       <figure class="portrait about__photo">
         <img src="media/bilal.jpg" alt="Bilal Ali, men's hairstylist" width="461" height="578" loading="lazy" decoding="async">
@@ -1062,7 +1064,8 @@ const AR = {
   talkIntro: "يشارك بلال نصائح قصيرة عن الشعر على تيك توك وإنستغرام. إليك بعض الأسئلة التي أجاب عنها:",
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
-  meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", teamPhotoPh: "صورة الفريق", teamLabel: "الفريق", teamTitle: "تعرّف إلى الفريق.",
+  meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", aboutIntro: "صالون بلال علي وجهة عناية فاخرة تلتقي فيها الأناقة العصرية بإتقان الحرفة. أسّسه الحلّاق المعروف بلال علي، ويجمع صالوننا بين الدقة والخبرة، والخدمة الشخصية، وحصرية أجواء الصالة الفاخرة. صُمّم للرجل الذي يقدّر الأسلوب الراقي والاهتمام الدقيق بأدقّ التفاصيل، فكل زيارة تجربة من التميّز.",
+  teamPhotoPh: "صورة الفريق", teamLabel: "الفريق", teamTitle: "تعرّف إلى الفريق.",
   teamIntro: "يشارك فريقنا بلال معاييره: إتقان في الحرفة، واهتمام بالتفاصيل، ونهج صادق في العناية بالمظهر. معاً نقدّم المهارة والخدمة والأناقة لكل من يدخل إلينا.",
   meetP1: "بنى بلال جمهوره بشرح الشعر بكلمات بسيطة لكل من يسأل. ويحجز عنده زبائنه للسبب نفسه: مصفف يقول لك بصراحة ما الذي يليق بك، ولماذا.",
   meetP2: "يشمل عمله كل شيء، من القصّات القصيرة الحادّة إلى الشعر الطويل، ومن تشكيل اللحية إلى العناية بفروة الرأس.",
@@ -1600,7 +1603,7 @@ const AR = {
   (function motion() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const groups = [
-      ".sec-head > *", ".about__body > *", ".about__photo", ".svc-grid > li", ".services__foot", ".band figure > *", ".talk-grid", ".talk__links",
+      ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".band figure > *", ".talk-grid", ".talk__links",
       ".meet__grid > *", ".meet__text > *", ".team > li", ".team__gallery > li", ".steps > li", ".book__grid > div", ".form > .field", ".details > .detail",
       ".foot__top > *", ".foot__cols > *", ".foot__bottom"
     ];
