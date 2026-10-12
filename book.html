@@ -22,17 +22,22 @@
 <meta name="twitter:description" content="Book your haircut, beard trim or styling with Bilal Ali in Verdun, Lebanon. Choose your service, day and time.">
 <meta name="twitter:image" content="https://eliesaide1.github.io/bilalali/media/bilal.jpg">
 <script>new MutationObserver(function(){if(document.documentElement.lang==="ar"&&!window.__arf){window.__arf=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap";document.head.appendChild(l)}}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})</script>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="media/fonts/blauer-nue-400.woff2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap"></noscript>
 <style>
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-200.woff2") format("woff2");font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-300.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-500.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-500.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
 :root{
   --bg:#100F0D;--surface:#181613;--fg:#ECE5D8;--muted:#A69D8E;--line:rgba(236,229,216,.14);
   --accent:#C6A167;--accent-ink:#16120C;--focus:#E2C38C;
   --stage:#0B0A08;--stage-fg:#EFE8DB;--stage-muted:#A39A8A;--stage-line:rgba(239,232,219,.16);--stage-accent:#C9A46A;
-  --f-display:"Bodoni Moda","Bodoni 72","Didot","Times New Roman",serif;
-  --f-body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-display:"Blauer Nue","Hanken Grotesk",system-ui,sans-serif;
+  --f-body:"Blauer Nue","Hanken Grotesk",system-ui,sans-serif;
   --gutter:clamp(16px,4.5vw,56px);color-scheme:dark;
 }
 html[lang="ar"]{--f-display:"Amiri","Noto Naskh Arabic","Times New Roman",serif;--f-body:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif}
@@ -60,7 +65,7 @@ html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
 .back .ico{transform:scaleX(-1)}
 html[dir="rtl"] .back .ico{transform:none}
 html[lang="ar"] .back{letter-spacing:0;font-size:.95rem}
-.brand{font-family:"Marcellus",var(--f-display);font-size:1.5rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.brand{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
 html[lang="ar"] .brand{letter-spacing:0}
 .lang{display:inline-grid;place-items:center;width:42px;height:42px;border:1px solid var(--stage-line);border-radius:50%;background:transparent;color:inherit;cursor:pointer;font:600 .9rem/1 var(--f-body)}
 .lang:hover{border-color:var(--stage-fg)}
