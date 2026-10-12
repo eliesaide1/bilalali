@@ -250,8 +250,9 @@ html[lang="ar"] .hero h1{max-width:12ch;font-size:clamp(2.5rem,1.2rem + 4.4vw,5r
 .hero .rise:nth-child(4){animation-delay:.18s}
 .hero canvas{animation:fadein 1.6s ease both}
 /* hero type: big light grotesk in cream, no gold (Koch Dubai look) */
-html:not([lang="ar"]) .hero h1{font-family:"Sora","Hanken Grotesk",system-ui,sans-serif;font-weight:300;font-size:clamp(3.4rem,.8rem + 9.6vw,8.75rem);line-height:.98;letter-spacing:-.04em;max-width:9ch;color:#F4EFE7;margin-top:20px}
+html:not([lang="ar"]) .hero h1{font-family:"Sora","Hanken Grotesk",system-ui,sans-serif;font-weight:300;font-size:clamp(2.8rem,.8rem + 9.2vw,8.75rem);line-height:.98;letter-spacing:-.04em;max-width:none;color:#F4EFE7;margin-top:20px}
 .hero h1 em{font-style:normal;color:inherit}
+.hero h1 .nb{white-space:nowrap}
 .hero .label{color:#F4EFE7}
 .hero__lead{color:rgba(244,239,231,.88);font-size:clamp(.95rem,.9rem + .3vw,1.1rem);max-width:56ch}
 .hero .btn{--b-bg:#F4EFE7;--b-fg:#1A1713;border-radius:999px;padding-inline:28px}
@@ -617,7 +618,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
       <div class="hero__grid">
         <div class="hero__copy">
           <p class="label rise" data-i18n="heroEyebrow">Men's hairstylist · Lebanon</p>
-          <h1 id="hero-title" class="rise" data-i18n-html="heroTitle">Where Every Detail Defines You</h1>
+          <h1 id="hero-title" class="rise" data-i18n-html="heroTitle">Where<br><span class="nb">Every Detail</span><br>Defines You</h1>
           <p class="hero__lead rise" data-i18n-html="heroLead">A refined grooming destination where precision meets sophistication.<br>Born in Lebanon, designed for the modern gentleman.</p>
           <div class="hero__cta rise">
             <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
