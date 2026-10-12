@@ -389,6 +389,11 @@ html[lang="ar"] .portrait__cap{letter-spacing:0;font-size:.85rem}
 .meet__links{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:10px}
 @media (min-width:900px){.meet__grid{grid-template-columns:5fr 6fr;gap:clamp(48px,7vw,112px)}}
 /* team */
+.team__group{margin:0 0 clamp(16px,2.4vw,28px);aspect-ratio:3/2;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
+.team__group img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.team__gallery{list-style:none;margin:clamp(28px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
+.team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
+.team__gallery img{width:100%;height:100%;object-fit:cover;display:block}
 .team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
 .team__card{display:grid;gap:12px;align-content:start;min-width:0}
 .team__card .portrait{width:100%}
@@ -827,11 +832,14 @@ html[dir="rtl"] .progress{transform-origin:right center}
 
   <section class="section" id="team" aria-labelledby="team-title" hidden>
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head sec-head--split">
         <p class="label" data-i18n="teamLabel">The team</p>
         <h2 id="team-title" data-i18n="teamTitle">Meet the team.</h2>
+        <p data-i18n="teamIntro">Our team shares Bilal's standard: skilled craftsmanship, attention to detail and an honest approach to grooming. Together, we bring skill, service and style to every client who steps inside.</p>
       </div>
+      <figure class="team__group" id="team-group" hidden></figure>
       <ul class="team" id="team-list"></ul>
+      <ul class="team__gallery" id="team-gallery" hidden></ul>
     </div>
   </section>
 
@@ -980,6 +988,9 @@ const CONFIG = {
   address: { en: "Lebanon, Verdun Street, 732 Building", ar: "لبنان، شارع فردان، مبنى 732" },
   // The team, shown under "Meet Bilal." (the section stays hidden while this list is empty). One entry per person:
   // { name: "Name", role: { en: "Barber", ar: "حلّاق" }, photo: "media/team/name.jpg", instagram: "handle" }   (photo and instagram are optional)
+  // Optional photos: teamPhoto = one group picture shown above the team; teamGallery = up to 3 pictures of the team at work.
+  teamPhoto: "",        // e.g. "media/team/group.jpg"
+  teamGallery: [],      // e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
   team: [
     // Placeholders: replace each name (and add photo / instagram) with the real details
     { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
@@ -1051,6 +1062,7 @@ const AR = {
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
   meetLabel: "المصفف", meetTitle: "تعرّف إلى بلال.", teamLabel: "الفريق", teamTitle: "تعرّف إلى الفريق.",
+  teamIntro: "يشارك فريقنا بلال معاييره: إتقان في الحرفة، واهتمام بالتفاصيل، ونهج صادق في العناية بالمظهر. معاً نقدّم المهارة والخدمة والأناقة لكل من يدخل إلينا.",
   meetP1: "بنى بلال جمهوره بشرح الشعر بكلمات بسيطة لكل من يسأل. ويحجز عنده زبائنه للسبب نفسه: مصفف يقول لك بصراحة ما الذي يليق بك، ولماذا.",
   meetP2: "يشمل عمله كل شيء، من القصّات القصيرة الحادّة إلى الشعر الطويل، ومن تشكيل اللحية إلى العناية بفروة الرأس.",
   stepsLabel: "الموعد", stepsTitle: "ثلاث خطوات في كل زيارة.",
@@ -1310,6 +1322,20 @@ const AR = {
       list.appendChild(li);
     });
     $("#team").hidden = false;
+    if (CONFIG.teamPhoto) {
+      const g = $("#team-group"), img = new Image();
+      img.alt = "Bilal Ali and the team"; img.loading = "lazy"; img.decoding = "async"; img.src = CONFIG.teamPhoto;
+      g.appendChild(img); g.hidden = false;
+    }
+    if ((CONFIG.teamGallery || []).length) {
+      const ul = $("#team-gallery");
+      CONFIG.teamGallery.slice(0, 3).forEach(src => {
+        const li = document.createElement("li"), img = new Image();
+        img.alt = ""; img.loading = "lazy"; img.decoding = "async"; img.src = src;
+        li.appendChild(img); ul.appendChild(li);
+      });
+      ul.hidden = false;
+    }
     const setRoles = () => $$("#team-list .team__card").forEach(li => {
       const r = li._data.role || {};
       li._role.textContent = (lang === "ar" ? r.ar : r.en) || r.en || r.ar || "";
@@ -1574,7 +1600,7 @@ const AR = {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const groups = [
       ".sec-head > *", ".about__body > *", ".svc-grid > li", ".services__foot", ".band figure > *", ".talk-grid", ".talk__links",
-      ".meet__grid > *", ".meet__text > *", ".steps > li", ".book__grid > div", ".form > .field", ".details > .detail",
+      ".meet__grid > *", ".meet__text > *", ".team > li", ".team__gallery > li", ".steps > li", ".book__grid > div", ".form > .field", ".details > .detail",
       ".foot__top > *", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
