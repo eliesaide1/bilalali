@@ -648,13 +648,6 @@ html[dir="rtl"] .progress{transform-origin:right center}
           </div>
         </figure>
       </div>
-      <div class="hero__meta">
-        <span class="dotsep" data-i18n="byAppointment">By appointment only</span>
-        <span class="hero__meta-r">
-          <a id="hero-handle" href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener" dir="ltr">@bilalali_officiall</a>
-        </span>
-      </div>
-    </div>
   </section>
 
   <section class="section about" id="about" aria-labelledby="about-title">
@@ -1549,7 +1542,7 @@ const AR = {
     });
     if (cfg.poster) v.poster = cfg.poster;
     if (cfg.position) v.style.objectPosition = cfg.position;
-    if (cfg.link) $("#hero-handle").href = cfg.link;
+    
     hero.classList.add("has-video");
     v.hidden = false; v.preload = "auto";
     let wantPlay = true, inView = true;
