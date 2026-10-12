@@ -64,7 +64,7 @@ html[lang="ar"] .label{letter-spacing:0;font-size:.9rem}
 .prod__art::before{content:"";position:absolute;inset:14px;border:1px solid rgba(30,23,16,.12);pointer-events:none}
 .prod__art svg{width:96px;height:96px;stroke-width:.9;transition:transform .7s var(--ease)}
 .prod__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform .7s var(--ease)}
-.prod__photo--contain{object-fit:contain;object-position:50% 50%;padding:6%;mix-blend-mode:multiply}
+.prod__photo--contain{object-fit:contain;object-position:50% 50%;box-sizing:border-box;padding:6%;mix-blend-mode:multiply}
 .prod:hover .prod__photo{transform:scale(1.05)}
 .prod:hover .prod__art{background:#DFC8AE}
 .prod:hover .prod__art svg{transform:scale(1.1)}
