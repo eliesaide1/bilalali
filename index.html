@@ -989,7 +989,7 @@ const CONFIG = {
   // Hero background reel: one of Bilal's Instagram reels, played full screen behind the headline (muted, looping).
   // Example: { src: ["media/hero-reel.mp4", "media/hero-reel.webm"], poster: "media/hero-reel.jpg",
   //            position: "50% 40%", link: "https://www.instagram.com/reel/…" }
-  heroVideo: { src: ["media/hero-reel-1080.mp4"], poster: "media/hero-reel-1080.jpg", position: "50% 30%" }
+  heroVideo: { src: ["media/hero-reel-1080.mp4"], srcSmall: "media/hero-reel-720.mp4", poster: "media/hero-reel-1080.jpg", position: "50% 30%" }
 };
 
 /* The animated placeholder reel: real questions Bilal has answered on TikTok */
@@ -1531,7 +1531,7 @@ const AR = {
     const cfg = CONFIG.heroVideo;
     if (!cfg || !cfg.src) return;
     const hero = $(".hero"), v = $("#hero-video");
-    const srcs = Array.isArray(cfg.src) ? cfg.src : [cfg.src];
+    const srcs = matchMedia("(max-width:899px)").matches && cfg.srcSmall ? [cfg.srcSmall] : (Array.isArray(cfg.src) ? cfg.src : [cfg.src]);
     srcs.forEach(s => {
       const el = document.createElement("source");
       el.src = s; el.type = /\.webm(\?|#|$)/i.test(s) ? 'video/webm; codecs="vp9"' : "video/mp4";

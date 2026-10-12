@@ -1,0 +1,14 @@
+# Bilal Ali Salon
+
+> Premium men's grooming salon in Lebanon, founded by barber Bilal Ali. Precision cuts, beard care, styling and hair-care products, by appointment.
+
+- Location: Lebanon, Verdun Street, 732 Building
+- Phone / WhatsApp: +961 3 850 966
+- Instagram: https://www.instagram.com/bilalali_officiall
+- TikTok: https://www.tiktok.com/@bilalali_officiall
+
+## Pages
+
+- [Home](https://eliesaide1.github.io/bilalali/): About the salon, services, team and hair tips
+- [Shop](https://eliesaide1.github.io/bilalali/shop.html): Hair serum, beard oil, wax styling clay, hair spray, shampoo and scalp care (order by message)
+- [Book](https://eliesaide1.github.io/bilalali/book.html): Choose a service, day and time
