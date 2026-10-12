@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eliesaide1.github.io/bilalali/sitemap.xml
