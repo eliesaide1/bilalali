@@ -36,7 +36,7 @@ const CONFIG = {
   // { name: "Name", role: { en: "Barber", ar: "حلّاق" }, photo: "media/team/name.jpg", instagram: "handle" }   (photo and instagram are optional)
   // Optional photos: teamPhoto = one group picture shown above the team; teamGallery = up to 3 pictures of the team at work.
   teamPhoto: "",        // e.g. "media/team/group.jpg"
-  teamGallery: [],      // e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
+  teamGallery: [],      // three tall photos under the team; empty = placeholder tiles. e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
   team: [
     // Placeholders: replace each name (and add photo / instagram) with the real details
     { name: "Bilal", role: { en: "Founder", ar: "المؤسس" }, photo: "media/team/bilal.jpg" },
@@ -423,9 +423,10 @@ html[lang="ar"] .shopcard b{font-weight:700}
 .team__group{margin:0 0 clamp(14px,2vw,24px);aspect-ratio:16/9;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
 .team__group-ph{display:grid;place-items:center;height:100%;font-family:var(--f-display);font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);color:#A98F5E;letter-spacing:.04em}
 .team__group img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
-.team__gallery{list-style:none;margin:clamp(28px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
+.team__gallery{list-style:none;margin:clamp(56px,9vw,120px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
 .team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
 .team__gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.team__gallery li.is-ph{background:linear-gradient(160deg,#171410,var(--stage))}
 /* Mobile: a swipeable horizontal flatlist, cards snapping as you drag, with the next one
    peeking so the swipe is discoverable. Desktop keeps the static four-up row. */
 .team{list-style:none;display:grid;grid-auto-flow:column;grid-auto-columns:62%;gap:16px;
@@ -483,13 +484,14 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
    pinned to the bottom-inline-start of the image. The flex start flips it automatically in RTL. */
 .showcase{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:max(600px,100vh);min-height:max(600px,100svh);padding:clamp(18px,3vw,40px)}
 .showcase__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;z-index:-1}
-.showcase__card{width:min(498px,100%);padding:clamp(26px,3vw,40px);background:#EDDBC8;color:var(--fg);border-radius:40px;text-decoration:none;display:block;transition:transform .45s var(--ease),box-shadow .45s}
+.showcase__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;text-decoration:none;display:grid;gap:10px;justify-items:start;transition:transform .45s var(--ease),box-shadow .45s}
 .showcase__card:hover,.showcase__card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.26)}
-.showcase__card h2{font-family:var(--f-display);font-weight:500;font-size:1.5rem;line-height:1.2;margin:0}
-.showcase__card p{margin:14px 0 0;color:var(--muted);font-size:1rem;line-height:1.6}
-.showcase__cta{display:inline-flex;align-items:center;gap:.7em;margin-top:20px;color:var(--accent);font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-.showcase__card:hover .showcase__cta{gap:1.1em}
-html[lang="ar"] .showcase__cta{letter-spacing:0;font-size:.95rem;text-transform:none}
+.showcase__card h2{font-family:var(--f-display);font-weight:300;font-size:1.375rem;line-height:1.2;margin:0;color:#4A4A4A}
+.showcase__card p{margin:0;color:#4A4A4A;font-size:.875rem;line-height:1.45;max-width:38ch}
+.showcase__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:6px;min-height:46px;padding:0 1.4em;border-radius:999px;background:#333;color:#fff;font-size:.875rem;font-weight:600;letter-spacing:0;text-transform:none;transition:background .25s}
+.showcase__card:hover .showcase__cta{background:#4A4A4A}
+html[lang="ar"] .showcase__cta{font-size:.95rem}
+.showcase__cta .ico{display:none}
 /* footer, after kochidubai.com: cream, logo top-left, three light-weight columns (contact | address | social), name and copyright below */
 .site-footer{background:#EDDBC8;color:#4A4A4A;padding:60px var(--gutter) 40px}
 .foot{max-width:1280px;margin-inline:auto;font-weight:300;font-size:1rem;line-height:1.4}
@@ -582,10 +584,15 @@ html[lang="ar"] .site-header .nav__links a{font-size:1.05rem}
 @media (max-width:420px){.site-header .lang,.site-header .nav__icon,.site-header .menu-btn{width:40px;height:40px}}
 @media (max-width:380px){.site-header .brand__name,html[lang="ar"] .site-header .brand__name{font-size:1.2rem}.site-header .lang,.site-header .nav__icon,.site-header .menu-btn{width:36px;height:36px}}
 /* STMNT banner, after the Kochi Hair Care panel: wide and short, cream card pinned bottom-start (flips in RTL) */
-.promo{position:relative;overflow:hidden;aspect-ratio:3/1;min-height:220px;background:var(--stage)}
-.promo__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-.products{display:block;line-height:0;background:var(--stage)}
-.products img{display:block;width:100%;height:auto;aspect-ratio:2159/728;min-height:220px;object-fit:cover;object-position:50% 50%}
+.promo{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:3/1;min-height:220px;background:var(--stage)}
+.promo__img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.products{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;aspect-ratio:1974/797;min-height:260px;padding:clamp(18px,3vw,40px);background:var(--stage)}
+.products img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.products .products__card{width:min(380px,100%)}
+.promo__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;display:grid;gap:10px;justify-items:start}
+.promo__card h2{font-weight:300;font-size:1.375rem;line-height:1.2;color:#4A4A4A}
+.promo__card p{color:#4A4A4A;font-size:.875rem;line-height:1.45;max-width:38ch}
+.promo__card .btn{margin-top:6px;min-height:46px;padding:0 1.4em;font-size:.875rem}
 </style>
 </head>
 <body>
@@ -729,8 +736,13 @@ html[lang="ar"] .site-header .nav__links a{font-size:1.05rem}
     </a>
   </section>
 
-  <section class="products" aria-label="STMNT Grooming Goods">
-    <img src="media/products.jpg" alt="STMNT Grooming Goods range: shampoo, conditioner, cleanser, cleansing bar, beard oil, shaving gel and dry shampoo" width="2159" height="728" loading="lazy" decoding="async">
+  <section class="products" aria-labelledby="products-title">
+    <img src="media/products.jpg" alt="STMNT Grooming Goods range: shampoo, conditioner, cleanser, cleansing bar, beard oil, shaving gel and dry shampoo" width="1974" height="797" loading="lazy" decoding="async">
+    <div class="promo__card products__card">
+      <h2 id="products-title" data-i18n="rgTitle">The STMNT range</h2>
+      <p data-i18n="rgText">Shampoo, conditioner, cleansers, beard oil, shaving gel and more. The grooming essentials Bilal trusts behind the chair, ready to take home.</p>
+      <a class="btn" href="shop.html"><span data-i18n="stCta">Shop Here</span></a>
+    </div>
   </section>
 
   <section class="section" id="team" aria-labelledby="team-title" hidden>
@@ -806,6 +818,7 @@ const AR = {
   shopTitle: "عناية بما ترتديه.", shopIntro: "منتجات للشعر واللحية يستعملها بلال وينصح بها. اطلبها برسالة.",
   shopP1: "سيروم الشعر", shopP1d: "ينعّم الشعر ويمنحه لمعة.", shopP2: "زيت اللحية", shopP2d: "يلطّف اللحية والبشرة تحتها.", shopP3: "معجون واكس للتصفيف", shopP3d: "تثبيت مطفي مع كثافة طوال اليوم.", shopAll: "تسوّق كل المنتجات", navTalk: "نصائح الشعر", navContact: "التواصل",
   ctaBook: "احجز موعداً",
+  rgTitle: "مجموعة STMNT", rgText: "شامبو وبلسم ومنظفات وزيت للحية وجل حلاقة وغيرها. أساسيات العناية التي يثق بها بلال على الكرسي، جاهزة لتأخذها معك.", stCta: "تسوّق الآن",
   heroEyebrow: "مصفف شعر رجالي · لبنان",
   heroTitle: "حيث تلتقي الدقة بالشخصية",
   heroLead: "وجهة عناية راقية حيث تلتقي الدقة بالأناقة.<br>وُلدت في لبنان، ومصمَّمة للرجل العصري.",
@@ -1016,13 +1029,18 @@ const AR = {
       img.alt = "Bilal Ali and the team"; img.loading = "lazy"; img.decoding = "async"; img.src = CONFIG.teamPhoto;
       g.replaceChildren(img);
     }
-    if ((CONFIG.teamGallery || []).length) {
+    {
+      /* three photos of the team at work under the cards; dark placeholder tiles until teamGallery is filled in */
       const ul = $("#team-gallery");
-      CONFIG.teamGallery.slice(0, 3).forEach(src => {
-        const li = document.createElement("li"), img = new Image();
-        img.alt = ""; img.loading = "lazy"; img.decoding = "async"; img.src = src;
-        li.appendChild(img); ul.appendChild(li);
-      });
+      for (let n = 0; n < 3; n++) {
+        const src = (CONFIG.teamGallery || [])[n], li = document.createElement("li");
+        if (src) {
+          const img = new Image();
+          img.alt = ""; img.loading = "lazy"; img.decoding = "async"; img.src = src;
+          li.appendChild(img);
+        } else li.className = "is-ph";
+        ul.appendChild(li);
+      }
       ul.hidden = false;
     }
     const setRoles = () => $$("#team-list .team__card").forEach(li => {
@@ -1195,7 +1213,7 @@ const AR = {
     const groups = [
       ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
       ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
-      ".showcase__card", ".foot__brand", ".foot__cols > *", ".foot__bottom"
+      ".showcase__card", ".promo__card", ".foot__brand", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
     groups.forEach(sel => {
