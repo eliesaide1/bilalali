@@ -7,7 +7,7 @@
 <meta name="description" content="Bilal Ali Salon: premium men's grooming in Lebanon (Verdun Street). Precision cuts, beard care, styling and hair products by barber Bilal Ali. Book your chair.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#100F0D">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23100F0D%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-size=%2738%27 font-family=%27Georgia,serif%27 text-anchor=%27middle%27 fill=%27%23C6A167%27%3EB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23EDDBC8%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-size=%2738%27 font-family=%27Georgia,serif%27 text-anchor=%27middle%27 fill=%27%237A5624%27%3EB%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://eliesaide1.github.io/bilalali/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bilal Ali Salon">
@@ -39,7 +39,7 @@ const CONFIG = {
   teamGallery: [],      // e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
   team: [
     // Placeholders: replace each name (and add photo / instagram) with the real details
-    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
+    { name: "Bilal", role: { en: "Founder", ar: "المؤسس" }, photo: "media/team/bilal.jpg" },
     { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
     { name: "Team Member", role: { en: "Stylist", ar: "مصفف" } },
     { name: "Nail Artist", role: { en: "Nail artist", ar: "أخصائية أظافر" } }
@@ -150,7 +150,7 @@ html[dir="rtl"] .link:hover .flip{transform:scaleX(-1) translateX(4px)}
 html[lang="ar"] .link{letter-spacing:0;font-size:.95rem}
 
 /* header */
-.site-header{position:fixed;top:0;inset-inline:0;z-index:50;background:transparent;padding-top:env(safe-area-inset-top,0px);color:var(--stage-fg);
+.site-header{position:absolute;top:0;inset-inline:0;z-index:50;background:transparent;padding-top:env(safe-area-inset-top,0px);color:var(--stage-fg);
   border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
 .site-header.is-solid,body.menu-open .site-header{background:var(--stage-glass);border-bottom-color:var(--stage-line);
   background:rgba(11,10,8,.96)}
@@ -438,6 +438,7 @@ html[lang="ar"] .shopcard b{font-weight:700}
 .team__card{display:grid;gap:12px;align-content:start;min-width:0}
 .team__card .portrait{width:100%;aspect-ratio:3/4}
 .team__card .portrait::after{display:none}
+.team__card .portrait img{object-position:50% 8%}
 .team__name{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(1rem,3.8vw,1.2rem);line-height:1.15}
 .team__role{margin:0;font-size:var(--t-label);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#9A7A45)}
 html[lang="ar"] .team__role{letter-spacing:0;font-size:.9rem}
@@ -489,29 +490,21 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
 .showcase__cta{display:inline-flex;align-items:center;gap:.7em;margin-top:20px;color:var(--accent);font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 .showcase__card:hover .showcase__cta{gap:1.1em}
 html[lang="ar"] .showcase__cta{letter-spacing:0;font-size:.95rem;text-transform:none}
-.site-footer{position:relative;isolation:isolate;overflow:hidden;padding-block:clamp(64px,8vw,104px) calc(28px + env(safe-area-inset-bottom,0px))}
-.site-footer{background:#EDDBC8;color:var(--fg);padding-block:clamp(56px,7vw,96px) clamp(28px,4vw,40px)}
-.foot{display:grid;gap:clamp(40px,5vw,64px)}
-.foot__top{display:grid;gap:26px;align-items:center;padding-bottom:clamp(36px,5vw,56px);border-bottom:1px solid var(--line)}
-@media (min-width:900px){.foot__top{grid-template-columns:auto 1fr auto;gap:56px}}
-.site-footer .brand{align-items:flex-start}
-.site-footer .brand__name{color:var(--fg);text-shadow:none;font-size:1.9rem;margin-inline-end:0}
-.site-footer .brand__sub{color:var(--accent);margin-inline-end:0}
-.site-footer .brand__sub::before,.site-footer .brand__sub::after{background:var(--accent)}
-.foot__tag{max-width:38ch;font-size:1.02rem;line-height:1.6;color:var(--muted)}
-.foot__cta{justify-self:start;display:inline-flex;align-items:center;gap:.8em;min-height:52px;padding:0 1.8em;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);text-decoration:none;font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .25s,color .25s}
-.foot__cta:hover{background:transparent;color:var(--accent)}
-html[lang="ar"] .foot__cta{letter-spacing:0;font-size:.95rem}
-.foot__cols{display:grid;gap:36px 40px;grid-template-columns:repeat(2,1fr)}
-@media (min-width:900px){.foot__cols{grid-template-columns:repeat(4,1fr)}}
-.foot__col{display:grid;gap:10px;align-content:start;justify-items:start;line-height:1.5}
-.foot__col h2{font-family:var(--f-body);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-html[lang="ar"] .foot__col h2{letter-spacing:0;font-size:.9rem}
-.foot__col a{text-decoration:none;color:var(--fg);transition:color .2s}
-.foot__col a:hover{color:var(--accent)}
-.foot__sm{font-size:.9rem;color:var(--muted)}
-.foot__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:24px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
-
+/* footer, after kochidubai.com: cream, logo top-left, three light-weight columns (contact | address | social), name and copyright below */
+.site-footer{background:#EDDBC8;color:#4A4A4A;padding:60px var(--gutter) 40px}
+.foot{max-width:1280px;margin-inline:auto;font-weight:300;font-size:1rem;line-height:1.4}
+.foot__brand{align-items:flex-start;margin-bottom:40px;width:max-content}
+.site-footer .brand__name{color:var(--fg);text-shadow:none;font-size:1.9rem;letter-spacing:.06em;margin-inline-end:0}
+.site-footer .brand__sub{justify-content:flex-start;color:var(--fg);font-size:.8rem;font-weight:400;letter-spacing:0;text-transform:none;margin-inline-end:0}
+.site-footer .brand__sub::before,.site-footer .brand__sub::after{display:none}
+.foot__cols{display:grid;gap:32px;grid-template-columns:1fr;margin-bottom:60px}
+@media (min-width:768px){.foot__cols{grid-template-columns:repeat(3,1fr)}}
+.foot__col{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.foot__col p{margin:0;max-width:220px}
+.foot__col a{color:#4A4A4A;text-decoration:none;transition:color .2s}
+.foot__col a:hover{color:#2A2A2A}
+.foot__bottom{display:flex;flex-direction:column;gap:4px}
+html[lang="ar"] .foot{font-weight:400}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -553,6 +546,46 @@ html[dir="rtl"] .progress{transform-origin:right center}
   .hero.has-video .hero__shade{background:linear-gradient(to top,rgba(11,10,8,.5) 0%,transparent 40%),rgba(11,10,8,.2)}
   .lang,.nav__icon:not(.nav__icon--book),.nav__icon--book,.menu-btn{background:transparent;box-shadow:none;border-color:rgba(255,255,255,.55);color:#fff}
 }
+/* buttons: dark pill, sentence case, no arrow (matches the Kochi "Shop Here" button) */
+.btn,.foot__cta{background:#333;color:#fff;border:1px solid #333;border-radius:999px;min-height:54px;padding:0 1.75em;font-family:inherit;font-size:1rem;font-weight:600;letter-spacing:0;text-transform:none;line-height:1}
+.btn:hover,.foot__cta:hover{background:#4A4A4A;color:#fff;border-color:#4A4A4A}
+.btn .ico,.foot__cta .ico{display:none}
+.btn--ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn--ghost:hover{background:transparent;color:var(--fg);border-color:var(--fg)}
+.btn--sm{min-height:44px;padding:0 1.3em;font-size:.9rem}
+html[lang="ar"] .btn,html[lang="ar"] .foot__cta{letter-spacing:0;font-size:1rem}
+.menu .btn{background:#EDDBC8;color:#1A1714;border-color:#EDDBC8}
+.menu .btn:hover{background:#fff;border-color:#fff;color:#1A1714}
+.btn.is-added{background:transparent;color:#333}
+.hero .btn{background:#fff;color:#1A1713;border-color:#fff}
+.hero .btn:hover{background:#EDDBC8;color:#1A1713;border-color:#EDDBC8}
+/* the header scrolls away with the page; it only pins while the mobile menu is open so the close button stays reachable */
+body.menu-open .site-header{position:fixed}
+/* navbar, after kochidubai.com: sentence-case links left, centred wordmark with a plain sub-line, thin outline icon circles right */
+.site-header .nav__links{gap:34px}
+.site-header .nav__links a{font-size:1rem;font-weight:500;letter-spacing:0;text-transform:none;text-shadow:none;color:#fff}
+.site-header .nav__links a::after{display:none}
+html[lang="ar"] .site-header .nav__links a{font-size:1.05rem}
+.site-header .brand{gap:4px}
+.site-header .brand__name{font-size:2rem;letter-spacing:.06em;margin-inline-end:-.06em;text-shadow:none;color:#fff}
+.site-header .brand__sub{justify-content:center;font-size:.8rem;font-weight:400;letter-spacing:0;margin-inline-end:0;text-transform:none;color:#fff}
+.site-header .brand__sub::before,.site-header .brand__sub::after{display:none}
+.site-header .lang,.site-header .nav__icon,.site-header .nav__icon--book,.site-header .menu-btn{width:44px;height:44px;background:transparent;box-shadow:none;border:1px solid rgba(255,255,255,.55);color:#fff}
+.site-header .nav__icon .ico{width:20px;height:20px;stroke-width:1.5}
+.site-header .lang:hover,.site-header .nav__icon:hover,.site-header .nav__icon--book:hover,.site-header .menu-btn:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;filter:none}
+@media (max-width:999px){
+  .site-header .brand{top:0}
+  .site-header .brand__name{font-size:1.5rem}
+  .site-header .brand__sub{font-size:.7rem}
+  html[lang="ar"] .site-header .brand__name{font-size:1.5rem}
+}
+@media (max-width:420px){.site-header .lang,.site-header .nav__icon,.site-header .menu-btn{width:40px;height:40px}}
+@media (max-width:380px){.site-header .brand__name,html[lang="ar"] .site-header .brand__name{font-size:1.2rem}.site-header .lang,.site-header .nav__icon,.site-header .menu-btn{width:36px;height:36px}}
+/* STMNT banner, after the Kochi Hair Care panel: wide and short, cream card pinned bottom-start (flips in RTL) */
+.promo{position:relative;overflow:hidden;aspect-ratio:3/1;min-height:220px;background:var(--stage)}
+.promo__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.products{display:block;line-height:0;background:var(--stage)}
+.products img{display:block;width:100%;height:auto;aspect-ratio:2159/728;min-height:220px;object-fit:cover;object-position:50% 50%}
 </style>
 </head>
 <body>
@@ -591,8 +624,8 @@ html[dir="rtl"] .progress{transform-origin:right center}
     </nav>
     <div class="nav__actions">
       <button class="lang" id="lang-toggle" type="button" lang="ar" aria-label="التبديل إلى العربية">ع</button>
-      <a class="nav__icon" id="nav-phone" href="#book" aria-label="Call"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></a>
-      <a class="nav__icon" id="nav-wa" href="#book" aria-label="WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+      <a class="nav__icon" id="nav-phone" href="book.html" aria-label="Call"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></a>
+      <a class="nav__icon" id="nav-wa" href="book.html" aria-label="WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
       <a class="nav__icon nav__icon--book" id="nav-book" href="book.html" aria-label="Book appointment" data-i18n-aria="ctaBook"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg></a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span></button>
     </div>
@@ -608,7 +641,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
     </ul>
   </nav>
   <div class="menu__foot">
-    <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
+    <a class="btn" href="book.html" data-i18n="ctaBook">Book appointment</a>
     <div class="menu__social">
       <a class="link" href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener">Instagram <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="link" href="https://www.tiktok.com/@bilalali_officiall" target="_blank" rel="noopener">TikTok <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -645,7 +678,7 @@ html[dir="rtl"] .progress{transform-origin:right center}
           <h1 id="hero-title" class="rise" data-i18n-html="heroTitle">Where <br>Precision <br>Meets <br>Personality</h1>
           <p class="hero__lead rise" data-i18n-html="heroLead">A refined grooming destination where precision meets sophistication.<br>Born in Lebanon, designed for the modern gentleman.</p>
           <div class="hero__cta rise">
-            <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
+            <a class="btn" href="book.html" data-i18n="ctaBook">Book appointment</a>
           </div>
         </div>
         <figure class="reel rise" id="reel" aria-label="Hair tips reel" data-i18n-aria="reelLabel">
@@ -682,12 +715,12 @@ html[dir="rtl"] .progress{transform-origin:right center}
         <p class="about__lead" data-i18n="aboutIntro">Bilal Ali Salon is a premium grooming destination where modern sophistication meets exceptional craftsmanship. Founded by renowned barber Bilal Ali, our salon combines expert precision, personalized service, and the exclusivity of a luxurious lounge experience. Designed for men who appreciate refined style and impeccable attention to detail, every visit is an experience of excellence.</p>
       </div>
       <figure class="portrait about__photo">
-        <img src="media/bilal.jpg" alt="Bilal Ali, men's hairstylist" width="461" height="578" loading="lazy" decoding="async">
+        <img src="media/about.jpg" alt="Bilal Ali, men's hairstylist" width="792" height="1472" loading="lazy" decoding="async" style="object-position:50% 18%">
       </figure>
     </div>
   </section>
 
-  <section class="showcase" aria-labelledby="showcase-title">
+  <section class="showcase" id="services" aria-labelledby="showcase-title">
     <img class="showcase__img" src="media/bilal.jpg" alt="" width="461" height="578" loading="lazy" decoding="async">
     <a class="showcase__card" href="#services">
       <h2 id="showcase-title" data-i18n="showTitle">Our Services</h2>
@@ -696,42 +729,9 @@ html[dir="rtl"] .progress{transform-origin:right center}
     </a>
   </section>
 
-  <section class="section" id="services" aria-labelledby="services-title">
-    <div class="wrap">
-      <div class="sec-head sec-head--split">
-        <h2 id="services-title" data-i18n="svcTitle">Cuts and care, tailored to you.</h2>
-        <p data-i18n="svcIntro">Every service starts with a short consultation. Message for prices and availability.</p>
-      </div>
-      <ul class="svc-grid">
-        <li class="svc"><svg aria-hidden="true"><use href="#i-scissors"/></svg><h3 data-i18n="s1t">Signature cut</h3><p data-i18n="s1d">A tailored cut planned around your face shape, hair type and daily routine.</p></li>
-        <li class="svc"><svg aria-hidden="true"><use href="#i-waves"/></svg><h3 data-i18n="s2t">Long hair &amp; layers</h3><p data-i18n="s2d">Shape, movement and weight removal for men growing their hair, without losing the length.</p></li>
-        <li class="svc"><svg aria-hidden="true"><use href="#i-clipper"/></svg><h3 data-i18n="s3t">Fades &amp; tapers</h3><p data-i18n="s3d">Clean, blended fades, from a soft taper to a sharp skin fade.</p></li>
-        <li class="svc"><svg aria-hidden="true"><use href="#i-beard"/></svg><h3 data-i18n="s4t">Beard shaping</h3><p data-i18n="s4d">Line-up, trim and shape that frames your jaw and matches your cut.</p></li>
-        <li class="svc"><svg aria-hidden="true"><use href="#i-drop"/></svg><h3 data-i18n="s5t">Hair &amp; scalp care</h3><p data-i18n="s5d">Advice and treatments for thinning, dryness and damage, with products that actually help.</p></li>
-        <li class="svc"><svg aria-hidden="true"><use href="#i-comb"/></svg><h3 data-i18n="s6t">Styling lesson</h3><p data-i18n="s6d">Learn to style your cut at home: the right product, the right amount, in under five minutes.</p></li>
-      </ul>
-      <div class="services__foot">
-        <p data-i18n="svcFoot">Not sure what you need? Book a consultation and decide together in the chair.</p>
-        <a class="btn" href="#book" data-i18n="ctaBook">Book appointment</a>
-      </div>
-    </div>
+  <section class="products" aria-label="STMNT Grooming Goods">
+    <img src="media/products.jpg" alt="STMNT Grooming Goods range: shampoo, conditioner, cleanser, cleansing bar, beard oil, shaving gel and dry shampoo" width="2159" height="728" loading="lazy" decoding="async">
   </section>
-
-  <section class="section" id="shop" aria-labelledby="shop-title">
-    <div class="wrap">
-      <div class="sec-head sec-head--split">
-        <h2 id="shop-title" data-i18n="shopTitle">Care for what you wear.</h2>
-        <p data-i18n="shopIntro">Hair and beard products Bilal uses and recommends. Order them by message.</p>
-      </div>
-      <ul class="shop-teaser">
-        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><img src="media/shop/serum.jpg" alt="" loading="lazy" decoding="async" width="640" height="960"></span><b data-i18n="shopP1">Hair serum</b><span data-i18n="shopP1d">Smooths frizz and adds shine.</span></a></li>
-        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><img src="media/shop/beard-oil.jpg" alt="" loading="lazy" decoding="async" width="640" height="960"></span><b data-i18n="shopP2">Beard oil</b><span data-i18n="shopP2d">Softens the beard and the skin under it.</span></a></li>
-        <li><a class="shopcard" href="shop.html"><span class="shopcard__art"><img src="media/shop/wax-clay.jpg" alt="" loading="lazy" decoding="async" width="554" height="554"></span><b data-i18n="shopP3">Wax Styling Clay</b><span data-i18n="shopP3d">Matte hold with texture, all day.</span></a></li>
-      </ul>
-      <div class="talk__links"><a class="btn" href="shop.html"><span data-i18n="shopAll">Shop all products</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-    </div>
-  </section>
-
 
   <section class="section" id="team" aria-labelledby="team-title" hidden>
     <div class="wrap">
@@ -745,99 +745,33 @@ html[dir="rtl"] .progress{transform-origin:right center}
     </div>
   </section>
 
-  <section class="section" id="book" aria-labelledby="book-title">
-    <div class="wrap book__grid">
-      <div>
-        <div class="sec-head">
-          <h2 id="book-title" data-i18n="bookTitle">Book your chair.</h2>
-          <p id="book-intro" data-i18n="bookIntroIg">Appointments only. Fill in your request, then send it to Bilal as an Instagram message. He will reply to confirm a time.</p>
-        </div>
-        <form class="form" id="book-form" novalidate>
-          <div class="field">
-            <label for="f-name" data-i18n="fName">Name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-ph="fNamePh">
-            <span class="field__err" id="f-name-err" hidden data-i18n="errName">Enter your name so Bilal knows who is booking.</span>
-          </div>
-          <div class="field">
-            <label for="f-service" data-i18n="fService">Service</label>
-            <div class="select"><select id="f-service" name="service">
-              <option value="s1t" data-i18n="s1t">Signature cut</option>
-              <option value="s2t" data-i18n="s2t">Long hair &amp; layers</option>
-              <option value="s3t" data-i18n="s3t">Fades &amp; tapers</option>
-              <option value="s4t" data-i18n="s4t">Beard shaping</option>
-              <option value="s5t" data-i18n="s5t">Hair &amp; scalp care</option>
-              <option value="s6t" data-i18n="s6t">Styling lesson</option>
-              <option value="optUnsure" data-i18n="optUnsure">Not sure yet (consultation)</option>
-            </select></div>
-          </div>
-          <div class="field">
-            <label for="f-date" data-i18n="fDate">Preferred day</label>
-            <input id="f-date" name="date" type="date">
-          </div>
-          <div class="field">
-            <label for="f-time" data-i18n="fTime">Time of day</label>
-            <div class="select"><select id="f-time" name="time">
-              <option value="tAny" data-i18n="tAny">Any time</option>
-              <option value="tMorning" data-i18n="tMorning">Morning</option>
-              <option value="tAfternoon" data-i18n="tAfternoon">Afternoon</option>
-              <option value="tEvening" data-i18n="tEvening">Evening</option>
-            </select></div>
-          </div>
-          <div class="field field--full">
-            <label for="f-note" data-i18n="fNote">Note (optional)</label>
-            <textarea id="f-note" name="note" placeholder="Anything Bilal should know, like a reference photo you will send." data-i18n-ph="fNotePh"></textarea>
-          </div>
-          <div class="form__actions">
-            <button class="btn" type="submit" data-i18n="fSubmit">Prepare my request</button>
-            <span class="form__note" data-i18n="fNoteSend">Nothing is sent until you send the message yourself.</span>
-          </div>
-        </form>
-      </div>
-      <dl class="details">
-        <div class="detail" id="d-wa" hidden><dt>WhatsApp</dt><dd><a id="d-wa-link" href="#" target="_blank" rel="noopener" dir="ltr"></a></dd></div>
-        <div class="detail"><dt data-i18n="dLocation">Location</dt><dd><span id="d-address" data-i18n="lebanon">Lebanon</span><small data-i18n="dLocationNote">Exact address shared when your appointment is confirmed.</small></dd></div>
-        <div class="detail"><dt data-i18n="dHours">Hours</dt><dd data-i18n="byAppointment">By appointment only</dd></div>
-      </dl>
-    </div>
+  <section class="promo">
+    <img class="promo__img" src="media/stmnt-products.jpg" alt="STMNT Grooming Goods fiber pomade and spray powders" width="2172" height="724" loading="lazy" decoding="async">
   </section>
 </main>
 
 
 <footer class="site-footer">
-  <div class="wrap foot">
-    <div class="foot__top">
-      <a class="brand foot__brand" href="#top" aria-label="Bilal Ali, back to top">
-        <span class="brand__name" data-i18n="brand">Bilal Ali</span>
-        <span class="brand__sub" data-i18n="brandSub">Salon</span>
-      </a>
-      <p class="foot__tag" data-i18n="footTag">Men's hairstylist in Lebanon. Precision cuts, styling and hair care, by appointment.</p>
-      <a class="foot__cta" href="book.html"><span data-i18n="ctaBook">Book appointment</span> <svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
+  <div class="foot">
+    <a class="brand foot__brand" href="#top" aria-label="Bilal Ali, back to top">
+      <span class="brand__name" data-i18n="brand">Bilal Ali</span>
+      <span class="brand__sub" data-i18n="brandSub">Salon</span>
+    </a>
     <div class="foot__cols">
       <div class="foot__col">
-        <h2 data-i18n="dLocation">Location</h2>
-        <p id="f-address" data-i18n="lebanon">Lebanon</p>
-        <p class="foot__sm" data-i18n="byAppointment">By appointment only</p>
-      </div>
-      <div class="foot__col">
-        <h2 data-i18n="footBook">Book</h2>
-        <a href="book.html" data-i18n="ctaBook">Book appointment</a>
         <a id="foot-phone" href="#" hidden dir="ltr"></a>
         <a href="https://ig.me/m/bilalali_officiall" target="_blank" rel="noopener" data-i18n="footDm">Message on Instagram</a>
       </div>
       <div class="foot__col">
-        <h2 data-i18n="footExplore">Explore</h2>
-        <a href="#services" data-i18n="navServices">Services</a>
-        <a href="#about" data-i18n="navAbout">About</a>
-        <a href="shop.html" data-i18n="navShop">Shop</a>
+        <p id="f-address" data-i18n="lebanon">Lebanon</p>
       </div>
       <div class="foot__col">
-        <h2 data-i18n="footFollow">Follow</h2>
         <a href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.tiktok.com/@bilalali_officiall" target="_blank" rel="noopener">TikTok</a>
       </div>
     </div>
     <div class="foot__bottom">
+      <span><span data-i18n="brand">Bilal Ali</span> <span data-i18n="brandSub">Salon</span></span>
       <span data-i18n="footCopy">© 2026 Bilal Ali. All rights reserved.</span>
     </div>
   </div>
@@ -1029,22 +963,10 @@ const AR = {
     const fp = $("#foot-phone"); fp.href = "tel:+" + CONFIG.whatsapp; fp.textContent = "+" + CONFIG.whatsapp; fp.hidden = false;
     $("#nav-wa").href = "https://wa.me/" + CONFIG.whatsapp;
     $("#nav-wa").target = "_blank"; $("#nav-wa").rel = "noopener";
-    /* Swap the key for the Arabic toggle, and paint the English text now: on an English first load
-       applyLang() never runs, so the markup default would otherwise still read "Instagram message". */
-    $("#book-intro").dataset.i18n = "bookIntroWa";
-    $("#book-intro").textContent = EN_EXTRA.bookIntroWa;
-    $("#d-wa").hidden = false;
-    const link = $("#d-wa-link");
-    link.href = "https://wa.me/" + CONFIG.whatsapp;
-    link.textContent = "+" + CONFIG.whatsapp;
   }
   if (hasAddress) {
-    const addr = $("#d-address");
-    addr.removeAttribute("data-i18n");
-    const note = $("[data-i18n='dLocationNote']");
-    if (note) note.remove();
     $("#f-address").removeAttribute("data-i18n");
-    addr.textContent = $("#f-address").textContent = CONFIG.address.en || CONFIG.address.ar;
+    $("#f-address").textContent = CONFIG.address.en || CONFIG.address.ar;
   }
 
   /* ---------- language ---------- */
@@ -1126,7 +1048,6 @@ const AR = {
     else { tg.textContent = "ع"; tg.lang = "ar"; tg.setAttribute("aria-label", "التبديل إلى العربية"); }
     if (hasAddress) {
       const a = CONFIG.address[lang] || CONFIG.address.en || CONFIG.address.ar;
-      $("#d-address").textContent = a;
       $("#f-address").textContent = a;
     }
     setMenu(document.body.classList.contains("menu-open"));
@@ -1156,37 +1077,6 @@ const AR = {
     if (e.key === "Escape" && document.body.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
   });
   window.matchMedia("(min-width: 1000px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
-
-  /* ---------- booking request ---------- */
-  const form = $("#book-form"), nameIn = $("#f-name"), err = $("#f-name-err");
-  function formatDay(v) {
-    if (!v) return "";
-    const p = v.split("-").map(Number);
-    const d = new Date(p[0], p[1] - 1, p[2]);
-    if (isNaN(d)) return v;
-    try { return new Intl.DateTimeFormat(lang === "ar" ? "ar-LB" : "en-GB", { weekday: "long", day: "numeric", month: "long" }).format(d); }
-    catch (e) { return v; }
-  }
-  function buildMessage() {
-    const lines = [t("mHello"), "", t("mName") + ": " + nameIn.value.trim(), t("mService") + ": " + t($("#f-service").value)];
-    const day = formatDay($("#f-date").value);
-    if (day) lines.push(t("mDay") + ": " + day);
-    if ($("#f-time").value !== "tAny") lines.push(t("mTime") + ": " + t($("#f-time").value));
-    const note = $("#f-note").value.trim();
-    if (note) lines.push(t("mNote") + ": " + note);
-    return lines.join("\n");
-  }
-  const waUrl = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
-  nameIn.addEventListener("input", () => { if (nameIn.value.trim()) { err.hidden = true; nameIn.removeAttribute("aria-invalid"); } });
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    if (!nameIn.value.trim()) {
-      err.hidden = false; nameIn.setAttribute("aria-invalid", "true"); nameIn.setAttribute("aria-describedby", "f-name-err"); nameIn.focus();
-      return;
-    }
-    /* No result panel any more: the request goes straight to WhatsApp. */
-    window.open(waUrl(buildMessage()), "_blank", "noopener");
-  });
 
   /* ---------- hero reel ---------- */
   (function reelPlayer() {
@@ -1305,7 +1195,7 @@ const AR = {
     const groups = [
       ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
       ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
-      ".showcase__card", ".foot__top > *", ".foot__cols > *", ".foot__bottom"
+      ".showcase__card", ".foot__brand", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
     groups.forEach(sel => {
