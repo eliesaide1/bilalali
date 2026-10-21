@@ -46,7 +46,11 @@ const CONFIG = {
   // Hero background reel: one of Bilal's Instagram reels, played full screen behind the headline (muted, looping).
   // Example: { src: ["media/hero-reel.mp4", "media/hero-reel.webm"], poster: "media/hero-reel.jpg",
   //            position: "50% 40%", link: "https://www.instagram.com/reel/…" }
-  heroVideo: { src: ["media/hero-864.mp4"], srcSmall: "media/hero-576.mp4", poster: "media/hero-poster.jpg", position: "50% 30%" }
+  heroVideo: { position: "50% 40%", clips: [
+    { src: "media/hero/hero-1.mp4", small: "media/hero/hero-1-sm.mp4", poster: "media/hero/hero-1.jpg" },
+    { src: "media/hero/hero-2.mp4", small: "media/hero/hero-2-sm.mp4", poster: "media/hero/hero-2.jpg" },
+    { src: "media/hero/hero-3.mp4", small: "media/hero/hero-3-sm.mp4", poster: "media/hero/hero-3.jpg" }
+  ] }
 };
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -672,23 +676,26 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
 <main id="main">
   <section class="hero stage grain has-video" aria-labelledby="hero-title">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <video class="hero__video" id="hero-video" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+    <video class="hero__video" id="hero-video" muted playsinline autoplay preload="auto" aria-hidden="true"></video>
     <script>
     /* Attach the source and start fetching while the document is still parsing. Waiting for the
        main script at the end of <body> meant the browser had no URL to fetch until then, which is
        what delayed playback by a few seconds. */
     (function () {
       var c = CONFIG.heroVideo, v = document.getElementById("hero-video");
-      if (!c || !c.src) return;
-      if (c.poster) v.poster = c.poster;
+      if (!c || !c.clips || !c.clips.length) return;
+      var small = matchMedia("(max-width:899px)").matches, i = 0;
       if (c.position) v.style.objectPosition = c.position;
-      var src = (matchMedia("(max-width:899px)").matches && c.srcSmall)
-        ? c.srcSmall : (Array.isArray(c.src) ? c.src[0] : c.src);
-      var el = document.createElement("source");
-      el.src = src; el.type = /\.webm(\?|#|$)/i.test(src) ? 'video/webm; codecs="vp9"' : "video/mp4";
-      v.appendChild(el);
-      v.load();
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      window.heroPlay = function (n) {
+        i = (n + c.clips.length) % c.clips.length;
+        var k = c.clips[i];
+        v.poster = k.poster || "";
+        v.src = (small && k.small) ? k.small : k.src;
+        v.load();
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      };
+      v.addEventListener("ended", function () { window.heroPlay(i + 1); });
+      window.heroPlay(0);
     })();
     </script>
     <div class="hero__shade"></div>
@@ -1210,13 +1217,13 @@ const AR = {
   /* ---------- hero background reel ---------- */
   (function heroVideo() {
     const cfg = CONFIG.heroVideo;
-    if (!cfg || !cfg.src) return;
-    /* Source, poster and autoplay are set by the inline script next to the markup so playback
-       starts as early as possible. This only pauses the video off-screen or in a hidden tab. */
+    if (!cfg || !cfg.clips || !cfg.clips.length) return;
+    /* The clips play one after another (the inline script next to the markup starts them as early
+       as possible). This only pauses the video off-screen or in a hidden tab. */
     const hero = $(".hero"), v = $("#hero-video");
     let wantPlay = true, inView = true;
     const sync = () => { if (wantPlay && inView && !document.hidden) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
-    if (v.lastElementChild) v.lastElementChild.addEventListener("error", () => {
+    v.addEventListener("error", () => {
       hero.classList.remove("has-video"); v.hidden = true;
     });
     if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }).observe(hero);
