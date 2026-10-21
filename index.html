@@ -592,10 +592,13 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
 /* below 900px the banners use a plain min-height: aspect-ratio plus min-height would stretch them wider than the screen */
 @media (max-width:899px){
   .promo{aspect-ratio:auto;min-height:220px}
-  /* phones: tall photo with the card pinned bottom-left inside it, like the Services panel; the photo is
-     enlarged and anchored to the bottom so the bottles stay above the card */
-  .products{aspect-ratio:auto;min-height:clamp(620px,175vw,760px)}
-  .products img{top:auto;bottom:0;height:140%;object-position:38% 50%}
+  /* phones: the portrait photo (940 x 1672) is shown whole at the top; its stone ledge fades into a matching colour
+     below, which gives the card room so it never covers the products */
+  .products{aspect-ratio:auto;min-height:0;display:block;padding:0;background:#d5a272;overflow:hidden}
+  .products picture{display:block}
+  .products img{position:static;z-index:auto;display:block;width:100%;height:auto;aspect-ratio:940/1672;
+    -webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+  .products .products__card{position:relative;z-index:1;width:auto;margin:-14vw 18px 24px;background:#EDDBC8}
 }
 /* wide screens: a 2:1 wide photo (1774 x 887) spans the whole screen, both people in view and no cropping at 2:1;
    phones keep the tall portrait photo */
@@ -750,7 +753,10 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
   </section>
 
   <section class="products" aria-labelledby="products-title">
-    <img src="media/products.jpg" alt="STMNT Grooming Goods range: shampoo, conditioner, cleanser, cleansing bar, beard oil, shaving gel and dry shampoo" width="1974" height="797" loading="lazy" decoding="async">
+    <picture>
+      <source media="(max-width:899px)" srcset="media/products-mobile.jpg" width="940" height="1672">
+      <img src="media/products.jpg" alt="STMNT Grooming Goods range: shampoo, conditioner, cleanser, cleansing bar, beard oil, shaving gel and dry shampoo" width="1974" height="797" loading="lazy" decoding="async">
+    </picture>
     <div class="promo__card products__card">
       <h2 id="products-title" data-i18n="rgTitle">The STMNT range</h2>
       <p data-i18n="rgText">Shampoo, conditioner, cleansers, beard oil, shaving gel and more. The grooming essentials Bilal trusts behind the chair, ready to take home.</p>
