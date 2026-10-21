@@ -32,17 +32,12 @@ const CONFIG = {
   instagram: "bilalali_officiall",
   whatsapp: "9613850966",       // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
   address: { en: "Lebanon, Verdun Street, 732 Building", ar: "لبنان، شارع فردان، مبنى 732" },
-  // The team, shown under "Meet Bilal." (the section stays hidden while this list is empty). One entry per person:
-  // { name: "Name", role: { en: "Barber", ar: "حلّاق" }, photo: "media/team/name.jpg", instagram: "handle" }   (photo and instagram are optional)
-  // Optional photos: teamPhoto = one group picture shown above the team; teamGallery = up to 3 pictures of the team at work.
-  teamPhoto: "",        // e.g. "media/team/group.jpg"
-  teamGallery: [],      // three tall photos under the team; empty = placeholder tiles. e.g. ["media/team/work-1.jpg", "media/team/work-2.jpg", "media/team/work-3.jpg"]
-  team: [
-    // Placeholders: replace each name (and add photo / instagram) with the real details
-    { name: "Bilal", role: { en: "Founder", ar: "المؤسس" }, photo: "media/team/bilal.jpg" },
-    { name: "Team Member", role: { en: "Barber", ar: "حلّاق" } },
-    { name: "Team Member", role: { en: "Stylist", ar: "مصفف" } },
-    { name: "Nail Artist", role: { en: "Nail artist", ar: "أخصائية أظافر" } }
+  // Three vertical videos (9:16, MP4) shown in a row near the bottom of the home page; they play muted and loop while on screen.
+  // Empty slots show a dark placeholder tile. e.g. [{ src: "media/work/work-1.mp4", poster: "media/work/work-1.jpg" }, ...]
+  workVideos: [
+    { src: "media/work/work-2.mp4", poster: "media/work/work-2.jpg" },
+    { src: "media/work/work-1.mp4", poster: "media/work/work-1.jpg" },
+    { src: "media/hero-864.mp4", poster: "media/hero-poster.jpg" }
   ],
   // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
   // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
@@ -415,38 +410,20 @@ html[lang="ar"] .shopcard b{font-weight:700}
   font-size:clamp(10rem,42vw,19rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--stage-accent-soft);user-select:none}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .portrait::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(to top,rgba(11,10,8,.7),transparent);pointer-events:none}
-/* team */
-#team .wrap{max-width:1200px}
-#team .sec-head{margin-bottom:clamp(28px,4vw,48px)}
-#team .sec-head h2{font-size:clamp(2rem,1.4rem + 2.2vw,3.1rem)}
-#team .sec-head p:not(.label){font-size:.95rem;line-height:1.6;max-width:52ch}
-.team__group{margin:0 0 clamp(14px,2vw,24px);aspect-ratio:16/9;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
-.team__group-ph{display:grid;place-items:center;height:100%;font-family:var(--f-display);font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);color:#A98F5E;letter-spacing:.04em}
-.team__group img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
-.team__gallery{list-style:none;margin:clamp(56px,9vw,120px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,20px)}
-.team__gallery li{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:var(--stage)}
-.team__gallery img{width:100%;height:100%;object-fit:cover;display:block}
-.team__gallery li.is-ph{background:linear-gradient(160deg,#171410,var(--stage))}
-/* Mobile: a swipeable horizontal flatlist, cards snapping as you drag, with the next one
-   peeking so the swipe is discoverable. Desktop keeps the static four-up row. */
-.team{list-style:none;display:grid;grid-auto-flow:column;grid-auto-columns:62%;gap:16px;
-  /* bleed past the wrap gutter so cards run to the screen edge and the next one clearly peeks */
-  margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 10px;scroll-padding-inline:var(--gutter);
-  overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
-  scroll-snap-type:x proximity;scrollbar-width:none}
-.team::-webkit-scrollbar{display:none}
-.team>li{scroll-snap-align:start}
-.team__card{display:grid;gap:12px;align-content:start;min-width:0}
-.team__card .portrait{width:100%;aspect-ratio:3/4}
-.team__card .portrait::after{display:none}
-.team__card .portrait img{object-position:50% 8%}
-.team__name{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(1rem,3.8vw,1.2rem);line-height:1.15}
-.team__role{margin:0;font-size:var(--t-label);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#9A7A45)}
-html[lang="ar"] .team__role{letter-spacing:0;font-size:.9rem}
-.team__ig{font-size:.85rem;color:var(--muted);text-decoration:none}
-.team__ig:hover{color:var(--accent,#9A7A45)}
-@media (min-width:900px){.team{grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-columns:auto;
-  gap:20px;margin:0;padding:0;overflow-x:visible;scroll-snap-type:none}}
+/* work videos: three vertical 9:16 clips in a row (swipeable on phones), dark placeholder tiles until filled */
+#work .wrap{max-width:1200px}
+.reels{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:64%;gap:12px;
+  margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none}
+.reels::-webkit-scrollbar{display:none}
+.reels>li{scroll-snap-align:start}
+.reels li{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:var(--radius);background:var(--stage);cursor:pointer}
+.reels video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.reels li.is-ph{background:linear-gradient(160deg,#171410,var(--stage));cursor:default}
+.reels li.is-ph::after{content:"";position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:1px solid rgba(239,232,219,.4);
+  background:linear-gradient(rgba(239,232,219,.55),rgba(239,232,219,.55)) center/0 0 no-repeat}
+.reels li.is-ph::before{content:"";position:absolute;z-index:1;top:50%;left:50%;margin:-9px 0 0 -5px;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent rgba(239,232,219,.55)}
+@media (min-width:900px){.reels{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-columns:auto;gap:20px;margin:0;padding:0;overflow:visible;scroll-snap-type:none}}
 
 /* booking */
 .book__grid{display:grid;gap:56px}
@@ -484,7 +461,7 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
    pinned to the bottom-inline-start of the image. The flex start flips it automatically in RTL. */
 .showcase{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:max(600px,100vh);min-height:max(600px,100svh);padding:clamp(18px,3vw,40px)}
 .showcase__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;z-index:-1}
-.showcase__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;text-decoration:none;display:grid;gap:10px;justify-items:start;transition:transform .45s var(--ease),box-shadow .45s}
+.showcase__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;text-decoration:none;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;justify-items:start;transition:transform .45s var(--ease),box-shadow .45s}
 .showcase__card:hover,.showcase__card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.26)}
 .showcase__card h2{font-family:var(--f-display);font-weight:300;font-size:1.375rem;line-height:1.2;margin:0;color:#4A4A4A}
 .showcase__card p{margin:0;color:#4A4A4A;font-size:.875rem;line-height:1.45;max-width:38ch}
@@ -589,10 +566,31 @@ html[lang="ar"] .site-header .nav__links a{font-size:1.05rem}
 .products{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;aspect-ratio:1974/797;min-height:260px;padding:clamp(18px,3vw,40px);background:var(--stage)}
 .products img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .products .products__card{width:min(380px,100%)}
-.promo__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;display:grid;gap:10px;justify-items:start}
+.promo__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;justify-items:start}
 .promo__card h2{font-weight:300;font-size:1.375rem;line-height:1.2;color:#4A4A4A}
-.promo__card p{color:#4A4A4A;font-size:.875rem;line-height:1.45;max-width:38ch}
+.promo__card p{color:#4A4A4A;font-size:.875rem;line-height:1.45;max-width:min(38ch,100%)}
 .promo__card .btn{margin-top:6px;min-height:46px;padding:0 1.4em;font-size:.875rem}
+/* how it works */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);counter-reset:st}
+.steps li{display:grid;gap:10px;align-content:start;padding:clamp(24px,3vw,40px);background:var(--bg);counter-increment:st}
+.steps li::before{content:"0" counter(st);font-size:.8rem;font-weight:600;letter-spacing:.18em;color:var(--accent)}
+.steps b{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,1.2rem + 1vw,2rem);line-height:1.1}
+.steps p{color:var(--muted);max-width:34ch}
+@media (min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+/* visit */
+.visit__grid{display:grid;gap:clamp(28px,4vw,56px);align-items:start}
+.visit h2{font-size:var(--t-h2)}
+.visit__list{margin:0;display:grid;border-top:1px solid var(--line)}
+.visit__list>div{display:grid;gap:4px;padding-block:18px;border-bottom:1px solid var(--line)}
+.visit__list dt{font-size:var(--t-label);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
+.visit__list dd{margin:0;font-size:1.25rem;line-height:1.35}
+.visit__list a{text-decoration:none}
+.visit__list a:hover{color:var(--accent)}
+.visit__cta{display:flex;flex-wrap:wrap;gap:12px}
+@media (min-width:900px){.visit__grid{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;grid-template-areas:"t l" "c l"}.visit h2{grid-area:t}.visit__list{grid-area:l}.visit__cta{grid-area:c;align-self:start}}
+/* below 900px the banners use a plain min-height: aspect-ratio plus min-height would stretch them wider than the screen */
+@media (max-width:899px){.products{aspect-ratio:auto;min-height:340px}.promo{aspect-ratio:auto;min-height:220px}}
 </style>
 </head>
 <body>
@@ -745,15 +743,38 @@ html[lang="ar"] .site-header .nav__links a{font-size:1.05rem}
     </div>
   </section>
 
-  <section class="section" id="team" aria-labelledby="team-title" hidden>
+  <section class="section process" id="process" aria-labelledby="process-title">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 id="team-title" data-i18n="teamTitle">Team</h2>
-        <p data-i18n="teamIntro">Our team shares Bilal's standard: skilled craftsmanship, attention to detail and an honest approach to grooming. Together, we bring skill, service and style to every client who steps inside.</p>
+      <div class="sec-head sec-head--split">
+        <h2 id="process-title" data-i18n="hwTitle">Your visit, step by step.</h2>
+        <p data-i18n="hwIntro">No walk-in rush and no guesswork. Here is what to expect from the moment you book.</p>
       </div>
-      <figure class="team__group" id="team-group"><span class="team__group-ph" data-i18n="teamPhotoPh">Team photo</span></figure>
-      <ul class="team" id="team-list"></ul>
-      <ul class="team__gallery" id="team-gallery" hidden></ul>
+      <ol class="steps">
+        <li><b data-i18n="hw1t">Book</b><p data-i18n="hw1d">Send your request on WhatsApp or Instagram. Bilal replies to confirm a time that suits you.</p></li>
+        <li><b data-i18n="hw2t">Consult</b><p data-i18n="hw2d">Every visit starts with a short chat about your hair, your face shape and your daily routine.</p></li>
+        <li><b data-i18n="hw3t">Leave sharp</b><p data-i18n="hw3d">Your cut, shaped and styled, with the right product and simple advice to keep it that way.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section reels-sec" id="work" aria-label="Bilal Ali Salon at work">
+    <div class="wrap">
+      <ul class="reels" id="reels"></ul>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap visit__grid">
+      <h2 id="visit-title" data-i18n="vTitle">Visit the salon.</h2>
+      <dl class="visit__list">
+        <div><dt data-i18n="dLocation">Location</dt><dd id="v-address" data-i18n="lebanon">Lebanon</dd></div>
+        <div><dt data-i18n="vPhone">Phone</dt><dd><a id="v-phone" href="#" dir="ltr" hidden></a></dd></div>
+        <div><dt data-i18n="dHours">Hours</dt><dd data-i18n="byAppointment">By appointment only</dd></div>
+      </dl>
+      <div class="visit__cta">
+        <a class="btn" href="book.html" data-i18n="ctaBook">Book appointment</a>
+        <a class="btn btn--ghost" id="v-map" href="#" target="_blank" rel="noopener" data-i18n="vMap">Get directions</a>
+      </div>
     </div>
   </section>
 
@@ -818,6 +839,11 @@ const AR = {
   shopTitle: "عناية بما ترتديه.", shopIntro: "منتجات للشعر واللحية يستعملها بلال وينصح بها. اطلبها برسالة.",
   shopP1: "سيروم الشعر", shopP1d: "ينعّم الشعر ويمنحه لمعة.", shopP2: "زيت اللحية", shopP2d: "يلطّف اللحية والبشرة تحتها.", shopP3: "معجون واكس للتصفيف", shopP3d: "تثبيت مطفي مع كثافة طوال اليوم.", shopAll: "تسوّق كل المنتجات", navTalk: "نصائح الشعر", navContact: "التواصل",
   ctaBook: "احجز موعداً",
+  hwTitle: "زيارتك، خطوة بخطوة.", hwIntro: "من دون ازدحام ولا تخمين. إليك ما يمكنك توقّعه منذ لحظة الحجز.",
+  hw1t: "احجز", hw1d: "أرسل طلبك عبر واتساب أو إنستغرام، ويردّ عليك بلال لتأكيد الوقت المناسب لك.",
+  hw2t: "استشارة", hw2d: "تبدأ كل زيارة بحديث قصير عن شعرك وشكل وجهك وروتينك اليومي.",
+  hw3t: "اخرج بأناقة", hw3d: "قصّتك مشكّلة ومصفّفة، مع المنتج المناسب ونصائح بسيطة لتبقى على حالها.",
+  vTitle: "زُر الصالون.", vPhone: "الهاتف", vMap: "احصل على الاتجاهات",
   rgTitle: "مجموعة STMNT", rgText: "شامبو وبلسم ومنظفات وزيت للحية وجل حلاقة وغيرها. أساسيات العناية التي يثق بها بلال على الكرسي، جاهزة لتأخذها معك.", stCta: "تسوّق الآن",
   heroEyebrow: "مصفف شعر رجالي · لبنان",
   heroTitle: "حيث تلتقي الدقة بالشخصية",
@@ -841,8 +867,6 @@ const AR = {
   tiktok: "تيك توك", moreTitle: "المزيد من النصائح", moreText: "شاهد كل الفيديوهات على تيك توك",
   followIg: "تابِع على إنستغرام", watchTt: "شاهد على تيك توك", lebanon: "لبنان",
   aboutIntro: "صالون بلال علي وجهة عناية فاخرة تلتقي فيها الأناقة العصرية بإتقان الحرفة. أسّسه الحلّاق المعروف بلال علي، ويجمع صالوننا بين الدقة والخبرة، والخدمة الشخصية، وحصرية أجواء الصالة الفاخرة. صُمّم للرجل الذي يقدّر الأسلوب الراقي والاهتمام الدقيق بأدقّ التفاصيل، فكل زيارة تجربة من التميّز.",
-  teamPhotoPh: "صورة الفريق", teamTitle: "الفريق",
-  teamIntro: "يشارك فريقنا بلال معاييره: إتقان في الحرفة، واهتمام بالتفاصيل، ونهج صادق في العناية بالمظهر. معاً نقدّم المهارة والخدمة والأناقة لكل من يدخل إلينا.",
   bookTitle: "احجز كرسيّك.",
   bookIntroIg: "بموعد مسبق فقط. املأ طلبك ثم أرسله إلى بلال في رسالة على إنستغرام، وسيردّ عليك لتأكيد الموعد.",
   bookIntroWa: "بموعد مسبق فقط. املأ طلبك ثم أرسله إلى بلال عبر واتساب أو إنستغرام، وسيردّ عليك لتأكيد الموعد.",
@@ -973,13 +997,16 @@ const AR = {
   /* ---------- settings ---------- */
   if (hasWa) {
     $("#nav-phone").href = "tel:+" + CONFIG.whatsapp;
+    const vp = $("#v-phone"); vp.href = "tel:+" + CONFIG.whatsapp; vp.textContent = "+" + CONFIG.whatsapp; vp.hidden = false;
     const fp = $("#foot-phone"); fp.href = "tel:+" + CONFIG.whatsapp; fp.textContent = "+" + CONFIG.whatsapp; fp.hidden = false;
     $("#nav-wa").href = "https://wa.me/" + CONFIG.whatsapp;
     $("#nav-wa").target = "_blank"; $("#nav-wa").rel = "noopener";
   }
   if (hasAddress) {
     $("#f-address").removeAttribute("data-i18n");
-    $("#f-address").textContent = CONFIG.address.en || CONFIG.address.ar;
+    $("#v-address").removeAttribute("data-i18n");
+    $("#f-address").textContent = $("#v-address").textContent = CONFIG.address.en || CONFIG.address.ar;
+    $("#v-map").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address.en || CONFIG.address.ar);
   }
 
   /* ---------- language ---------- */
@@ -992,65 +1019,30 @@ const AR = {
   let lang = "en";
   const t = k => (lang === "ar" && AR[k] != null ? AR[k] : EN[k] != null ? EN[k] : "");
 
-  /* ---------- team ---------- */
-  const team = (CONFIG.team || []).filter(m => m && m.name);
-  if (team.length) {
-    const list = $("#team-list");
-    team.forEach(m => {
-      const li = document.createElement("li");
-      li.className = "team__card";
-      const art = document.createElement("div");
-      art.className = "portrait";
-      if (m.photo) {
-        const img = new Image();
-        img.alt = m.name; img.loading = "lazy"; img.decoding = "async"; img.src = m.photo;
-        art.appendChild(img);
-      } else {
-        const mono = document.createElement("span");
-        mono.className = "portrait__mono"; mono.setAttribute("aria-hidden", "true");
-        mono.textContent = m.name.trim().charAt(0).toUpperCase();
-        art.appendChild(mono);
-      }
-      const name = document.createElement("h3"); name.className = "team__name"; name.textContent = m.name;
-      const role = document.createElement("p"); role.className = "team__role";
-      li.append(art, name, role);
-      if (m.instagram) {
-        const a = document.createElement("a");
-        a.className = "team__ig"; a.href = "https://www.instagram.com/" + m.instagram.replace(/^@/, "") + "/";
-        a.target = "_blank"; a.rel = "noopener"; a.textContent = "@" + m.instagram.replace(/^@/, "");
-        li.append(a);
-      }
-      li._role = role; li._data = m;
-      list.appendChild(li);
-    });
-    $("#team").hidden = false;
-    if (CONFIG.teamPhoto) {
-      const g = $("#team-group"), img = new Image();
-      img.alt = "Bilal Ali and the team"; img.loading = "lazy"; img.decoding = "async"; img.src = CONFIG.teamPhoto;
-      g.replaceChildren(img);
+  /* ---------- work videos ---------- */
+  (function workVideos() {
+    const ul = $("#reels");
+    if (!ul) return;
+    const vids = [];
+    for (let n = 0; n < 3; n++) {
+      const c = (CONFIG.workVideos || [])[n], li = document.createElement("li");
+      if (c && c.src) {
+        const v = document.createElement("video");
+        v.muted = true; v.loop = true; v.playsInline = true; v.preload = "metadata"; v.setAttribute("aria-hidden", "true");
+        if (c.poster) v.poster = c.poster;
+        v.src = c.src;
+        li.appendChild(v); vids.push(v);
+        li.addEventListener("click", () => { if (v.paused) v.play().catch(() => {}); else v.pause(); });
+      } else li.className = "is-ph";
+      ul.appendChild(li);
     }
-    {
-      /* three photos of the team at work under the cards; dark placeholder tiles until teamGallery is filled in */
-      const ul = $("#team-gallery");
-      for (let n = 0; n < 3; n++) {
-        const src = (CONFIG.teamGallery || [])[n], li = document.createElement("li");
-        if (src) {
-          const img = new Image();
-          img.alt = ""; img.loading = "lazy"; img.decoding = "async"; img.src = src;
-          li.appendChild(img);
-        } else li.className = "is-ph";
-        ul.appendChild(li);
-      }
-      ul.hidden = false;
+    if (vids.length && "IntersectionObserver" in window && !reduceMotion) {
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
+      }), { threshold: 0.4 });
+      vids.forEach(v => io.observe(v));
     }
-    const setRoles = () => $$("#team-list .team__card").forEach(li => {
-      const r = li._data.role || {};
-      li._role.textContent = (lang === "ar" ? r.ar : r.en) || r.en || r.ar || "";
-    });
-    langHooks.push(setRoles);
-    setRoles();
-  }
-
+  })();
 
   function applyLang(l) {
     lang = l === "ar" ? "ar" : "en";
@@ -1066,7 +1058,7 @@ const AR = {
     else { tg.textContent = "ع"; tg.lang = "ar"; tg.setAttribute("aria-label", "التبديل إلى العربية"); }
     if (hasAddress) {
       const a = CONFIG.address[lang] || CONFIG.address.en || CONFIG.address.ar;
-      $("#f-address").textContent = a;
+      $("#f-address").textContent = $("#v-address").textContent = a;
     }
     setMenu(document.body.classList.contains("menu-open"));
     store.set("lang", lang);
@@ -1212,7 +1204,7 @@ const AR = {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const groups = [
       ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
-      ".team > li", ".team__gallery > li", ".book__grid > div", ".form > .field", ".details > .detail",
+      ".reels > li", ".steps > li", ".visit__grid > *", ".book__grid > div", ".form > .field", ".details > .detail",
       ".showcase__card", ".promo__card", ".foot__brand", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
