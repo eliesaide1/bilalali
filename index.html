@@ -14,15 +14,15 @@
 <meta property="og:title" content="Bilal Ali Salon | Premium Men's Barber & Grooming in Lebanon">
 <meta property="og:description" content="Bilal Ali Salon: premium men's grooming in Lebanon (Verdun Street). Precision cuts, beard care, styling and hair products by barber Bilal Ali. Book your chair.">
 <meta property="og:url" content="https://eliesaide1.github.io/bilalali/">
-<meta property="og:image" content="https://eliesaide1.github.io/bilalali/media/bilal.jpg">
+<meta property="og:image" content="https://eliesaide1.github.io/bilalali/media/services.jpg">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_LB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bilal Ali Salon | Premium Men's Barber & Grooming in Lebanon">
 <meta name="twitter:description" content="Bilal Ali Salon: premium men's grooming in Lebanon (Verdun Street). Precision cuts, beard care, styling and hair products by barber Bilal Ali. Book your chair.">
-<meta name="twitter:image" content="https://eliesaide1.github.io/bilalali/media/bilal.jpg">
+<meta name="twitter:image" content="https://eliesaide1.github.io/bilalali/media/services.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HairSalon","name":"Bilal Ali Salon","description":"Premium men's grooming salon in Lebanon by renowned barber Bilal Ali: precision cuts, beard care, styling and hair care.","url":"https://eliesaide1.github.io/bilalali/","image":"https://eliesaide1.github.io/bilalali/media/bilal.jpg","telephone":"+9613850966","address":{"@type":"PostalAddress","streetAddress":"Verdun Street, 732 Building","addressCountry":"LB"},"sameAs":["https://www.instagram.com/bilalali_officiall","https://www.tiktok.com/@bilalali_officiall"],"founder":{"@type":"Person","name":"Bilal Ali"}}
+{"@context":"https://schema.org","@type":"HairSalon","name":"Bilal Ali Salon","description":"Premium men's grooming salon in Lebanon by renowned barber Bilal Ali: precision cuts, beard care, styling and hair care.","url":"https://eliesaide1.github.io/bilalali/","image":"https://eliesaide1.github.io/bilalali/media/services.jpg","telephone":"+9613850966","address":{"@type":"PostalAddress","streetAddress":"Verdun Street, 732 Building","addressCountry":"LB"},"sameAs":["https://www.instagram.com/bilalali_officiall","https://www.tiktok.com/@bilalali_officiall"],"founder":{"@type":"Person","name":"Bilal Ali"}}
 </script>
 <script>new MutationObserver(function(){if(document.documentElement.lang==="ar"&&!window.__arf){window.__arf=1;var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap";document.head.appendChild(l)}}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})</script>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="media/fonts/blauer-nue-200.woff2">
@@ -460,7 +460,7 @@ html[lang="ar"] .detail dt{letter-spacing:0;font-size:.9rem}
 /* Full-bleed panel leading into Services, after kochidubai.com: cream card, 40px radius,
    pinned to the bottom-inline-start of the image. The flex start flips it automatically in RTL. */
 .showcase{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:max(600px,100vh);min-height:max(600px,100svh);padding:clamp(18px,3vw,40px)}
-.showcase__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;z-index:-1}
+.showcase__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;z-index:-1}
 .showcase__card{width:min(380px,100%);padding:clamp(22px,2.4vw,30px);background:#EDDBC8;color:var(--fg);border-radius:32px;text-decoration:none;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;justify-items:start;transition:transform .45s var(--ease),box-shadow .45s}
 .showcase__card:hover,.showcase__card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.26)}
 .showcase__card h2{font-family:var(--f-display);font-weight:300;font-size:1.375rem;line-height:1.2;margin:0;color:#4A4A4A}
@@ -597,6 +597,12 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
   .products{aspect-ratio:auto;min-height:clamp(620px,175vw,760px)}
   .products img{top:auto;bottom:0;height:140%;object-position:38% 50%}
 }
+/* wide screens: a 2:1 wide photo (1774 x 887) spans the whole screen, both people in view and no cropping at 2:1;
+   phones keep the tall portrait photo */
+@media (min-width:900px){
+  .showcase{min-height:0;aspect-ratio:2/1}
+  .showcase__img{object-position:50% 50%}
+}
 </style>
 </head>
 <body>
@@ -732,7 +738,10 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
   </section>
 
   <section class="showcase" id="services" aria-labelledby="showcase-title">
-    <img class="showcase__img" src="media/bilal.jpg" alt="" width="461" height="578" loading="lazy" decoding="async">
+    <picture>
+      <source media="(min-width:900px)" srcset="media/services-wide.jpg" width="1774" height="887">
+      <img class="showcase__img" src="media/services.jpg" alt="A barber styling a client's hair at Bilal Ali Salon" width="992" height="1585" loading="lazy" decoding="async">
+    </picture>
     <a class="showcase__card" href="#services">
       <h2 id="showcase-title" data-i18n="showTitle">Our Services</h2>
       <p data-i18n="showText">Precision cuts, clean fades, expert beard work and styling built to last. A grooming experience designed for men who value detail.</p>
