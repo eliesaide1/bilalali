@@ -590,7 +590,13 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
 .visit__cta{display:flex;flex-wrap:wrap;gap:12px}
 @media (min-width:900px){.visit__grid{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;grid-template-areas:"t l" "c l"}.visit h2{grid-area:t}.visit__list{grid-area:l}.visit__cta{grid-area:c;align-self:start}}
 /* below 900px the banners use a plain min-height: aspect-ratio plus min-height would stretch them wider than the screen */
-@media (max-width:899px){.products{aspect-ratio:auto;min-height:340px}.promo{aspect-ratio:auto;min-height:220px}}
+@media (max-width:899px){
+  .promo{aspect-ratio:auto;min-height:220px}
+  /* phones: tall photo with the card pinned bottom-left inside it, like the Services panel; the photo is
+     enlarged and anchored to the bottom so the bottles stay above the card */
+  .products{aspect-ratio:auto;min-height:clamp(620px,175vw,760px)}
+  .products img{top:auto;bottom:0;height:140%;object-position:38% 50%}
+}
 </style>
 </head>
 <body>
