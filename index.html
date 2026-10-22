@@ -685,17 +685,33 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
       var c = CONFIG.heroVideo, v = document.getElementById("hero-video");
       if (!c || !c.clips || !c.clips.length) return;
       var small = matchMedia("(max-width:899px)").matches, i = 0;
-      if (c.position) v.style.objectPosition = c.position;
-      window.heroPlay = function (n) {
-        i = (n + c.clips.length) % c.clips.length;
-        var k = c.clips[i];
-        v.poster = k.poster || "";
-        v.src = (small && k.small) ? k.small : k.src;
-        v.load();
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
-      };
-      v.addEventListener("ended", function () { window.heroPlay(i + 1); });
-      window.heroPlay(0);
+      /* Two stacked videos: the next clip loads in the hidden one while the current one plays, so the
+         change is instant instead of a black gap while a cold video fetches and decodes. */
+      var b = v.cloneNode(false), cur = v, next = b;
+      b.removeAttribute("id"); b.removeAttribute("autoplay"); b.muted = true; b.style.opacity = 0;
+      v.parentNode.insertBefore(b, v.nextSibling);
+      if (c.position) v.style.objectPosition = b.style.objectPosition = c.position;
+      function load(el, n) {
+        var k = c.clips[(n + c.clips.length) % c.clips.length];
+        el.poster = k.poster || "";
+        el.src = (small && k.small) ? k.small : k.src;
+        el.load();
+      }
+      function advance() {
+        i = (i + 1) % c.clips.length;
+        var old = cur;
+        cur = next; next = old;
+        cur.style.opacity = 1; old.style.opacity = 0;
+        var p = cur.play(); if (p && p.catch) p.catch(function () {});
+        load(next, i + 1);
+      }
+      v.addEventListener("ended", function () { if (cur === v) advance(); });
+      b.addEventListener("ended", function () { if (cur === b) advance(); });
+      window.heroEl = function () { return cur; };
+      window.heroAll = [v, b];
+      load(v, 0);
+      var p0 = v.play(); if (p0 && p0.catch) p0.catch(function () {});
+      if (c.clips.length > 1) load(b, 1);
     })();
     </script>
     <div class="hero__shade"></div>
@@ -1228,9 +1244,9 @@ const AR = {
        as possible). This only pauses the video off-screen or in a hidden tab. */
     const hero = $(".hero"), v = $("#hero-video");
     let wantPlay = true, inView = true;
-    const sync = () => { if (wantPlay && inView && !document.hidden) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
+    const sync = () => { const cur = window.heroEl ? window.heroEl() : v; if (wantPlay && inView && !document.hidden) { const p = cur.play(); if (p && p.catch) p.catch(() => {}); } else cur.pause(); };
     v.addEventListener("error", () => {
-      hero.classList.remove("has-video"); v.hidden = true;
+      hero.classList.remove("has-video"); (window.heroAll || [v]).forEach(x => { x.hidden = true; });
     });
     if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }).observe(hero);
     document.addEventListener("visibilitychange", sync);
