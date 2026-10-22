@@ -37,7 +37,7 @@ const CONFIG = {
   workVideos: [
     { src: "media/work/work-2.mp4", poster: "media/work/work-2.jpg" },
     { src: "media/work/work-1.mp4", poster: "media/work/work-1.jpg" },
-    { src: "media/hero-864.mp4", poster: "media/hero-poster.jpg" }
+    { clips: ["media/work/work-3.mp4", "media/work/work-4.mp4", "media/work/work-5.mp4", "media/work/work-6.mp4"] }
   ],
   // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
   // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
@@ -1057,11 +1057,17 @@ const AR = {
     const vids = [];
     for (let n = 0; n < 3; n++) {
       const c = (CONFIG.workVideos || [])[n], li = document.createElement("li");
-      if (c && c.src) {
+      if (c && (c.src || (c.clips && c.clips.length))) {
         const v = document.createElement("video");
         v.muted = true; v.loop = true; v.playsInline = true; v.preload = "metadata"; v.setAttribute("aria-hidden", "true");
         if (c.poster) v.poster = c.poster;
-        v.src = c.src;
+        if (c.clips && c.clips.length) {
+          /* a card with several clips plays them one after another, then starts over */
+          let k = 0;
+          v.loop = c.clips.length === 1;
+          v.src = c.clips[0];
+          v.addEventListener("ended", () => { k = (k + 1) % c.clips.length; v.src = c.clips[k]; v.play().catch(() => {}); });
+        } else v.src = c.src;
         li.appendChild(v); vids.push(v);
         li.addEventListener("click", () => { if (v.paused) v.play().catch(() => {}); else v.pause(); });
       } else li.className = "is-ph";
