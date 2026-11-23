@@ -10,5 +10,6 @@
 ## Pages
 
 - [Home](https://eliesaide1.github.io/bilalali/): About the salon, services, team and hair tips
+- [Services](https://eliesaide1.github.io/bilalali/services.html): Full service menu with durations and prices — hair, beard, VIP private room, facials and skin therapy, nails and care
 - [Shop](https://eliesaide1.github.io/bilalali/shop.html): Hair serum, beard oil, wax styling clay, hair spray, shampoo and scalp care (order by message)
 - [Book](https://eliesaide1.github.io/bilalali/book.html): Choose a service, day and time
