@@ -32,13 +32,6 @@ const CONFIG = {
   instagram: "bilalali_officiall",
   whatsapp: "9613850966",       // digits only with country code, e.g. "96170123456". Empty = Instagram-only booking
   address: { en: "Lebanon, Verdun Street, 732 Building", ar: "لبنان، شارع فردان، مبنى 732" },
-  // Three vertical videos (9:16, MP4) shown in a row near the bottom of the home page; they play muted and loop while on screen.
-  // Empty slots show a dark placeholder tile. e.g. [{ src: "media/work/work-1.mp4", poster: "media/work/work-1.jpg" }, ...]
-  workVideos: [
-    { src: "media/work/work-2.mp4", poster: "media/work/work-2.jpg" },
-    { src: "media/work/work-1.mp4", poster: "media/work/work-1.jpg" },
-    { clips: ["media/work/work-3.mp4", "media/work/work-4.mp4", "media/work/work-5.mp4", "media/work/work-6.mp4"] }
-  ],
   // Hero reel: add Bilal's vertical clips (MP4, 9:16). While this list is empty, the hero plays an animated reel of his tips.
   // Example: { src: "media/reel-1.mp4", poster: "", source: "Instagram", link: "https://www.instagram.com/reel/…",
   //            caption: { en: "Long hair, reshaped", ar: "قصّة للشعر الطويل" } }
@@ -414,20 +407,6 @@ html[lang="ar"] .shopcard b{font-weight:700}
   font-size:clamp(10rem,42vw,19rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--stage-accent-soft);user-select:none}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .portrait::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(to top,rgba(11,10,8,.7),transparent);pointer-events:none}
-/* work videos: three vertical 9:16 clips in a row (swipeable on phones), dark placeholder tiles until filled */
-#work .wrap{max-width:1200px}
-.reels{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:64%;gap:12px;
-  margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);
-  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none}
-.reels::-webkit-scrollbar{display:none}
-.reels>li{scroll-snap-align:start}
-.reels li{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:var(--radius);background:var(--stage);cursor:pointer}
-.reels video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.reels li.is-ph{background:linear-gradient(160deg,#171410,var(--stage));cursor:default}
-.reels li.is-ph::after{content:"";position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:1px solid rgba(239,232,219,.4);
-  background:linear-gradient(rgba(239,232,219,.55),rgba(239,232,219,.55)) center/0 0 no-repeat}
-.reels li.is-ph::before{content:"";position:absolute;z-index:1;top:50%;left:50%;margin:-9px 0 0 -5px;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent rgba(239,232,219,.55)}
-@media (min-width:900px){.reels{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-columns:auto;gap:20px;margin:0;padding:0;overflow:visible;scroll-snap-type:none}}
 
 /* booking */
 .book__grid{display:grid;gap:56px}
@@ -643,7 +622,6 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
       <ul class="nav__links">
         <li><a href="services.html" data-i18n="navServices">Services</a></li>
         <li><a href="#about" data-i18n="navAbout">About</a></li>
-        <li><a href="shop.html" data-i18n="navShop">Shop</a></li>
       </ul>
     </nav>
     <div class="nav__actions">
@@ -661,7 +639,6 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
     <ul>
       <li><a class="menu__link" href="services.html"><span data-i18n="navServices">Services</span></a></li>
       <li><a class="menu__link" href="#about"><span data-i18n="navAbout">About</span></a></li>
-      <li><a class="menu__link" href="shop.html"><span data-i18n="navShop">Shop</span></a></li>
     </ul>
   </nav>
   <div class="menu__foot">
@@ -798,12 +775,6 @@ html[lang="ar"] .visit__list dt{letter-spacing:0;font-size:.9rem}
         <li><b data-i18n="hw2t">Consult</b><p data-i18n="hw2d">Every visit starts with a short chat about your hair, your face shape and your daily routine.</p></li>
         <li><b data-i18n="hw3t">Leave sharp</b><p data-i18n="hw3d">Your cut, shaped and styled, with the right product and simple advice to keep it that way.</p></li>
       </ol>
-    </div>
-  </section>
-
-  <section class="section reels-sec" id="work" aria-label="Bilal Ali Salon at work">
-    <div class="wrap">
-      <ul class="reels" id="reels"></ul>
     </div>
   </section>
 
@@ -1066,37 +1037,6 @@ const AR = {
   let lang = "en";
   const t = k => (lang === "ar" && AR[k] != null ? AR[k] : EN[k] != null ? EN[k] : "");
 
-  /* ---------- work videos ---------- */
-  (function workVideos() {
-    const ul = $("#reels");
-    if (!ul) return;
-    const vids = [];
-    for (let n = 0; n < 3; n++) {
-      const c = (CONFIG.workVideos || [])[n], li = document.createElement("li");
-      if (c && (c.src || (c.clips && c.clips.length))) {
-        const v = document.createElement("video");
-        v.muted = true; v.loop = true; v.playsInline = true; v.preload = "metadata"; v.setAttribute("aria-hidden", "true");
-        if (c.poster) v.poster = c.poster;
-        if (c.clips && c.clips.length) {
-          /* a card with several clips plays them one after another, then starts over */
-          let k = 0;
-          v.loop = c.clips.length === 1;
-          v.src = c.clips[0];
-          v.addEventListener("ended", () => { k = (k + 1) % c.clips.length; v.src = c.clips[k]; v.play().catch(() => {}); });
-        } else v.src = c.src;
-        li.appendChild(v); vids.push(v);
-        li.addEventListener("click", () => { if (v.paused) v.play().catch(() => {}); else v.pause(); });
-      } else li.className = "is-ph";
-      ul.appendChild(li);
-    }
-    if (vids.length && "IntersectionObserver" in window && !reduceMotion) {
-      const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
-      }), { threshold: 0.4 });
-      vids.forEach(v => io.observe(v));
-    }
-  })();
-
   function applyLang(l) {
     lang = l === "ar" ? "ar" : "en";
     root.lang = lang;
@@ -1257,7 +1197,7 @@ const AR = {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const groups = [
       ".sec-head > *", ".about__body > *", ".about__lead", ".about__photo", ".svc-grid > li", ".services__foot", ".talk__links",
-      ".reels > li", ".steps > li", ".visit__grid > *", ".book__grid > div", ".form > .field", ".details > .detail",
+      ".steps > li", ".visit__grid > *", ".book__grid > div", ".form > .field", ".details > .detail",
       ".showcase__card", ".promo__card", ".foot__brand", ".foot__cols > *", ".foot__bottom"
     ];
     const seen = new Set();
