@@ -89,21 +89,15 @@ html[lang="ar"] .brand span{letter-spacing:0;margin:0;font-size:.8rem}
 .group__num{font-family:var(--f-display);font-size:clamp(1rem,.8rem + .7vw,1.3rem);font-weight:500;color:var(--gold);letter-spacing:.08em;flex:none}
 .group__head h2{font-size:clamp(1.9rem,1.2rem + 2.4vw,3.2rem);font-weight:400}
 
-.svcs{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.svc{display:grid;grid-template-columns:1fr auto;gap:4px clamp(18px,3vw,56px);align-items:baseline;padding-block:clamp(18px,2.2vw,26px);border-bottom:1px solid var(--line)}
-.svc:last-child{border-bottom:0}
-.svc h3{grid-column:1;font-size:clamp(1.15rem,1rem + .5vw,1.45rem);font-weight:500}
-.svc__meta{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:clamp(10px,1.4vw,20px);white-space:nowrap;text-align:end}
-.svc__dur{color:var(--muted);font-size:.9rem}
-.svc__price{font-family:var(--f-display);font-size:clamp(1.05rem,.95rem + .35vw,1.3rem);font-weight:500;min-width:4.5ch;text-align:end}
+/* one card per service: name, duration, description, then the price in bold at the foot */
+.svcs{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.svc{padding:clamp(18px,2.2vw,24px);background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.svc h3{font-size:clamp(1.1rem,1rem + .4vw,1.35rem);font-weight:500}
+.svc__dur{margin-top:5px;color:var(--muted);font-size:.95rem;line-height:1.35}
+.svc__desc{margin-top:10px;color:var(--muted);font-size:.98rem;line-height:1.45;max-width:62ch}
+.svc__price{margin-top:16px;font-size:clamp(1.05rem,.95rem + .35vw,1.25rem);font-weight:600}
 html[lang="ar"] .svc__price{font-weight:700}
-.svc__desc{grid-column:1/-1;color:var(--muted);font-size:.98rem;max-width:62ch}
-@media (max-width:620px){
-  .svc{grid-template-columns:1fr}
-  .svc__meta{grid-column:1;grid-row:auto;justify-content:flex-start;text-align:start;order:3;padding-top:2px}
-  .svc__desc{order:2}
-  .svc__price{min-width:0}
-}
+@media (min-width:760px){.svcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* pre-footer banner and site footer: same rules as the home page so the pages end identically */
 .promo{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:3/1;min-height:220px;background:var(--stage)}
@@ -333,8 +327,8 @@ html[lang="ar"] .foot__brand .brand__name{letter-spacing:0;font-weight:700}
       g.items.forEach(function (it) {
         var row = document.createElement("li");
         row.className = "svc";
-        row.innerHTML = '<h3></h3><p class="svc__meta"><span class="svc__dur"></span>' +
-          '<span class="svc__price"></span></p><p class="svc__desc"></p>';
+        row.innerHTML = '<h3></h3><p class="svc__dur"></p><p class="svc__desc"></p>' +
+          '<p class="svc__price"></p>';
         row.querySelector("h3").textContent = it[lang][0];
         row.querySelector(".svc__dur").textContent = it[lang][1];
         row.querySelector(".svc__price").textContent = it.price;
