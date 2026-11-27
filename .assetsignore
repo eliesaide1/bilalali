@@ -1,0 +1,5 @@
+# Repo plumbing, not part of the site
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
