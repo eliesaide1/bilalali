@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>QR Codes | Bilal Ali Salon</title>
+<!-- Unlisted: not linked from the site, not in the sitemap, and kept out of search results. -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#EDDBC8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ctext x=%2732%27 y=%2754%27 font-size=%2764%27 font-family=%27Georgia,serif%27 text-anchor=%27middle%27 fill=%27%23A8782F%27%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="media/fonts/blauer-nue-400.woff2">
+<style>
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-300.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Blauer Nue";src:url("media/fonts/blauer-nue-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+:root{
+  --bg:#EDDBC8;--surface:#F6EBDD;--fg:#1E1710;--muted:#6B5A48;--line:rgba(30,23,16,.18);--gold:#8B6630;
+  --f:"Blauer Nue","Hanken Grotesk",system-ui,sans-serif;
+  --gutter:clamp(16px,4.5vw,56px);color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:var(--f);font-weight:500;letter-spacing:-.012em;margin:0}
+
+.wrap{max-width:1000px;margin-inline:auto;padding:clamp(28px,5vw,64px) var(--gutter) clamp(48px,7vw,88px)}
+
+/* brand mark, small: this page is a utility, not a landing page */
+.brand{display:grid;justify-items:center;gap:5px;margin-bottom:clamp(28px,4vw,48px);line-height:1}
+.brand b{font-weight:400;font-size:1.5rem;letter-spacing:.2em;margin-inline-end:-.2em;text-transform:uppercase}
+.brand span{font-size:.6rem;font-weight:500;letter-spacing:.5em;margin-inline-end:-.5em;text-transform:uppercase;color:var(--gold)}
+
+.codes{display:grid;gap:clamp(20px,3vw,32px);grid-template-columns:1fr}
+@media (min-width:760px){.codes{grid-template-columns:repeat(2,1fr)}}
+
+.code{display:grid;justify-items:center;gap:18px;padding:clamp(22px,3vw,34px);
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  transition:border-color .25s,transform .25s}
+.code:hover{border-color:var(--gold);transform:translateY(-2px)}
+/* white plate behind the code: scanners cope badly with a tinted background */
+.code__qr{width:min(300px,100%);aspect-ratio:1;padding:14px;background:#fff;border-radius:12px}
+.code__qr svg{display:block;width:100%;height:100%}
+.code h2{font-size:clamp(1.15rem,1rem + .4vw,1.4rem)}
+.code__ar{font-size:1.05rem;color:var(--muted);margin:-10px 0 0}
+.code__url{font-size:.8rem;color:var(--muted);word-break:break-all;text-align:center;margin:0}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* printing gives a clean pair of codes to cut out and stand on the counter */
+@media print{
+  body{background:#fff}
+  .wrap{padding:0}
+  .code{border-color:#ccc;background:#fff;break-inside:avoid}
+  .code:hover{transform:none}
+  .codes{grid-template-columns:repeat(2,1fr)}
+  .code__url{display:none}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><b>Bilal Ali</b><span>Salon</span></div>
+
+  <div class="codes">
+    <a class="code" href="https://search.google.com/local/writereview?placeid=ChIJbWPrcgAXHxURcKc9l8CEHZc" target="_blank" rel="noopener">
+      <div class="code__qr"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="100%" height="100%" class="segno"><path transform="scale(10)" class="qrline" stroke="#1e1710" d="M2 2.5h7m1 0h3m2 0h1m1 0h1m2 0h3m1 0h1m2 0h1m2 0h5m3 0h1m1 0h7m-45 1h1m5 0h1m4 0h1m1 0h1m1 0h1m3 0h1m1 0h1m4 0h3m6 0h1m2 0h1m5 0h1m-45 1h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h2m1 0h1m2 0h1m3 0h3m2 0h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m3 0h1m2 0h3m1 0h1m1 0h1m1 0h2m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m1 0h1m4 0h1m3 0h1m1 0h8m2 0h2m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-45 1h1m5 0h1m1 0h2m1 0h4m1 0h5m3 0h1m2 0h2m2 0h3m4 0h1m5 0h1m-45 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-36 1h2m2 0h2m1 0h3m1 0h1m3 0h1m1 0h6m1 0h1m2 0h1m-36 1h7m1 0h3m1 0h1m1 0h2m3 0h6m3 0h3m3 0h1m3 0h2m3 0h1m-35 1h1m2 0h1m2 0h1m1 0h2m4 0h2m1 0h4m4 0h3m1 0h1m1 0h2m1 0h1m-45 1h3m1 0h1m1 0h1m1 0h3m2 0h1m2 0h9m1 0h1m2 0h1m2 0h1m2 0h1m1 0h2m2 0h1m1 0h1m-44 1h1m1 0h4m2 0h5m1 0h1m1 0h1m7 0h1m1 0h4m1 0h9m2 0h3m-45 1h1m1 0h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h1m3 0h1m2 0h2m2 0h2m2 0h2m2 0h1m1 0h2m-45 1h3m4 0h1m4 0h2m2 0h2m3 0h1m1 0h3m2 0h3m4 0h3m2 0h3m1 0h1m-44 1h1m1 0h4m2 0h1m1 0h1m1 0h1m2 0h1m3 0h2m4 0h1m1 0h1m1 0h2m1 0h3m2 0h2m1 0h1m-42 1h3m1 0h2m2 0h1m1 0h1m2 0h5m1 0h2m2 0h2m2 0h4m1 0h11m-43 1h1m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h1m1 0h2m4 0h1m1 0h2m2 0h3m1 0h3m5 0h2m1 0h1m-43 1h2m1 0h1m2 0h2m3 0h3m2 0h5m1 0h1m2 0h4m2 0h1m2 0h1m2 0h3m2 0h1m-45 1h3m3 0h2m1 0h5m3 0h3m1 0h1m1 0h5m1 0h3m1 0h3m2 0h2m2 0h2m-44 1h2m1 0h1m4 0h2m1 0h3m1 0h3m3 0h1m2 0h1m5 0h1m1 0h1m1 0h1m1 0h5m1 0h3m-44 1h1m2 0h5m2 0h2m2 0h2m2 0h7m1 0h1m1 0h3m1 0h1m1 0h7m1 0h2m-41 1h1m3 0h2m4 0h3m1 0h1m1 0h1m3 0h1m5 0h1m1 0h1m3 0h1m3 0h1m3 0h1m-43 1h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h8m1 0h1m1 0h1m1 0h2m-44 1h1m2 0h2m3 0h1m1 0h2m1 0h2m1 0h2m1 0h2m3 0h4m1 0h5m2 0h1m3 0h4m-43 1h10m2 0h1m4 0h8m3 0h3m1 0h2m1 0h6m2 0h1m-44 1h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h2m1 0h2m2 0h1m2 0h1m1 0h5m3 0h1m4 0h1m1 0h1m-44 1h4m1 0h2m2 0h1m4 0h4m1 0h5m3 0h1m3 0h7m1 0h1m3 0h1m-44 1h1m9 0h1m3 0h1m1 0h4m1 0h2m1 0h2m1 0h1m1 0h1m8 0h2m1 0h2m1 0h1m-44 1h2m1 0h4m1 0h1m2 0h1m3 0h1m2 0h3m2 0h3m2 0h1m9 0h2m-39 1h4m2 0h1m2 0h2m3 0h1m4 0h1m1 0h1m2 0h2m1 0h2m4 0h1m1 0h2m3 0h3m-43 1h2m2 0h3m1 0h4m2 0h4m4 0h2m1 0h2m4 0h2m1 0h2m3 0h1m1 0h1m-43 1h4m5 0h3m1 0h1m1 0h1m3 0h3m2 0h1m2 0h1m1 0h6m2 0h2m1 0h3m-44 1h2m2 0h1m1 0h3m1 0h4m1 0h1m1 0h1m2 0h2m1 0h1m7 0h1m1 0h1m3 0h1m1 0h2m2 0h1m-44 1h1m1 0h1m2 0h1m1 0h4m3 0h3m2 0h1m1 0h1m1 0h1m2 0h1m2 0h2m5 0h2m3 0h1m2 0h1m-41 1h1m1 0h1m1 0h2m4 0h1m2 0h1m1 0h1m1 0h2m3 0h1m5 0h2m3 0h1m2 0h2m1 0h1m-43 1h4m6 0h1m2 0h1m1 0h4m2 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m5 0h2m-43 1h1m2 0h2m1 0h4m1 0h1m1 0h2m2 0h9m1 0h1m1 0h1m1 0h1m2 0h1m1 0h6m1 0h2m-37 1h2m2 0h1m2 0h6m3 0h1m4 0h3m1 0h1m1 0h2m3 0h1m1 0h1m1 0h1m-45 1h7m1 0h1m2 0h1m1 0h2m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h2m1 0h2m1 0h1m1 0h1m1 0h2m-44 1h1m5 0h1m1 0h1m1 0h1m5 0h5m3 0h2m2 0h1m1 0h3m1 0h3m3 0h5m-45 1h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h7m4 0h1m2 0h8m-42 1h1m1 0h3m1 0h1m1 0h4m1 0h4m2 0h1m2 0h1m2 0h2m2 0h3m1 0h1m6 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m4 0h3m3 0h2m2 0h1m1 0h3m4 0h5m5 0h2m-44 1h1m5 0h1m1 0h1m3 0h2m2 0h3m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h2m-43 1h7m2 0h3m1 0h1m1 0h3m2 0h1m1 0h2m2 0h1m1 0h1m6 0h1m1 0h2m3 0h2"/></svg></div>
+      <h2>Review us on Google</h2>
+      <p class="code__ar" lang="ar" dir="rtl">قيّمنا على جوجل</p>
+      <p class="code__url">search.google.com &rarr; write a review</p>
+    </a>
+
+    <a class="code" href="https://www.instagram.com/bilalali_officiall/" target="_blank" rel="noopener">
+      <div class="code__qr"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 370" width="100%" height="100%" class="segno"><path transform="scale(10)" class="qrline" stroke="#1e1710" d="M2 2.5h7m1 0h1m2 0h2m3 0h5m1 0h2m2 0h7m-33 1h1m5 0h1m3 0h1m1 0h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m6 0h1m4 0h1m3 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m2 0h2m3 0h4m1 0h1m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m1 0h1m2 0h5m2 0h3m1 0h1m-24 1h1m1 0h1m1 0h4m1 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h4m1 0h2m1 0h1m-32 1h1m5 0h1m1 0h2m3 0h2m1 0h1m2 0h3m1 0h4m3 0h2m-30 1h5m1 0h1m5 0h1m2 0h2m1 0h2m1 0h1m2 0h2m1 0h3m-32 1h1m1 0h3m6 0h2m5 0h3m1 0h4m1 0h2m2 0h1m-31 1h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h4m2 0h1m1 0h1m-32 1h1m2 0h1m1 0h1m1 0h3m4 0h1m4 0h4m1 0h1m1 0h1m1 0h1m1 0h3m-31 1h1m1 0h1m1 0h1m1 0h1m5 0h2m5 0h3m1 0h4m2 0h1m-32 1h1m4 0h1m3 0h2m1 0h2m1 0h3m1 0h4m1 0h1m1 0h2m3 0h1m-32 1h3m1 0h5m3 0h2m1 0h2m3 0h5m1 0h1m1 0h1m2 0h1m-29 1h3m2 0h1m2 0h1m4 0h3m3 0h2m3 0h1m1 0h1m1 0h1m-29 1h4m1 0h2m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m3 0h3m-33 1h1m1 0h1m2 0h1m3 0h2m4 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m3 0h2m-32 1h1m1 0h1m2 0h3m1 0h2m1 0h1m1 0h3m3 0h1m1 0h1m1 0h1m5 0h2m-32 1h3m4 0h3m2 0h1m1 0h4m1 0h2m1 0h4m2 0h1m1 0h2m-33 1h2m1 0h4m3 0h1m1 0h3m2 0h1m1 0h1m2 0h1m3 0h1m5 0h1m-32 1h2m1 0h2m1 0h1m1 0h1m1 0h1m5 0h1m1 0h3m6 0h2m2 0h1m-33 1h1m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h6m2 0h1m-24 1h1m6 0h1m3 0h4m1 0h1m3 0h2m2 0h1m-33 1h7m1 0h1m1 0h1m4 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m3 0h1m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h2m2 0h1m1 0h4m1 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h2m4 0h2m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m1 0h3m1 0h1m6 0h2m1 0h2m4 0h4m2 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m3 0h6m2 0h1m1 0h4m-27 1h7m3 0h1m3 0h3m1 0h2m1 0h1m2 0h1m3 0h2m1 0h1"/></svg></div>
+      <h2>Follow on Instagram</h2>
+      <p class="code__ar" lang="ar" dir="rtl">تابِعنا على إنستغرام</p>
+      <p class="code__url">@bilalali_officiall</p>
+    </a>
+  </div>
+</main>
+</body>
+</html>
